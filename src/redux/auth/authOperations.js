@@ -1,7 +1,15 @@
 import actions from './authActions';
 import axios from 'axios';
 
-let storageToken = '';
+axios.defaults.baseURL = 'https://db-wallet.herokuapp.com';
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
 
 const registerUser = user => dispatch => {
   // axios
@@ -9,8 +17,8 @@ const registerUser = user => dispatch => {
   //   .then(answer =>
   //     dispatch(
   //       actions.registerSuccess(answer.data),
-  //       (storageToken = answer.data.token),
-  //       localStorage.setItem('token', storageToken),
+  //       (token = answer.data.token),
+  //       localStorage.setItem('token', token),
   //     ),
   //   )
   //   .catch(error =>
@@ -29,8 +37,8 @@ const loginUser = user => dispatch => {
   //   .then(answer =>
   //     dispatch(
   //       actions.loginSuccess(answer.data),
-  //       (storageToken = answer.data.token),
-  //       localStorage.setItem('token', storageToken),
+  //       (token = answer.data.token),
+  //       localStorage.setItem('token', token),
   //     ),
   //   )
   //   .catch(error =>
@@ -44,7 +52,7 @@ const loginUser = user => dispatch => {
 };
 
 const logoutUser = () => dispatch => {
-  if (!storageToken) {
+  if (!token) {
     return;
   }
   dispatch(actions.logoutRequest());
@@ -52,19 +60,40 @@ const logoutUser = () => dispatch => {
     method: 'post',
     url: 'adress',
     headers: {
-      Authorization: storageToken,
+      Authorization: token,
     },
   })
     .then(
       () => dispatch(actions.logoutSuccess()),
       localStorage.removeItem('token'),
-      (storageToken = ''),
+      token.unset(),
     )
     .catch(error => dispatch(actions.logoutError(error)));
+};
+
+const getCurrentUser = () => (dispatch, getState) => {
+  const {
+    auth: { token: persistedToken },
+  } = getState();
+
+  if (!persistedToken) {
+    return;
+  }
+  token.set(persistedToken);
+  dispatch(actions.getCurrentUserRequest());
+
+  return axios
+    .get('/users/current')
+    .then(({ data }) => dispatch(actions.getCurrentUserSuccess(data)))
+    .catch(error => {
+      token.unset();
+      dispatch(actions.getCurrentUserError(error.message));
+    });
 };
 
 export default {
   registerUser,
   loginUser,
   logoutUser,
+  getCurrentUser,
 };
