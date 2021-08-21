@@ -1,0 +1,27 @@
+@import '../../stylesheet/utils/breakpoints.scss';
+
+.container {
+  padding: 0 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media screen and (min-width: $mobile) {
+  .container {
+    width: $mobile;
+  }
+}
+
+@media screen and (min-width: $tablet) {
+  .container {
+    width: $tablet;
+    padding: 0 50px;
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .container {
+    width: $desktop;
+    padding: 0 75px;
+  }
+}
