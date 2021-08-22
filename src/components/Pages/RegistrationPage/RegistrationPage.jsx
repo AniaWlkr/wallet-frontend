@@ -9,6 +9,8 @@ export default function RegistrationPage() {
         <p>RegistrationPage</p>
         <div>
           <NavLink to={routes.dashBoard}>Home</NavLink>
+          <NavLink to={routes.login}>Login</NavLink>
+          <NavLink to={routes.homepage}>Exit</NavLink> {/* удалить */}
         </div>
       </div>
       <RegistrationForm />
