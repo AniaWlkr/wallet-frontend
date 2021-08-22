@@ -1,9 +1,9 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import actions from '../auth/authActions';
 
-const user = { name: null, email: null };
+const user = '';
 
-const authUserReducer = createReducer(user, {
+const authUser = createReducer(user, {
   [actions.registerSuccess]: (_, action) => action.payload,
   [actions.loginSuccess]: (_, action) => action.payload.user,
   [actions.logoutSuccess]: () => user,
@@ -12,7 +12,7 @@ const authUserReducer = createReducer(user, {
   [actions.loginError]: () => user,
 });
 
-const isAuthedReducer = createReducer(false, {
+const isAuth = createReducer(false, {
   [actions.registerSuccess]: () => true,
   [actions.registerError]: () => false,
   [actions.getCurrentUserSuccess]: () => true,
@@ -40,8 +40,8 @@ const error = createReducer(null, {
 });
 
 export default combineReducers({
-  authUserReducer,
-  isAuthedReducer,
+  authUser,
+  isAuth,
   token,
   error,
 });
