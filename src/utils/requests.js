@@ -30,9 +30,14 @@ export const usersGetCurrent = token => {
 };
 
 // categories
-export const getCategories = token =>
-  axios.get(api.categories(), setToken(token));
+export const getCategories = () => axios.get(api.categories());
+export const addCategory = newCategory =>
+  axios.post(api.categories(), newCategory);
 
 // transactions
 export const getTransactions = token =>
   axios.get(api.transactions(), setToken(token));
+export const addTransaction = (newTransaction, token) =>
+  axios.post(api.transactions(), newTransaction, setToken(token));
+export const deleteTransaction = (id, token) =>
+  axios.delet(api.transaction(id), setToken(token));
