@@ -2,7 +2,7 @@
 // import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 // import { getCurrentUser } from '../../redux/auth/auth-operations';
-import Router from '../components/Router';
+import Router from '../Router';
 
 export default function App() {
   // const dispatch = useDispatch();
