@@ -6,15 +6,15 @@ import routes from '../../../routes/routes';
 export default function Homepage() {
   // const isAuthed = useSelector(authSelectors.isAuthed);
   // console.dir(isAuthed);
-
+  console.log(routes);
   return (
     <div>
       <div>
-        <p>HOMEPAGE</p>
-        <NavLink to={routes.homepage}>Home</NavLink>
+        <p>DashboardPage</p>
+        <NavLink to={routes.dashBoard}>Home</NavLink>
         <NavLink to={routes.login}>Login</NavLink>
         <NavLink to={routes.register}>Register</NavLink>
-        <NavLink to={routes.homepage}>Exit</NavLink>
+        <NavLink to={routes.dashBoard}>Exit</NavLink>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export default function LoginPage() {
           <h1>Modal</h1>
         </Modal>
 
-        <NavLink to={routes.homepage}>Home</NavLink>
+        <NavLink to={routes.dashBoard}>Home</NavLink>
         <NavLink to={routes.register}>Register</NavLink>
         {isAuthed ? (
           <div>
