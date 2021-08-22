@@ -1,11 +1,11 @@
-import { getTransactions } from '../../utils/requests';
+import { getTransactions, addTransaction } from '../../utils/requests';
 import {
   fetchTransactionsRequest,
   fetchTransactionsSuccess,
   fetchTransactionsError,
-  // addTransactionRequest,
-  // addTransactionSuccess,
-  // addTransactionError,
+  addTransactionRequest,
+  addTransactionSuccess,
+  addTransactionError,
   // deleteTransactionRequest,
   // deleteTransactionSuccess,
   // deleteTransactionError,
@@ -20,21 +20,48 @@ export const getTransactionsOperation = () => (dispatch, getStore) => {
 
   dispatch(fetchTransactionsRequest());
   return getTransactions(token)
-    .then(res => {
-      if (res.data.status === 'success') {
+    .then(response => {
+      if (response.data.status === 'success') {
         const transactions = {
-          transactions: res.data,
+          transactions: response.data,
         };
         dispatch(fetchTransactionsSuccess(transactions));
       } else {
-        throw new Error(res);
+        throw new Error(response);
       }
     })
     .catch(err => {
       let errData = err;
       if (err instanceof Error) {
-        errData = err.res;
+        errData = err.response;
       }
       dispatch(fetchTransactionsError(errData));
     });
 };
+
+export const addTransactionOperation =
+  newTransaction => (dispatch, getStore) => {
+    const {
+      auth: {
+        user: { token },
+      },
+    } = getStore();
+
+    dispatch(addTransactionRequest());
+    return addTransaction(newTransaction, token)
+      .then(response => {
+        if (response.status === 201) {
+          const transaction = response.data.transaction;
+          dispatch(addTransactionSuccess(transaction));
+          return transaction;
+        }
+        throw response;
+      })
+      .catch(err => {
+        let errData = err;
+        if (err instanceof Error) {
+          errData = err.response.data;
+        }
+        dispatch(addTransactionError(errData));
+      });
+  };
