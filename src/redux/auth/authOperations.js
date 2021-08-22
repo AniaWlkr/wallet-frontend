@@ -1,94 +1,134 @@
 import actions from './authActions';
 import axios from 'axios';
+// import selectors from './authSelectors';
 
 axios.defaults.baseURL = 'https://db-wallet.herokuapp.com';
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
+// const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//   },
+//   unset() {
+//     axios.defaults.headers.common.Authorization = '';
+//   },
+// };
 
 const registerUser = user => dispatch => {
-  // axios
-  //   .post('adress', user)
-  //   .then(answer =>
-  //     dispatch(
-  //       actions.registerSuccess(answer.data),
-  //       (token = answer.data.token),
-  //       localStorage.setItem('token', token),
-  //     ),
-  //   )
-  //   .catch(error =>
-  //     dispatch(
-  //       actions.registerError(error),
-  //       window.alert('You entered something wrong'),
-  //     ),
-  //   );
-  dispatch(actions.registerSuccess(user));
-  console.log(user);
+  axios
+    .post('/api/users/signup', user)
+    .then(answer => {
+      // console.dir(answer);
+      if (answer.data.code === 201) {
+        dispatch(actions.registerSuccess(answer.data.data.user));
+      }
+    })
+    .catch(error => {
+      // console.dir(error);
+      if (error.response.data.code === 400) {
+        dispatch(actions.registerError(error.response.data.message));
+      }
+      if (error.response.data.code === 409) {
+        dispatch(actions.registerError(error.response.data.message));
+      }
+      if (error.response.data.code === 429) {
+        dispatch(actions.registerError(error.response.data.message));
+      }
+      if (error.response.data.code === 500) {
+        dispatch(actions.registerError(error.response.data.message));
+      }
+    });
 };
 
 const loginUser = user => dispatch => {
-  // axios
-  //   .post('adress', user)
-  //   .then(answer =>
-  //     dispatch(
-  //       actions.loginSuccess(answer.data),
-  //       (token = answer.data.token),
-  //       localStorage.setItem('token', token),
-  //     ),
-  //   )
-  //   .catch(error =>
-  //     dispatch(
-  //       actions.loginError(error),
-  //       window.alert('You entered something wrong'),
-  //     ),
-  // );
-  dispatch(actions.loginSuccess(user));
-  console.log(user);
+  axios
+    .post('/api/users/login', user)
+    .then(answer => {
+      if (answer.data.code === 200) {
+        dispatch(actions.loginSuccess(answer.data.data));
+        localStorage.setItem('wallet-token', answer.data.data.accessToken);
+      }
+    })
+    .catch(error => {
+      // console.dir(error);
+      if (error.response.data.code === 400) {
+        dispatch(actions.loginError(error.response.data.message));
+      }
+      if (error.response.data.code === 401) {
+        dispatch(actions.loginError(error.response.data.message));
+      }
+      if (error.response.data.code === 429) {
+        dispatch(actions.loginError(error.response.data.message));
+      }
+      if (error.response.data.code === 500) {
+        dispatch(actions.loginError(error.response.data.message));
+      }
+    });
 };
 
 const logoutUser = () => dispatch => {
+  const token = localStorage.getItem('wallet-token');
   if (!token) {
-    return;
+    return console.log('no token');
   }
-  dispatch(actions.logoutRequest());
   axios({
     method: 'post',
-    url: 'adress',
+    url: '/api/users/logout',
     headers: {
-      Authorization: token,
+      Authorization: `Bearer ${token}`,
     },
   })
-    .then(
-      () => dispatch(actions.logoutSuccess()),
-      localStorage.removeItem('token'),
-      token.unset(),
-    )
-    .catch(error => dispatch(actions.logoutError(error)));
+    .then(() => {
+      dispatch(actions.logoutSuccess());
+    })
+    .catch(error => {
+      if (error) {
+        dispatch(actions.logoutError(error));
+      }
+    });
 };
 
 const getCurrentUser = () => (dispatch, getState) => {
-  const {
-    auth: { token: persistedToken },
-  } = getState();
-
-  if (!persistedToken) {
-    return;
+  const token = localStorage.getItem('wallet-token');
+  if (!token) {
+    return console.log('no token');
   }
-  token.set(persistedToken);
-  dispatch(actions.getCurrentUserRequest());
-
-  return axios
-    .get('/users/current')
-    .then(({ data }) => dispatch(actions.getCurrentUserSuccess(data)))
+  axios({
+    method: 'get',
+    url: '/api/users/current',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(answer => {
+      const email = answer.data.data.email;
+      const name = answer.data.data.name;
+      const user = {
+        email,
+        name,
+      };
+      dispatch(actions.getCurrentUserSuccess(user));
+    })
     .catch(error => {
-      token.unset();
-      dispatch(actions.getCurrentUserError(error.message));
+      console.dir(error);
+      dispatch(actions.getCurrentUserError(error));
     });
+
+  // const {
+  //   auth: { token: persistedToken },
+  // } = getState();
+
+  // if (!persistedToken) {
+  //   return;
+  // }
+  // token.set(persistedToken);
+  // dispatch(actions.getCurrentUserRequest());
+
+  // return axios
+  //   .get('/api/users/current')
+  //   .then(({ data }) => dispatch(actions.getCurrentUserSuccess(data)))
+  //   .catch(error => {
+  //     token.unset();
+  //     dispatch(actions.getCurrentUserError(error.message));
+  //   });
 };
 
 export default {
