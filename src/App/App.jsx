@@ -1,8 +1,5 @@
 import { Component, lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { operations, selectors } from '../redux/auth';
+import { Switch } from 'react-router-dom';
 import routes from '../routes/routes';
 // import Container from '../components/Container';
 import Loader from '../components/Loader';
@@ -24,13 +21,7 @@ const AsyncDashboardPage = lazy(() =>
 );
 
 class App extends Component {
-  componentDidMount() {
-    this.props.getCurrentUser();
-  }
-
   render() {
-    const { isAuthenticated } = this.props;
-
     return (
       // <Container>
       <Suspense fallback={<Loader />}>
@@ -39,22 +30,19 @@ class App extends Component {
             exact
             path={routes.homepage}
             component={AsyncDashboardPage}
-            isAuthed={isAuthenticated}
             redirectTo={routes.login}
           />
-          <Route
+          <PrivateRoute
             exact
-            restricted
             path={routes.register}
-            redirectTo={routes.login}
             component={AsyncRegister}
+            redirectTo={routes.login}
           />
-          <Route
+          <PrivateRoute
             exact
-            restricted
             path={routes.login}
-            redirectTo={routes.homepage}
             component={AsyncLogin}
+            redirectTo={routes.homepage}
           />
         </Switch>
       </Suspense>
@@ -62,17 +50,5 @@ class App extends Component {
     );
   }
 }
-App.propTypes = {
-  getCurrentUser: PropTypes.func,
-  isAuthenticated: PropTypes.bool,
-};
 
-const mapDispatchToProps = {
-  getCurrentUser: operations.getCurrentUser,
-};
-
-const mapStateToProps = state => ({
-  isAuthenticated: selectors.getIsAuthenticated(state),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

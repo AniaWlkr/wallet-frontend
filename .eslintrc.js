@@ -4,6 +4,7 @@ module.exports = {
     es2021: true,
   },
   extends: [
+    'eslint:recommended',
     'plugin:react/recommended',
     'standard',
     'plugin:json/recommended',
@@ -16,7 +17,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'html'],
   rules: {
     'react/react-in-jsx-scope': 0,
     'react/jsx-uses-react': 0,
