@@ -1,54 +1,22 @@
-import { Component, lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import routes from '../routes/routes';
-// import Container from '../components/Container';
-import Loader from '../components/Loader';
-// import PrivateRoute from '../routes/privateRoute';
+// import { useEffect } from 'react';
+// import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+// import { getCurrentUser } from '../../redux/auth/auth-operations';
+import Router from '../components/Router';
 
-const AsyncRegister = lazy(
-  () =>
-    import(
-      '../components/Pages/RegistrationPage'
-    ) /* webpackChunkName: "Register" */,
-);
-const AsyncLogin = lazy(() =>
-  import('../components/Pages/LoginPage' /* webpackChunkName: "Login" */),
-);
-const AsyncDashboardPage = lazy(() =>
-  import(
-    '../components/Pages/DashboardPage' /* webpackChunkName: "DashboardPage" */
-  ),
-);
+export default function App() {
+  // const dispatch = useDispatch();
 
-class App extends Component {
-  render() {
-    return (
-      // <Container>
-      <Suspense fallback={<Loader />}>
-        <Switch>
-          <Route
-            exact
-            path={routes.homepage}
-            component={AsyncDashboardPage}
-            redirectTo={routes.login}
-          />
-          <Route
-            exact
-            path={routes.register}
-            component={AsyncRegister}
-            redirectTo={routes.login}
-          />
-          <Route
-            exact
-            path={routes.login}
-            component={AsyncLogin}
-            redirectTo={routes.homepage}
-          />
-        </Switch>
-      </Suspense>
-      // </Container>
-    );
-  }
+  // useEffect(() => {
+  //   dispatch(getCurrentUser());
+  // }, [dispatch]);
+
+  return (
+    <>
+      <Router />
+    </>
+  );
 }
-
-export default App;
+App.propTypes = {
+  onGetCurrentUser: PropTypes.func,
+};

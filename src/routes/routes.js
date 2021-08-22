@@ -1,8 +1,7 @@
 const routes = {
-  homepage: '/',
+  dashBoard: '/',
   register: '/register',
   login: '/login',
   error: '/404',
 };
-
 export default routes;

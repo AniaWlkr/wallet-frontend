@@ -1,4 +1,4 @@
-const isAuthed = state => state.isAuthedReducer;
+const isAuthed = state => state.auth.isAuth;
 const authUser = state => state.authUserReducer;
 const getIsAuthenticated = state => Boolean(state.auth.token);
 const getUserName = state => state.auth.user.name;
