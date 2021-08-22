@@ -1,21 +1,14 @@
-import styles from './Loader.module.css';
+import './Loader.scss';
 
 const Loader = () => {
   return (
-    <div className={styles.ldsSpinner}>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <ul className="Loader">
+      <li className="Point"></li>
+      <li className="Point"></li>
+      <li className="Point"></li>
+      <li className="Point"></li>
+      <li className="Point"></li>
+    </ul>
   );
 };
 
