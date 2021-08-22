@@ -1,9 +1,9 @@
 import { Component, lazy, Suspense } from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import routes from '../routes/routes';
 // import Container from '../components/Container';
 import Loader from '../components/Loader';
-import PrivateRoute from '../routes/privateRoute';
+// import PrivateRoute from '../routes/privateRoute';
 
 const AsyncRegister = lazy(
   () =>
@@ -26,19 +26,19 @@ class App extends Component {
       // <Container>
       <Suspense fallback={<Loader />}>
         <Switch>
-          <PrivateRoute
+          <Route
             exact
             path={routes.homepage}
             component={AsyncDashboardPage}
             redirectTo={routes.login}
           />
-          <PrivateRoute
+          <Route
             exact
             path={routes.register}
             component={AsyncRegister}
             redirectTo={routes.login}
           />
-          <PrivateRoute
+          <Route
             exact
             path={routes.login}
             component={AsyncLogin}
