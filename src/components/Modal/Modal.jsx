@@ -1,4 +1,4 @@
-import React, { useState, useImperativeHandle, forwardRef } from 'react';
+import { useState, useImperativeHandle, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 
