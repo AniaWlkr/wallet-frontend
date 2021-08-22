@@ -1,4 +1,8 @@
-import { getTransactions, addTransaction } from '../../utils/requests';
+import {
+  getTransactions,
+  addTransaction,
+  deleteTransaction,
+} from '../../utils/requests';
 import {
   fetchTransactionsRequest,
   fetchTransactionsSuccess,
@@ -7,8 +11,8 @@ import {
   addTransactionSuccess,
   addTransactionError,
   // deleteTransactionRequest,
-  // deleteTransactionSuccess,
-  // deleteTransactionError,
+  deleteTransactionSuccess,
+  deleteTransactionError,
 } from './transActions';
 
 export const getTransactionsOperation = () => (dispatch, getStore) => {
@@ -65,3 +69,17 @@ export const addTransactionOperation =
         dispatch(addTransactionError(errData));
       });
   };
+
+export const deleteTransactionOperation = id => (dispatch, getState) => {
+  const {
+    session: {
+      user: { token },
+    },
+  } = getState();
+
+  if (!id) return;
+
+  deleteTransaction(id, token)
+    .then(() => dispatch(deleteTransactionSuccess()))
+    .catch(() => dispatch(deleteTransactionError()));
+};
