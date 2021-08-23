@@ -7,6 +7,8 @@ import PublicRoute from './PublicRoute';
 
 import Loader from '../Loader';
 
+// import DiagramTab from '../DiagramTab/DiagramTab';
+
 const DashBoardPage = lazy(() => import('../../Pages/DashBoardPage'));
 const RegisterPage = lazy(() => import('../../Pages/RegisterPage'));
 const LoginPage = lazy(() => import('../../Pages/LoginPage'));
@@ -15,6 +17,7 @@ const Router = () => {
   return (
     <div>
       <Suspense fallback={<Loader />}>
+        {/* <DiagramTab /> */}
         <Switch>
           <PublicRoute
             path={routes.register}

@@ -33,6 +33,18 @@ export default function DashboardPage() {
       />
     </div>
   );
+
+  // <div>
+  //   <div>
+  //     <p>DashboardPage</p>
+  //     <NavLink to={routes.dashBoard}>Home</NavLink>
+  //     <NavLink to={routes.login}>Login</NavLink>
+  //     <NavLink to={routes.register}>Register</NavLink>
+  //     <NavLink onClick={logOut} to={routes.dashBoard}>
+  //       Exit
+  //     </NavLink>
+  //   </div>
+  // </div>
 }
 
 // не удаляйте комментарий плз
