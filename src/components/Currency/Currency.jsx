@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import moment from 'moment';
 import apiService from '../../services/api-service';
 import Loader from '../Loader';
+import styles from './Currency.module.css';
 
 const Currency = () => {
   const [currencyRates, setCurrencyRates] = useState([]);
@@ -38,22 +39,22 @@ const Currency = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <table>
-        <thead>
+      <table className={styles.table}>
+        <thead className={styles.thead}>
           <tr>
-            <th>Валюта</th>
-            <th>Покупка</th>
-            <th>Продажа</th>
+            <th className={styles.left}>Валюта</th>
+            <th className={styles.center}>Покупка</th>
+            <th className={styles.right}>Продажа</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={styles.tbody}>
           {currencyRates.map(
             item =>
               item.base_ccy === 'UAH' && (
-                <tr key={item.ccy}>
-                  <td>{item.ccy}</td>
-                  <td>{round(item.buy)}</td>
-                  <td>{round(item.sale)}</td>
+                <tr key={item.ccy} className={styles.traw}>
+                  <td className={styles.left}>{item.ccy}</td>
+                  <td className={styles.center}>{round(item.buy)}</td>
+                  <td className={styles.right}>{round(item.sale)}</td>
                 </tr>
               ),
           )}
