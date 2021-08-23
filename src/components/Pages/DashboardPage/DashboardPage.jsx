@@ -3,7 +3,7 @@ import routes from '../../../routes/routes';
 // import authSelectors from '../../../redux/auth/authSelectors';
 // import { useSelector } from 'react-redux';
 
-export default function Homepage() {
+export default function DashboardPage() {
   // const isAuthed = useSelector(authSelectors.isAuthed);
   // console.dir(isAuthed);
   console.log(routes);
