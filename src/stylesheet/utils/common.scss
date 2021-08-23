@@ -20,10 +20,25 @@
   background-color: $accent-light-color;
 }
 
-// body {
-//   font-family: $montserrat-font;
-// }
+body {
+  font-family: $montserrat-font;
+}
 
 body.no-scroll {
   overflow: hidden;
+}
+
+.button {
+  min-width: 100px;
+  min-height: auto;
+  font-size: 18px;
+  font-weight: normal;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  border-radius: 20px;
+  transition-property: color, background-color;
+  transition-duration: 500ms;
+  cursor: pointer;
+  text-align: center;
 }
