@@ -10,6 +10,7 @@ module.exports = {
     'plugin:json/recommended',
     'prettier',
   ],
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -22,9 +23,4 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'react/jsx-uses-react': 0,
   },
-  // settings: {
-  //   react: {
-  //     version: 'detect',
-  //   },
-  // },
 };

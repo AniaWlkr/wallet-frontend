@@ -1,0 +1,20 @@
+@import '../../stylesheet/main.scss';
+
+.headerContainer {
+  display: flex;
+}
+
+.header {
+  font-family: $poppins-font;
+  font-size: 30px;
+  line-height: 45px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.header::before {
+  display: flexbox;
+  content: url(../../images/wallet.svg);
+  padding-left: 85px;
+  padding-right: 25px;
+}

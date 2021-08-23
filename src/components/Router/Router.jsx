@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Switch } from 'react-router-dom';
 import routes from '../../routes/routes';
-
+import Navigation from '../Navigation/Navigation';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -34,6 +34,7 @@ const Router = () => {
           </PublicRoute>
 
           <PrivateRoute path={routes.dashBoard} redirectTo={routes.login}>
+            <Navigation />
             <DashBoardPage />
           </PrivateRoute>
         </Switch>
