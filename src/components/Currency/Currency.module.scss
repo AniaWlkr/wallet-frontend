@@ -1,0 +1,82 @@
+@import '../../stylesheet/main.scss';
+
+.table {
+  width: 280px;
+  height: 175px;
+
+  border-collapse: collapse;
+  border-radius: 30px;
+  overflow: hidden;
+
+  background: $accent-deep-color;
+  background-image: url('../../images/wave.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+
+  color: $text-color-on-accent;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+
+  @media screen and (min-width: $tablet) {
+    width: 335px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    height: 350px;
+    width: 350px;
+  }
+}
+
+.thead {
+  height: 50px;
+
+  background: $table-header-color;
+
+  font-weight: 700;
+  font-size: 18px;
+
+  @media screen and (min-width: $desktop) {
+    height: 60px;
+  }
+}
+
+.left {
+  text-align: left;
+  padding-left: 20px;
+
+  @media screen and (min-width: $desktop) {
+    padding-left: 30px;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+  padding-right: 20px;
+
+  @media screen and (min-width: $desktop) {
+    padding-left: 30px;
+  }
+}
+
+td {
+  padding-top: 10px;
+
+  @media screen and (min-width: $desktop) {
+    padding-top: 23px;
+  }
+}
+
+.tbody .traw:last-child td {
+  padding-bottom: 20px;
+
+  @media screen and (min-width: $desktop) {
+    padding-bottom: 150px;
+  }
+}

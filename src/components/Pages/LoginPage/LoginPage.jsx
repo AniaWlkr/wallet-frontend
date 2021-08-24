@@ -1,28 +1,26 @@
 import { useRef } from 'react';
-import { NavLink } from 'react-router-dom';
-import routes from '../../../routes/routes';
+// import { NavLink } from 'react-router-dom';
+// import routes from '../../../routes/routes';
 import LoginForm from '../../LoginForm';
-import operations from '../../../redux/auth/authOperations';
-import selectors from '../../../redux/auth/authSelectors';
-import { useSelector, useDispatch } from 'react-redux';
+// import operations from '../../../redux/auth/authOperations';
+// import selectors from '../../../redux/auth/authSelectors';
+// import { useDispatch } from 'react-redux';
 import Modal from '../../Modal';
 
 export default function LoginPage() {
-  const isAuthed = useSelector(selectors.isAuthed);
-  const dispatch = useDispatch();
-  const logOut = () => dispatch(operations.logoutUser());
+  // const isAuthed = useSelector(selectors.isAuthed);
+  // const dispatch = useDispatch();
+  // const logOut = () => dispatch(operations.logoutUser());
   const modal = useRef(null);
-  // console.log(isAuthed);
 
   return (
     <div>
-      <p>LoginPage</p>
-      <div>
-        <button onClick={() => modal.current.open()}>Open modal</button>
-        <Modal ref={modal}>
-          <h1>Modal</h1>
-        </Modal>
+      <button onClick={() => modal.current.open()}>Open modal</button>
+      <Modal ref={modal}>
+        <h1>Modal</h1>
+      </Modal>
 
+      {/* <div>
         <NavLink to={routes.dashBoard}>Home</NavLink>
         <NavLink to={routes.register}>Register</NavLink>
         {isAuthed ? (
@@ -34,7 +32,8 @@ export default function LoginPage() {
         ) : (
           <h3>U r not authed</h3>
         )}
-      </div>
+      </div> */}
+
       <LoginForm />
     </div>
   );

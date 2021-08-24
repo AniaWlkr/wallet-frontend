@@ -1,0 +1,11 @@
+@import '../../stylesheet/main.scss';
+
+.Chart {
+  width: 280px;
+  height: 280px;
+
+  @media screen and (min-width: $tablet) {
+    width: 320px;
+    height: 320px;
+  }
+}
