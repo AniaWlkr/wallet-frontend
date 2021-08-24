@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import routes from '../../../routes/routes';
 import Table from '../../Table';
+import HomeTab from '../../HomeTab/HomeTab';
 // import authSelectors from '../../../redux/auth/authSelectors';
 // import { useSelector } from 'react-redux';
 import { financeData, totalFinanceData } from './data/financeData';
@@ -31,6 +32,7 @@ export default function DashboardPage() {
         yearState={YEAR_INITIAL_STATE}
         monthState={MONTH_INITIAL_STATE}
       />
+      <HomeTab />
     </div>
   );
 

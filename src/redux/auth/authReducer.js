@@ -12,7 +12,7 @@ const authUser = createReducer(user, {
   [actions.loginError]: () => user,
 });
 
-const isAuth = createReducer(false, {
+const isAuth = createReducer(true, {
   [actions.registerSuccess]: () => true,
   [actions.registerError]: () => false,
   [actions.getCurrentUserSuccess]: () => true,

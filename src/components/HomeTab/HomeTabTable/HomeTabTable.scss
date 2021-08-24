@@ -1,0 +1,84 @@
+@import '../../../stylesheet/main.scss';
+.table {
+  display: block;
+  min-width: 688px;
+  @media screen and (min-width: $desktop) {
+    max-width: 700px;
+  }
+}
+.table-head {
+  display: block;
+  padding: 16px 21px 15px 20px;
+  border: 1px solid red;
+  border-radius: 30px;
+  font-family: $montserrat-font;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+  &_row {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.table-body {
+  display: block;
+}
+.table-body_row {
+  display: flex;
+  align-items: center;
+  min-height: 54px;
+
+  padding: 0px 21px 0px 20px;
+  &:not(:last-child) {
+    border-bottom: 1px solid #dcdcdf;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  }
+  .table-body_data {
+    font-family: $montserrat-font;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+
+    &--income {
+      color: #24cca7;
+    }
+    &--spend {
+      color: #ff6596;
+    }
+
+    &:nth-child(1) {
+      flex-basis: 60px;
+      margin-right: 20px;
+    }
+    &:nth-child(2) {
+      flex-basis: 50px;
+      margin-right: 30px;
+      @media screen and (min-width: $desktop) {
+        margin-right: 34px;
+      }
+    }
+    &:nth-child(3) {
+      flex-basis: 126px;
+      margin-right: 12px;
+      text-align: left;
+      @media screen and (min-width: $desktop) {
+        margin-right: 16px;
+      }
+    }
+    &:nth-child(4) {
+      flex-basis: 126px;
+      margin-right: 34px;
+      text-align: left;
+    }
+    &:nth-child(5) {
+      flex-basis: 80px;
+      text-align: right;
+    }
+    &:nth-child(6) {
+      flex-grow: 2;
+      text-align: right;
+    }
+  }
+}
