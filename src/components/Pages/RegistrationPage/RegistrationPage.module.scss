@@ -1,0 +1,55 @@
+@import '../../../stylesheet//utils//vars.scss';
+@import '../../../stylesheet//utils//breakpoints.scss';
+@import '../../../stylesheet//utils/common.scss';
+
+@media screen and (min-width: 768px) {
+  .background {
+    background: url(../../../images/FrameGirl.svg) no-repeat;
+    position: absolute;
+    top: 60px;
+    left: 125px;
+    width: 260px;
+    height: 250px;
+  }
+
+  .financeApp {
+    position: absolute;
+    top: 180px;
+    right: 170px;
+    font-size: 30px;
+    font-weight: normal;
+    font-family: $poppins-font;
+    color: $headers-color;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .background {
+    background: url(../../../images/FrameGirl.svg) no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 146px;
+    left: 60px;
+    width: 435px;
+    height: 419px;
+  }
+
+  .financeApp {
+    top: 600px;
+    right: 900px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .background {
+    top: 140px;
+    left: 80px;
+    width: 435px;
+    height: 419px;
+  }
+
+  .financeApp {
+    top: 600px;
+    right: 1100px;
+  }
+}

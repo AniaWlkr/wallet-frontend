@@ -11,8 +11,9 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import { alert, defaults } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
-defaults.delay = '2000';
-defaults.width = '200px';
+
+defaults.delay = '3000';
+defaults.width = '280px';
 
 export default function RegistrationForm() {
   const [name, setName] = useState('');
@@ -24,8 +25,6 @@ export default function RegistrationForm() {
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
   const dispatch = useDispatch();
-
-  console.log(validName, validEmail, validPassword);
 
   const handleName = e => {
     setName(e.target.value);
@@ -50,6 +49,8 @@ export default function RegistrationForm() {
       alert({
         text: `Passwords are not equal!`,
       });
+      setPassword('');
+      setRepeatPassword('');
       return;
     }
 
@@ -83,43 +84,39 @@ export default function RegistrationForm() {
         setValidName(true);
         setValidEmail(true);
         setValidPassword(true);
+
+        dispatch(authOperations.registerUser(user));
+
+        setName('');
+        setEmail('');
+        setPassword('');
+        setRepeatPassword('');
       })
       .catch(error => {
-        console.log(error);
-        if (error[0].field === 'name') {
+        if (error[0].field && error[0].field === 'name') {
           setValidName(false);
-          // setErrorName(error[0].message);
-
+          setName('');
           alert({
             text: `${error[0].message}`,
           });
-          // console.log(error[0].message);
         }
-        if (error[0].field === 'email') {
+        if (error[0].field && error[0].field === 'email') {
           setValidEmail(false);
-          // setErrorEmail(error[0].message);
-
+          setEmail('');
           alert({
             text: `${error[0].message}`,
           });
-          // console.log(error[0].message);
         }
-        if (error[0].field === 'password') {
+        if (error[0].field && error[0].field === 'password') {
           setValidPassword(false);
-          // setErrorPassword(error[0].message);
+          setPassword('');
+          setRepeatPassword('');
           alert({
             text: `${error[0].message}`,
           });
-          // console.log(error[0].message);
         }
+        console.log(error);
       });
-
-    dispatch(authOperations.registerUser(user));
-
-    setName('');
-    setEmail('');
-    setPassword('');
-    setRepeatPassword('');
   };
 
   return (
@@ -191,7 +188,7 @@ export default function RegistrationForm() {
               value={repeatPassword}
               onChange={handleRepeatPassword}
               className={
-                password !== repeatPassword
+                password !== repeatPassword || repeatPassword === ''
                   ? `${styles.input} `
                   : `${styles.input} ${styles.inputError}`
               }

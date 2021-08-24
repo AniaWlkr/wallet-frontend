@@ -1,9 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import routes from '../../../routes/routes';
 import Table from '../../Table';
+// import Modal from '../../Modal';
+// import ButtonAddTransactions from '../../ButtonAddTransactions';
+// import { useState } from 'react';
 // import authSelectors from '../../../redux/auth/authSelectors';
+// import transSelectors from '../../../redux/transactions/transSelectors';
 // import { useSelector } from 'react-redux';
 import { financeData, totalFinanceData } from './data/financeData';
+// import ModallAddTransaction from '../../ModalAddTransaction';
+
 import {
   monthOptions,
   yearOptions,
@@ -12,8 +18,13 @@ import {
 } from './data/selectorsData';
 
 export default function DashboardPage() {
+  // const [showModal, setShowModal] = useState(false);
+
+  // const isModalOpenSelector = useSelector(transSelectors.isModalOpen);
+  // console.log(isModalOpenSelector);
   // const isAuthed = useSelector(authSelectors.isAuthed);
   // console.dir(isAuthed);
+
   return (
     <div>
       <div>
@@ -22,6 +33,13 @@ export default function DashboardPage() {
         <NavLink to={routes.login}>Login</NavLink>
         <NavLink to={routes.register}>Register</NavLink>
         <NavLink to={routes.dashBoard}>Exit</NavLink>
+        {/* <ButtonAddTransactions
+          onClick={() => setShowModal(true)}
+        ></ButtonAddTransactions>
+        <Modal showModal={showModal} /> */}
+        {/* {isModalOpenSelector ? (
+          <ModallAddTransaction></ModallAddTransaction>
+        ) : null} */}
       </div>
       <Table
         financeData={financeData}

@@ -1,6 +1,11 @@
 import actions from './authActions';
 import axios from 'axios';
 // import selectors from './authSelectors';
+import { alert, defaults } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/mobile/dist/PNotifyMobile.css';
+defaults.delay = '3000';
+defaults.width = '200px';
 
 axios.defaults.baseURL = 'https://db-wallet.herokuapp.com';
 // const token = {
@@ -16,9 +21,12 @@ const registerUser = user => dispatch => {
   axios
     .post('/api/users/signup', user)
     .then(answer => {
-      // console.dir(answer);
+      console.dir(answer);
       if (answer.data.code === 201) {
         dispatch(actions.registerSuccess(answer.data.data.user));
+        alert({
+          text: `${answer.data.data.message}`,
+        });
       }
     })
     .catch(error => {
@@ -28,12 +36,21 @@ const registerUser = user => dispatch => {
       }
       if (error.response.data.code === 409) {
         dispatch(actions.registerError(error.response.data.message));
+        alert({
+          text: `${error.response.data.message}`,
+        });
       }
       if (error.response.data.code === 429) {
         dispatch(actions.registerError(error.response.data.message));
+        alert({
+          text: `${error.response.data.message}`,
+        });
       }
       if (error.response.data.code === 500) {
         dispatch(actions.registerError(error.response.data.message));
+        alert({
+          text: `${error.response.data.message}`,
+        });
       }
     });
 };
@@ -45,21 +62,36 @@ const loginUser = user => dispatch => {
       if (answer.data.code === 200) {
         dispatch(actions.loginSuccess(answer.data.data));
         localStorage.setItem('wallet-token', answer.data.data.accessToken);
+        alert({
+          text: `${answer.data.data.message}`,
+        });
       }
     })
     .catch(error => {
       // console.dir(error);
       if (error.response.data.code === 400) {
         dispatch(actions.loginError(error.response.data.message));
+        alert({
+          text: `${error.response.data.message}`,
+        });
       }
       if (error.response.data.code === 401) {
         dispatch(actions.loginError(error.response.data.message));
+        alert({
+          text: `${error.response.data.message}`,
+        });
       }
       if (error.response.data.code === 429) {
         dispatch(actions.loginError(error.response.data.message));
+        alert({
+          text: `${error.response.data.message}`,
+        });
       }
       if (error.response.data.code === 500) {
         dispatch(actions.loginError(error.response.data.message));
+        alert({
+          text: `${error.response.data.message}`,
+        });
       }
     });
 };
@@ -78,11 +110,17 @@ const logoutUser = () => dispatch => {
   })
     .then(() => {
       dispatch(actions.logoutSuccess());
+      alert({
+        text: `Logout success!`,
+      });
     })
     .catch(error => {
       if (error) {
         dispatch(actions.logoutError(error));
       }
+      alert({
+        text: `${error.response.data.message}`,
+      });
     });
 };
 
@@ -106,10 +144,16 @@ const getCurrentUser = () => (dispatch, getState) => {
         name,
       };
       dispatch(actions.getCurrentUserSuccess(user));
+      alert({
+        text: `Hi!`,
+      });
     })
     .catch(error => {
       console.dir(error);
       dispatch(actions.getCurrentUserError(error));
+      alert({
+        text: `${error.response.data.message}`,
+      });
     });
 
   // const {
