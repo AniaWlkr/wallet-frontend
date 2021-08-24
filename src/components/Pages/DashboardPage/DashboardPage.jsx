@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import routes from '../../../routes/routes';
 import Table from '../../Table';
+import Balance from '../../Balance';
 // import Modal from '../../Modal';
 // import ButtonAddTransactions from '../../ButtonAddTransactions';
 // import { useState } from 'react';
@@ -41,6 +42,7 @@ export default function DashboardPage() {
           <ModallAddTransaction></ModallAddTransaction>
         ) : null} */}
       </div>
+      <Balance />
       <Table
         financeData={financeData}
         totalFinanceData={totalFinanceData}
