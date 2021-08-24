@@ -1,40 +1,24 @@
-import { useRef } from 'react';
-// import { NavLink } from 'react-router-dom';
-// import routes from '../../../routes/routes';
+// import { useRef } from 'react';
 import LoginForm from '../../LoginForm';
-// import operations from '../../../redux/auth/authOperations';
-// import selectors from '../../../redux/auth/authSelectors';
-// import { useDispatch } from 'react-redux';
-import Modal from '../../Modal';
+// import Modal from '../../Modal';
+import styles from './LoginPage.module.scss';
 
 export default function LoginPage() {
-  // const isAuthed = useSelector(selectors.isAuthed);
-  // const dispatch = useDispatch();
-  // const logOut = () => dispatch(operations.logoutUser());
-  const modal = useRef(null);
+  // const modal = useRef(null);
 
   return (
-    <div>
-      <button onClick={() => modal.current.open()}>Open modal</button>
+    <div className={styles.desctop}>
+      <div className={styles.svg}>
+        <div className={styles.background}></div>
+        <p className={styles.financeApp}>Finance App</p>
+      </div>
+      {/* <button onClick={() => modal.current.open()}>Open modal</button>
       <Modal ref={modal}>
         <h1>Modal</h1>
-      </Modal>
-
-      {/* <div>
-        <NavLink to={routes.dashBoard}>Home</NavLink>
-        <NavLink to={routes.register}>Register</NavLink>
-        {isAuthed ? (
-          <div>
-            <NavLink onClick={logOut} to={routes.homepage}>
-              Exit
-            </NavLink>
-          </div>
-        ) : (
-          <h3>U r not authed</h3>
-        )}
-      </div> */}
-
-      <LoginForm />
+      </Modal> */}
+      <div>
+        <LoginForm />
+      </div>
     </div>
   );
 }

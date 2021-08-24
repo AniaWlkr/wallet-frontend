@@ -10,8 +10,9 @@ import styles from './LoginForm.module.scss';
 import { alert, defaults } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
-defaults.delay = '2000';
-defaults.width = '200px';
+
+defaults.delay = '3000';
+defaults.width = '280px';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -19,9 +20,6 @@ export default function LoginForm() {
 
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
-
-  // const [errorEmail, setErrorEmail] = useState('');
-  // const [errorPassword, setErrorPassword] = useState('');
 
   const rules = {
     email: 'required|email',
@@ -57,32 +55,28 @@ export default function LoginForm() {
       .then(() => {
         setValidEmail(true);
         setValidPassword(true);
+        dispatch(authOperations.loginUser(user));
+
+        setEmail('');
+        setPassword('');
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
         if (error[0].field === 'email') {
           setValidEmail(false);
-          // setErrorEmail(error[0].message);
-
+          setEmail('');
           alert({
             text: `${error[0].message}`,
           });
-          console.log(error[0].message);
         }
         if (error[0].field === 'password') {
           setValidPassword(false);
-          // setErrorPassword(error[0].message);
+          setPassword('');
           alert({
             text: `${error[0].message}`,
           });
-          console.log(error[0].message);
         }
       });
-
-    dispatch(authOperations.loginUser(user));
-
-    setEmail('');
-    setPassword('');
   };
 
   return (

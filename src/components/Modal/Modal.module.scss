@@ -1,0 +1,20 @@
+@import '../../stylesheet//utils//vars.scss';
+
+.modal {
+  z-index: 99;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $modal-backdrop-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  width: 500px;
+  height: 200px;
+  background-color: $text-color-on-accent;
+}

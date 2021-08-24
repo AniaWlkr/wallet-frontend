@@ -28,3 +28,7 @@ export const deleteTransactionSuccess = createAction(
 export const deleteTransactionError = createAction(
   types.TRANSACTIONS_DELETE_ERROR,
 );
+
+export const openModal = createAction('openModal');
+
+export const closeModal = createAction('closeModal');
