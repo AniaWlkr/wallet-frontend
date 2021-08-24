@@ -1,0 +1,16 @@
+@import '../../stylesheet/main.scss';
+
+.itemLink {
+  display: flex;
+  align-items: baseline;
+}
+
+.NavLink {
+  margin: 20px;
+  font-size: 18px;
+  color: #d31717;
+}
+
+.NavLinkActive {
+  color: #0d50d8;
+}
