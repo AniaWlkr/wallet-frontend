@@ -1,5 +1,6 @@
 import Media from 'react-media-next';
 import { useSelector } from 'react-redux';
+// import useSizeScreen from '../../utils/useSizeScreen';
 
 import HomeTabMobileTable from './HomeTabMobileTable';
 import HomeTabTable from './HomeTabTable';
@@ -11,6 +12,7 @@ export default function HomeTab() {
   const data = useSelector(selectors.getAllTransactions);
 
   const transactions = normalizedTransactions(data);
+  // const sizeScreen = useSizeScreen();
 
   const breakpoints = {
     small: '(max-width: 767px)',
@@ -20,6 +22,14 @@ export default function HomeTab() {
   return (
     <section>
       <p>HomeTab</p>
+      {/* {Number(sizeScreen) >= 768 && (
+        <HomeTabTable transactions={transactions} />
+      )}
+
+      {Number(sizeScreen) < 768 && (
+        <HomeTabMobileTable transactions={transactions} />
+      )} */}
+
       <Media queries={breakpoints}>
         {matches => {
           return (

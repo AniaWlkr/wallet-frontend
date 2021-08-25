@@ -1,16 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-import routes from '../../../routes/routes';
-
-// import { getTransactions, getBalance } from '';
-// import Table from '../../Table';
 import HomeTab from '../../HomeTab';
 import DiagramTab from '../../DiagramTab';
+import Header from '../../Header';
 
 import { getTransactionsOperation } from '../../../redux/transactions/transOperations';
 
+import routes from '../../../routes/routes';
+import SideBar from '../../SideBar/SideBar';
 // import Modal from '../../Modal';
 // import ButtonAddTransactions from '../../ButtonAddTransactions';
 // import { useState } from 'react';
@@ -22,8 +21,6 @@ export default function DashboardPage() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const balance = '21 000';
-
   const getTransactions = () => dispatch(getTransactionsOperation());
 
   // const getCurrentBalance = async token => await getBalance(token);
@@ -34,48 +31,30 @@ export default function DashboardPage() {
   }, []);
 
   // const [showModal, setShowModal] = useState(false);
-
   // const isModalOpenSelector = useSelector(transSelectors.isModalOpen);
   // console.log(isModalOpenSelector);
   // const isAuthed = useSelector(authSelectors.isAuthed);
   // console.dir(isAuthed);
+
   return (
-    <div>
+    <section>
+      <Header />
       <div>
         <p>DashboardPage</p>
-        <NavLink to={routes.dashBoard}>Home</NavLink>
-        <NavLink to={routes.login}>Login</NavLink>
-        <NavLink to={routes.register}>Register</NavLink>
-        <NavLink to={routes.dashBoard}>Exit</NavLink>
-        {/* <ButtonAddTransactions
+        <SideBar />
+        {location.pathname === routes.dashBoard && <HomeTab />}
+        {location.pathname === routes.statistics && <DiagramTab />}
+      </div>
+
+      {/* <ButtonAddTransactions
           onClick={() => setShowModal(true)}
         ></ButtonAddTransactions>
         <Modal showModal={showModal} /> */}
-        {/* {isModalOpenSelector ? (
+      {/* {isModalOpenSelector ? (
           <ModallAddTransaction></ModallAddTransaction>
         ) : null} */}
-      </div>
-
-      {location.pathname === routes.dashBoard && <HomeTab />}
-      {location.pathname === routes.statistics && <DiagramTab />}
-      <p>
-        <span>Баланс---</span>
-        {balance}
-      </p>
-    </div>
+    </section>
   );
-
-  // <div>
-  //   <div>
-  //     <p>DashboardPage</p>
-  //     <NavLink to={routes.dashBoard}>Home</NavLink>
-  //     <NavLink to={routes.login}>Login</NavLink>
-  //     <NavLink to={routes.register}>Register</NavLink>
-  //     <NavLink onClick={logOut} to={routes.dashBoard}>
-  //       Exit
-  //     </NavLink>
-  //   </div>
-  // </div>
 }
 
 // не удаляйте комментарий плз

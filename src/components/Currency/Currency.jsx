@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import moment from 'moment';
 import apiService from '../../services/api-service';
 import Loader from '../Loader';
-import styles from './Currency.module.css';
+import styles from './Currency.module.scss';
 
 const Currency = () => {
   const [currencyRates, setCurrencyRates] = useState([]);
