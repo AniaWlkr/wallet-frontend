@@ -1,6 +1,15 @@
-import Chart from '../Chart';
+import Chart from './Chart';
+import Table from './Table';
 
-const DiagramTab = () => {
+import { financeData, totalFinanceData } from './data/financeData';
+import {
+  monthOptions,
+  yearOptions,
+  YEAR_INITIAL_STATE,
+  MONTH_INITIAL_STATE,
+} from './data/selectorsData';
+
+export default function DiagramTab() {
   const data = {
     datasets: [
       {
@@ -24,8 +33,14 @@ const DiagramTab = () => {
     <div>
       <h2>Статистика</h2>
       <Chart data={data} />
+      <Table
+        financeData={financeData}
+        totalFinanceData={totalFinanceData}
+        monthOptions={monthOptions}
+        yearOptions={yearOptions}
+        yearState={YEAR_INITIAL_STATE}
+        monthState={MONTH_INITIAL_STATE}
+      />
     </div>
   );
-};
-
-export default DiagramTab;
+}

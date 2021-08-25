@@ -13,15 +13,15 @@ const colourStyles = {
   menu: (provided, state) => ({
     ...provided,
     padding: 10,
-    background: 'rgba(255, 255, 255, 0.7)',
+    background: 'rgba(255, 255, 255, 0.9)',
     boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
-    backdropFilter: 'blur(5px)',
+    // backdropFilter: 'blur(5px)',
     borderRadius: '20px',
   }),
-  menuPortal: (provided, state) => ({
-    ...provided,
-    background: 'rgba(255, 255, 255, 0.7)',
-  }),
+  // menuPortal: (provided, state) => ({
+  //   ...provided,
+  //   background: 'rgba(255, 255, 255, 0.7)',
+  // }),
   indicatorSeparator: (provided, state) => ({
     ...provided,
     display: 'none',

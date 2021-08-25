@@ -1,32 +1,44 @@
-import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { NavLink, useLocation } from 'react-router-dom';
+
 import routes from '../../../routes/routes';
-import Table from '../../Table';
-import HomeTab from '../../HomeTab/HomeTab';
+
+// import { getTransactions, getBalance } from '';
+// import Table from '../../Table';
+import HomeTab from '../../HomeTab';
+import DiagramTab from '../../DiagramTab';
+
+import { getTransactionsOperation } from '../../../redux/transactions/transOperations';
 
 // import Modal from '../../Modal';
 // import ButtonAddTransactions from '../../ButtonAddTransactions';
 // import { useState } from 'react';
 // import authSelectors from '../../../redux/auth/authSelectors';
 // import transSelectors from '../../../redux/transactions/transSelectors';
-// import { useSelector } from 'react-redux';
-import { financeData, totalFinanceData } from './data/financeData';
 // import ModallAddTransaction from '../../ModalAddTransaction';
 
-import {
-  monthOptions,
-  yearOptions,
-  YEAR_INITIAL_STATE,
-  MONTH_INITIAL_STATE,
-} from './data/selectorsData';
-
 export default function DashboardPage() {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const balance = '21 000';
+
+  const getTransactions = () => dispatch(getTransactionsOperation());
+
+  // const getCurrentBalance = async token => await getBalance(token);
+
+  useEffect(() => {
+    getTransactions();
+    // setBalance(getCurrentBalance(token));
+  }, []);
+
   // const [showModal, setShowModal] = useState(false);
 
   // const isModalOpenSelector = useSelector(transSelectors.isModalOpen);
   // console.log(isModalOpenSelector);
   // const isAuthed = useSelector(authSelectors.isAuthed);
   // console.dir(isAuthed);
-
   return (
     <div>
       <div>
@@ -43,15 +55,13 @@ export default function DashboardPage() {
           <ModallAddTransaction></ModallAddTransaction>
         ) : null} */}
       </div>
-      <Table
-        financeData={financeData}
-        totalFinanceData={totalFinanceData}
-        monthOptions={monthOptions}
-        yearOptions={yearOptions}
-        yearState={YEAR_INITIAL_STATE}
-        monthState={MONTH_INITIAL_STATE}
-      />
-      <HomeTab />
+
+      {location.pathname === routes.dashBoard && <HomeTab />}
+      {location.pathname === routes.statistics && <DiagramTab />}
+      <p>
+        <span>Баланс---</span>
+        {balance}
+      </p>
     </div>
   );
 
