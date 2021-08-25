@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 import routes from '../../../routes/routes';
 import Table from '../../Table';
 import Balance from '../../Balance';
+import HomeTab from '../../HomeTab/HomeTab';
+
 // import Modal from '../../Modal';
 // import ButtonAddTransactions from '../../ButtonAddTransactions';
 // import { useState } from 'react';
@@ -51,6 +53,7 @@ export default function DashboardPage() {
         yearState={YEAR_INITIAL_STATE}
         monthState={MONTH_INITIAL_STATE}
       />
+      <HomeTab />
     </div>
   );
 

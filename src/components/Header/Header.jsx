@@ -1,16 +1,31 @@
 import './Header.scss';
 import authSelectors from '../../redux/auth/authSelectors';
-import { useSelector } from 'react-redux';
+import authOperations from '../../redux/auth/authOperations';
+import { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import useSizeScreen from '../../utils/useSizeScreen';
 
 export default function Header() {
-  const isLoggedIn = useSelector(authSelectors.getIsAuthenticated);
+  const dispatch = useDispatch();
+  const sizeScreen = useSizeScreen();
+  const name = useSelector(authSelectors.getUserName);
+  const onLogout = useCallback(
+    () => dispatch(authOperations.logoutUser()),
+    [dispatch],
+  );
   return (
-    isLoggedIn && (
-      <header>
-        <div className="headerContainer">
-          <h1 className="header">Wallet</h1>
+    <header className="header">
+      <div className="headerContainer">
+        <div className="headerLogo">
+          <h1 className="headerTitle">Wallet</h1>
         </div>
-      </header>
-    )
+        <div className="userLogout">
+          <span className="userName">{name}</span>
+          <button className="buttonExit" type="button" onClick={onLogout}>
+            {Number(sizeScreen) >= 768 && <span className="exit">Exit</span>}
+          </button>
+        </div>
+      </div>
+    </header>
   );
 }
