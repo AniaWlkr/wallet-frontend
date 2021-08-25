@@ -2,6 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const getLoading = state => state.transactions.loading;
 const getAllTransactions = state => state.transactions.items;
+const isModalOpen = state => state.transactions.isModalOpen;
 
 const getSpend = createSelector(getAllTransactions, items => {
   return items.filter(({ transType }) =>
@@ -26,4 +27,5 @@ export default {
   getSpend,
   getIncome,
   getBalance,
+  isModalOpen,
 };

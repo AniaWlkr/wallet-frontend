@@ -3,6 +3,7 @@ const authUser = state => state.authUser;
 const getIsAuthenticated = state => Boolean(state.auth.token);
 const getUserName = state => state.auth.user.name;
 const userToken = state => state.auth.token;
+const authError = state => state.auth.error;
 
 export default {
   isAuthed,
@@ -10,4 +11,5 @@ export default {
   getIsAuthenticated,
   getUserName,
   userToken,
+  authError,
 };
