@@ -1,16 +1,39 @@
 @import '../../stylesheet/main.scss';
 
 .itemLink {
-  display: flex;
-  align-items: baseline;
+  margin-top: 40px;
 }
 
-.NavLink {
-  margin: 20px;
+.buttonNav {
+  border: none;
+  border-radius: 5px 5px 5px 5px;
+  margin-left: 6px;
+  margin-right: 6px;
+  outline: none;
+  cursor: pointer;
+}
+
+.svgNav {
+  width: 29px;
+  height: 25px;
+  fill: $accent-deep-color;
+  padding: 0px;
+  margin-right: 23px;
+}
+
+.textNav {
+  font-family: $poppins-font;
+  font-style: normal;
+  font-weight: normal;
   font-size: 18px;
-  color: #d31717;
+  line-height: 27px;
+  color: $headers-color;
 }
 
-.NavLinkActive {
-  color: #0d50d8;
+.textNav:active {
+  font-weight: bold;
+}
+
+.svgNav:active {
+  fill: $table-header-color;
 }
