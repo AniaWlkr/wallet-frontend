@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Container from '../Container';
 import authOperations from '../../redux/auth/authOperations';
 import Router from '../Router';
+import Navigation from '../Navigation';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export default function App() {
 
   return (
     <>
+      <Navigation />
       <Container>
         <Router />
       </Container>

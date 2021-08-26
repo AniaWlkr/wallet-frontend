@@ -1,9 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import routes from '../../../routes/routes';
 import Table from '../../Table';
+import Balance from '../../Balance';
 import HomeTab from '../../HomeTab/HomeTab';
 import Modal from '../../Modal';
 import ButtonAddTransactions from '../../ButtonAddTransactions';
+// import Navigation from '../../Navigation';
+// import Header from '../../Header';
+import Currency from '../../Currency';
+
 // import { useState } from 'react';
 // import authSelectors from '../../../redux/auth/authSelectors';
 import transSelectors from '../../../redux/transactions/transSelectors';
@@ -24,7 +29,9 @@ export default function DashboardPage() {
   return (
     <div>
       <div>
+        {/* <Header /> */}
         <p>DashboardPage</p>
+        {/* <Navigation /> */}
         <NavLink to={routes.dashBoard}>Home</NavLink>
         <NavLink to={routes.login}>Login</NavLink>
         <NavLink to={routes.register}>Register</NavLink>
@@ -36,6 +43,7 @@ export default function DashboardPage() {
           <Modal component={ModallAddTransaction}></Modal>
         ) : null}
       </div>
+      <Balance />
       <Table
         financeData={financeData}
         totalFinanceData={totalFinanceData}
@@ -45,6 +53,7 @@ export default function DashboardPage() {
         monthState={MONTH_INITIAL_STATE}
       />
       <HomeTab />
+      <Currency />
     </div>
   );
 
