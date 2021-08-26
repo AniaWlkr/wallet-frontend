@@ -1,83 +1,68 @@
 // import React, { useState } from 'react';
-// import styles from './Modal.module.scss';
+import styles from './Modal.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { setModalClose } from '../../redux/transactions/transOperations';
+import CloseSharpIcon from '@material-ui/icons/CloseSharp';
 
-// export default function Modal(props) {
-//   if (!props.showModal) {
-//     return null;
-// }
-// const [showModal, setShowModal] = useState(false);
+import PropTypes from 'prop-types';
 
-// const handleModalClose = e => {
-//   const currentClass = e.target.className;
+import selectors from '../../redux/transactions/transSelectors';
 
-//   if (currentClass === 'modal-card') {
-//     return;
-//   }
+export default function Modal({ component: Component }) {
+  const isOpen = useSelector(selectors.isModalOpen);
+  const dispatch = useDispatch();
 
-//   setShowModal(false);
-// };
+  const closeModal = () => {
+    dispatch(setModalClose());
+  };
 
-// const handleModalOpen = () => {
-//   setShowModal(true);
-// };
+  const closeByEsc = e => {
+    // if (e.code === 27) {
+    //   dispatch(setModalClose());
+    // }
+    console.log(e);
+  };
 
-//   return (
-//     <div className={styles.modal}>
-//       <div className={styles.content}>
-//         <div className="modal-card"></div>
-//       </div>
-//       <div>content</div>
-//       <button className="button">close Modal</button>
-//     </div>
-//   );
-// }
+  return (
+    <div>
+      {isOpen ? (
+        <div
+          className={styles.modal}
+          // className={
+          //   isOpen ? `${styles.modal}` : `${styles.modal} ${styles.isOpen}`
+          // }
+        >
+          <div
+            onKeyDown={closeByEsc}
+            onClick={closeModal}
+            className={styles.overlay}
+          ></div>
 
-// import { useState, useImperativeHandle, forwardRef } from 'react';
-// import PropTypes from 'prop-types';
-// import { createPortal } from 'react-dom';
-// // import { useSelector } from 'react-redux';
-// // import selectors from '../../redux/transactions/transSelectors';
-// import { useDispatch } from 'react-redux';
-// import { setModalClose } from '../../redux/transactions/transOperations';
+          <div
+            className={styles.content}
+            // className={
+            //   isOpen
+            //     ? `${styles.content}`
+            //     : `${styles.content} ${styles.isOpen}`
+            // }
+          >
+            <Component />
+            <button
+              onClick={closeModal}
+              type="button"
+              className={styles.button}
+            >
+              <span className={styles.cross}>
+                <CloseSharpIcon />
+              </span>
+            </button>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
-// const modalElement = document.getElementById('modal-root');
-
-// export function Modal({ children, defaultOpen = false }, ref) {
-//   const [showModal, setShowModal] = useState(false);
-//   // const isModalOpenSelector = useSelector(selectors.isModalOpen);
-//   const dispatch = useDispatch();
-
-//   const toggleModal = () => {
-//     setShowModal(!showModal);
-//   };
-
-//   // const closeModal =
-
-//   useImperativeHandle(
-//     ref,
-//     () => ({
-//       open: () => setShowModal(true),
-//       close: () => {
-//         setShowModal(false);
-//         dispatch(setModalClose());
-//       },
-//     }),
-//     [close],
-//   );
-
-//   return createPortal(
-//     showModal ? (
-//       <div>
-//         <button onClick={toggleModal}>X</button>
-//         <div>{children}</div>
-//       </div>
-//     ) : null,
-//     modalElement,
-//   );
-// }
-
-// Modal.propTypes = {
-//   children: PropTypes.any,
-// };
-
-// export default forwardRef(Modal);
+Modal.propTypes = {
+  component: PropTypes.any,
+};

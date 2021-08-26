@@ -1,17 +1,17 @@
-// import { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Container from '../Container';
-// import { getCurrentUser } from '../../redux/auth/auth-operations';
+import authOperations from '../../redux/auth/authOperations';
 import Router from '../Router';
 import Navigation from '../Navigation';
 
 export default function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getCurrentUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(authOperations.getCurrentUser());
+  }, [dispatch]);
 
   return (
     <>
