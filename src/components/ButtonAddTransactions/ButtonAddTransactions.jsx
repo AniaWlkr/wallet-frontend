@@ -7,7 +7,7 @@ export default function ButtonAddTransactions() {
   const dispatch = useDispatch();
 
   const openModal = () => {
-    dispatch(setModalOpen());
+    dispatch(setModalOpen(true));
   };
 
   return (

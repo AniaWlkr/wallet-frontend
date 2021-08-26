@@ -7,8 +7,8 @@ import '@pnotify/mobile/dist/PNotifyMobile.css';
 defaults.delay = '3000';
 defaults.width = '200px';
 
-// axios.defaults.baseURL = 'https://db-wallet.herokuapp.com';
-axios.defaults.baseURL = 'http://localhost:4444';
+axios.defaults.baseURL = 'https://db-wallet.herokuapp.com';
+// axios.defaults.baseURL = 'http://localhost:4444';
 // const token = {
 //   set(token) {
 //     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -69,7 +69,14 @@ const loginUser = user => dispatch => {
       }
     })
     .catch(error => {
-      // console.dir(error);
+      console.dir(error);
+      if (!error.response) {
+        dispatch(actions.loginError(error.message));
+        alert({
+          text: `${error.message}`,
+        });
+        return;
+      }
       if (error.response.data.code === 400) {
         dispatch(actions.loginError(error.response.data.message));
         alert({
@@ -128,7 +135,7 @@ const logoutUser = () => dispatch => {
 const getCurrentUser = () => (dispatch, getState) => {
   const token = localStorage.getItem('wallet-token');
   if (!token) {
-    return console.log('no token');
+    return;
   }
   axios({
     method: 'get',
@@ -150,30 +157,14 @@ const getCurrentUser = () => (dispatch, getState) => {
       });
     })
     .catch(error => {
-      console.dir(error);
       dispatch(actions.getCurrentUserError(error));
-      alert({
-        text: `${error.response.data.message}`,
-      });
+      if (error.response.data.message) {
+        alert({
+          text: `${error.response.data.message}`,
+        });
+      }
+      console.dir(error);
     });
-
-  // const {
-  //   auth: { token: persistedToken },
-  // } = getState();
-
-  // if (!persistedToken) {
-  //   return;
-  // }
-  // token.set(persistedToken);
-  // dispatch(actions.getCurrentUserRequest());
-
-  // return axios
-  //   .get('/api/users/current')
-  //   .then(({ data }) => dispatch(actions.getCurrentUserSuccess(data)))
-  //   .catch(error => {
-  //     token.unset();
-  //     dispatch(actions.getCurrentUserError(error.message));
-  //   });
 };
 
 export default {
