@@ -19,18 +19,14 @@ import {
 
 export const getTransactionsOperation = () => (dispatch, getStore) => {
   const {
-    auth: {
-      user: { token },
-    },
+    auth: { token },
   } = getStore();
 
   dispatch(fetchTransactionsRequest());
   return getTransactions(token)
     .then(response => {
       if (response.data.status === 'success') {
-        const transactions = {
-          transactions: response.data,
-        };
+        const transactions = response.data.result.docs;
         dispatch(fetchTransactionsSuccess(transactions));
       } else {
         throw new Error(response);
