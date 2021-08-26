@@ -3,7 +3,10 @@ import routes from '../../../routes/routes';
 import Table from '../../Table';
 import Balance from '../../Balance';
 import HomeTab from '../../HomeTab/HomeTab';
+// import Navigation from '../../Navigation';
+// import Header from '../../Header';
 import Currency from '../../Currency';
+
 
 // import Modal from '../../Modal';
 // import ButtonAddTransactions from '../../ButtonAddTransactions';
@@ -32,7 +35,9 @@ export default function DashboardPage() {
   return (
     <div>
       <div>
+        {/* <Header /> */}
         <p>DashboardPage</p>
+        {/* <Navigation /> */}
         <NavLink to={routes.dashBoard}>Home</NavLink>
         <NavLink to={routes.login}>Login</NavLink>
         <NavLink to={routes.register}>Register</NavLink>
