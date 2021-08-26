@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { setModalOpen } from '../../redux/transactions/transOperations';
+import styles from './ButtonAddTransactions.module.scss';
+import AddSharpIcon from '@material-ui/icons/AddSharp';
 
 export default function ButtonAddTransactions() {
   const dispatch = useDispatch();
@@ -10,7 +12,11 @@ export default function ButtonAddTransactions() {
 
   return (
     <div>
-      <button onClick={openModal}>+</button>
+      <button className={styles.button} onClick={openModal}>
+        <span>
+          <AddSharpIcon className={styles.span} />
+        </span>
+      </button>
     </div>
   );
 }

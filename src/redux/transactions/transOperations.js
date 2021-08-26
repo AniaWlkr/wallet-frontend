@@ -26,7 +26,7 @@ export const getTransactionsOperation = () => (dispatch, getStore) => {
   return getTransactions(token)
     .then(response => {
       if (response.data.status === 'success') {
-        const transactions = [...response.data.data.docs];
+        const transactions = [...response.data.result.docs];
         dispatch(fetchTransactionsSuccess(transactions));
       } else {
         throw new Error(response);

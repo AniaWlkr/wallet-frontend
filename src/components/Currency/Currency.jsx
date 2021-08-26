@@ -20,17 +20,24 @@ const Currency = () => {
     apiService
       .getCurrencyRates()
       .then(data => {
-        console.log('getRates -> data', data);
         setCurrencyRates(data);
         setIsLoading(false);
         setCurrentDate(moment().format('MMM Do YY'));
+        setLocalStorage (currencyRates, currentDate);
       })
       .catch(err => {
-        if (currentDate === moment().format('MMM Do YY')) return;
-        setTimeout(getRates, HOUR);
+        const currencyFromLocalStorage = JSON.parse(localStorage.getItem('currency'));
+        if (!currencyFromLocalStorage || currentDate !== currencyFromLocalStorage.date) return setTimeout(getRates, HOUR);
+
+        setCurrencyRates(currencyFromLocalStorage.data);
         console.log(err);
       });
   };
+
+  const setLocalStorage =(currencyRates, currentDate)=>{
+        const localStorageData = {rates: currencyRates, date: currentDate}
+        localStorage.setItem('currency', JSON.stringify(localStorageData));
+  }
 
   const round = number => {
     return parseFloat(number).toFixed(2);
@@ -48,7 +55,7 @@ const Currency = () => {
           </tr>
         </thead>
         <tbody className={styles.tbody}>
-          {currencyRates.map(
+          {currencyRates?.map(
             item =>
               item.base_ccy === 'UAH' && (
                 <tr key={item.ccy} className={styles.traw}>

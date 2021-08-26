@@ -7,21 +7,41 @@ const AAA = state => state;
 const isModalOpen = state => state.transactions.isModalOpen;
 
 const getSpend = createSelector(getAllTransactions, items => {
-  return items.filter(({ transType }) =>
-    transType.toLowerCase().includes('spend'),
-  );
+  const value = items.reduce((sum, current) => {
+    if (current.transType !== 'spend') return sum;
+    return sum + current.sum;
+  }, 0);
+  return value;
 });
 
 const getIncome = createSelector(getAllTransactions, items => {
-  return items.filter(({ transType }) =>
-    transType.toLowerCase().includes('income'),
-  );
+  const value = items.reduce((sum, current) => {
+    if (current.transType !== 'income') return sum;
+    return sum + current.sum;
+  }, 0);
+  return value;
 });
 
 const getBalance = createSelector(
-  [getIncome, getSpend],
-  (income, spend) => income - spend,
+  getSpend,
+  getIncome,
+  (spend, income) => income - spend,
 );
+
+const getSpendPerCategory = createSelector(getAllTransactions, items => {
+  const result = items.reduce((arr, item) => {
+    const index = arr.findIndex(arrItem => item.categoryId._id === arrItem.id);
+    if (index === -1)
+      arr.push({
+        id: item.categoryId._id,
+        category: item.categoryId.categoryName,
+        sum: item.sum,
+      });
+    if (index !== -1) arr[index].sum += item.sum;
+    return arr;
+  }, []);
+  return result;
+});
 
 export default {
   AAA,
@@ -31,4 +51,5 @@ export default {
   getIncome,
   getBalance,
   isModalOpen,
+  getSpendPerCategory,
 };
