@@ -1,5 +1,4 @@
 import './HomeTabTable.scss';
-
 import PropTypes from 'prop-types';
 
 const tableHeadData = [
@@ -12,6 +11,7 @@ const tableHeadData = [
 ];
 
 export default function HomeTabTable({ transactions }) {
+  // console.dir(transactions);
   return (
     <>
       <table className={'table'}>

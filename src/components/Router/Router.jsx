@@ -18,7 +18,7 @@ const Router = () => {
           <PublicRoute
             path={routes.register}
             restricted
-            redirectTo={routes.dashBoard}
+            redirectTo={routes.login}
           >
             <RegisterPage />
           </PublicRoute>
@@ -32,12 +32,6 @@ const Router = () => {
           </PublicRoute>
 
           <PrivateRoute path={routes.dashBoard} redirectTo={routes.login}>
-            <DashBoardPage />
-          </PrivateRoute>
-          <PrivateRoute path={routes.statistics} redirectTo={routes.login}>
-            <RegisterPage />
-          </PrivateRoute>
-          <PrivateRoute path={routes.currency} redirectTo={routes.login}>
             <DashBoardPage />
           </PrivateRoute>
           <Redirect to={routes.dashBoard} />

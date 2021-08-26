@@ -1,73 +1,64 @@
-import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+
+import HomeTab from '../../HomeTab';
+import DiagramTab from '../../DiagramTab';
+import Header from '../../Header';
+
+import { getTransactionsOperation } from '../../../redux/transactions/transOperations';
+
 import routes from '../../../routes/routes';
-import Table from '../../Table';
-import Balance from '../../Balance';
-import HomeTab from '../../HomeTab/HomeTab';
+import SideBar from '../../SideBar/SideBar';
 import Modal from '../../Modal';
 import ButtonAddTransactions from '../../ButtonAddTransactions';
-// import Navigation from '../../Navigation';
-// import Header from '../../Header';
-import Currency from '../../Currency';
+import ModallAddTransaction from '../../ModalAddTransaction';
 
 // import { useState } from 'react';
 // import authSelectors from '../../../redux/auth/authSelectors';
 import transSelectors from '../../../redux/transactions/transSelectors';
-import { useSelector } from 'react-redux';
-import { financeData, totalFinanceData } from './data/financeData';
-import ModallAddTransaction from '../../ModalAddTransaction';
-
-import {
-  monthOptions,
-  yearOptions,
-  YEAR_INITIAL_STATE,
-  MONTH_INITIAL_STATE,
-} from './data/selectorsData';
 
 export default function DashboardPage() {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const getTransactions = () => dispatch(getTransactionsOperation());
+
+  // const getCurrentBalance = async token => await getBalance(token);
+
+  useEffect(() => {
+    getTransactions();
+    // setBalance(getCurrentBalance(token));
+  }, []);
+
+  // const [showModal, setShowModal] = useState(false);
+  // const isModalOpenSelector = useSelector(transSelectors.isModalOpen);
+  // console.log(isModalOpenSelector);
+  // const isAuthed = useSelector(authSelectors.isAuthed);
+  // console.dir(isAuthed);
   const isOpenSelector = useSelector(transSelectors.isModalOpen);
 
+
   return (
-    <div>
+    <section>
+      <Header />
       <div>
         {/* <Header /> */}
         <p>DashboardPage</p>
-        {/* <Navigation /> */}
-        <NavLink to={routes.dashBoard}>Home</NavLink>
-        <NavLink to={routes.login}>Login</NavLink>
-        <NavLink to={routes.register}>Register</NavLink>
-        <NavLink to={routes.dashBoard}>Exit</NavLink>
-
-        <ButtonAddTransactions></ButtonAddTransactions>
-
-        {isOpenSelector ? (
-          <Modal component={ModallAddTransaction}></Modal>
-        ) : null}
+        <SideBar />
+        {location.pathname === routes.dashBoard && <HomeTab />}
+        {location.pathname === routes.statistics && <DiagramTab />}
       </div>
-      <Balance />
-      <Table
-        financeData={financeData}
-        totalFinanceData={totalFinanceData}
-        monthOptions={monthOptions}
-        yearOptions={yearOptions}
-        yearState={YEAR_INITIAL_STATE}
-        monthState={MONTH_INITIAL_STATE}
-      />
-      <HomeTab />
-      <Currency />
-    </div>
-  );
 
-  // <div>
-  //   <div>
-  //     <p>DashboardPage</p>
-  //     <NavLink to={routes.dashBoard}>Home</NavLink>
-  //     <NavLink to={routes.login}>Login</NavLink>
-  //     <NavLink to={routes.register}>Register</NavLink>
-  //     <NavLink onClick={logOut} to={routes.dashBoard}>
-  //       Exit
-  //     </NavLink>
-  //   </div>
-  // </div>
+      {/* <ButtonAddTransactions
+          onClick={() => setShowModal(true)}
+        ></ButtonAddTransactions>
+        <Modal showModal={showModal} /> */}
+      {/* {isModalOpenSelector ? (
+          <ModallAddTransaction></ModallAddTransaction>
+        ) : null} */}
+    </section>
+  );
 }
 
 // не удаляйте комментарий плз

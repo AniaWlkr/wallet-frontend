@@ -2,6 +2,8 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const getLoading = state => state.transactions.loading;
 const getAllTransactions = state => state.transactions.items;
+// export const getAllTransactions = state => state.transactions.items.data.docs;
+const AAA = state => state;
 const isModalOpen = state => state.transactions.isModalOpen;
 
 const getSpend = createSelector(getAllTransactions, items => {
@@ -42,6 +44,7 @@ const getSpendPerCategory = createSelector(getAllTransactions, items => {
 });
 
 export default {
+  AAA,
   getLoading,
   getAllTransactions,
   getSpend,
