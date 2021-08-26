@@ -11,14 +11,15 @@ const tableHeadData = [
 ];
 
 export default function HomeTabTable({ transactions }) {
-  // console.dir(transactions);
   return (
     <>
       <table className={'table'}>
         <thead className={'table-head'}>
           <tr className={'table-head_row'}>
             {tableHeadData.map(head => (
-              <th key={head}>{head}</th>
+              <th className={'table-head_data'} key={head}>
+                {head}
+              </th>
             ))}
           </tr>
         </thead>

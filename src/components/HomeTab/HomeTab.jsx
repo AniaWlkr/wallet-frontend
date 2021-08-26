@@ -12,7 +12,7 @@ export default function HomeTab() {
   const data = useSelector(selectors.getAllTransactions);
 
   const transactions = normalizedTransactions(data);
-  // const sizeScreen = useSizeScreen();
+  // const size = useSizeScreen();
 
   const breakpoints = {
     small: '(max-width: 767px)',
@@ -22,11 +22,9 @@ export default function HomeTab() {
   return (
     <section>
       <p>HomeTab</p>
-      {/* {Number(sizeScreen) >= 768 && (
+      {/* {Number(size) >= 768 ? (
         <HomeTabTable transactions={transactions} />
-      )}
-
-      {Number(sizeScreen) < 768 && (
+      ) : (
         <HomeTabMobileTable transactions={transactions} />
       )} */}
 

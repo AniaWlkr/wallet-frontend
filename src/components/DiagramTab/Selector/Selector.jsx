@@ -57,11 +57,12 @@ const colourStyles = {
   }),
 };
 
-export default function Selector({ options, initialState }) {
+export default function Selector({ options, initialState, changeSelector }) {
   const [valueName, setValueName] = useState(initialState);
 
-  const handler = event => {
-    setValueName(event.label);
+  const handler = async event => {
+    await setValueName(event.label);
+    changeSelector(event.label);
   };
 
   return (
@@ -88,5 +89,6 @@ export default function Selector({ options, initialState }) {
 Selector.propTypes = {
   options: PropTypes.array,
   initialState: PropTypes.string,
-  theme: PropTypes.func,
+  // theme: PropTypes.func,
+  changeSelector: PropTypes.func,
 };
