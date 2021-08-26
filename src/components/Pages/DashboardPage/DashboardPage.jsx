@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import HomeTab from '../../HomeTab';
@@ -38,12 +38,12 @@ export default function DashboardPage() {
   // console.dir(isAuthed);
   // const isOpenSelector = useSelector(transSelectors.isModalOpen);
 
-
   return (
     <section>
       <Header />
       <div>
         {/* <Header /> */}
+        <p>DashboardPage</p>
         <p>DashboardPage</p>
         <SideBar />
         {location.pathname === routes.dashBoard && <HomeTab />}
