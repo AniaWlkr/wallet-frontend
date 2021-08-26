@@ -1,4 +1,4 @@
-const baseUrl = 'https://db-wallet.herokuapp.com/api/';
+const baseUrl = 'https://db-wallet.herokuapp.com/api';
 
 const url = {
   register: () => `${baseUrl}/users/signup`,

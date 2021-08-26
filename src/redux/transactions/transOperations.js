@@ -19,9 +19,7 @@ import {
 
 export const getTransactionsOperation = () => (dispatch, getStore) => {
   const {
-    auth: {
-      user: { token },
-    },
+    auth: { token },
   } = getStore();
 
   dispatch(fetchTransactionsRequest());

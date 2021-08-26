@@ -3,6 +3,7 @@ import routes from '../../../routes/routes';
 import Table from '../../Table';
 import Balance from '../../Balance';
 import HomeTab from '../../HomeTab/HomeTab';
+import Currency from '../../Currency';
 
 // import Modal from '../../Modal';
 // import ButtonAddTransactions from '../../ButtonAddTransactions';
@@ -54,6 +55,7 @@ export default function DashboardPage() {
         monthState={MONTH_INITIAL_STATE}
       />
       <HomeTab />
+      <Currency />
     </div>
   );
 
