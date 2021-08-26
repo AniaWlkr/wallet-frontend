@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import HomeTab from '../../HomeTab';
@@ -10,13 +10,13 @@ import { getTransactionsOperation } from '../../../redux/transactions/transOpera
 
 import routes from '../../../routes/routes';
 import SideBar from '../../SideBar/SideBar';
-import Modal from '../../Modal';
-import ButtonAddTransactions from '../../ButtonAddTransactions';
-import ModallAddTransaction from '../../ModalAddTransaction';
+// import Modal from '../../Modal';
+// import ButtonAddTransactions from '../../ButtonAddTransactions';
+// import ModallAddTransaction from '../../ModalAddTransaction';
 
 // import { useState } from 'react';
 // import authSelectors from '../../../redux/auth/authSelectors';
-import transSelectors from '../../../redux/transactions/transSelectors';
+// import transSelectors from '../../../redux/transactions/transSelectors';
 
 export default function DashboardPage() {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export default function DashboardPage() {
   // console.log(isModalOpenSelector);
   // const isAuthed = useSelector(authSelectors.isAuthed);
   // console.dir(isAuthed);
-  const isOpenSelector = useSelector(transSelectors.isModalOpen);
+  // const isOpenSelector = useSelector(transSelectors.isModalOpen);
 
 
   return (
