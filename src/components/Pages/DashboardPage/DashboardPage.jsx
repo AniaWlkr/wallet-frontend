@@ -44,7 +44,6 @@ export default function DashboardPage() {
       <div>
         {/* <Header /> */}
         <p>DashboardPage</p>
-        <p>DashboardPage</p>
         <SideBar />
         {location.pathname === routes.dashBoard && <HomeTab />}
         {location.pathname === routes.statistics && <DiagramTab />}
