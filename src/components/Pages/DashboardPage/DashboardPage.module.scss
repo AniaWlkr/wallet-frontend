@@ -1,0 +1,8 @@
+@import '../../../stylesheet/main.scss';
+
+.section {
+  z-index: 0;
+  background: $main-background-blur;
+  backdrop-filter: blur(50px);
+  padding-bottom: 40px;
+}

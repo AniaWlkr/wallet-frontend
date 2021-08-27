@@ -5,6 +5,8 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import useSizeScreen from '../../utils/useSizeScreen';
 
+import Container from '../Container';
+
 export default function Header() {
   const dispatch = useDispatch();
   const sizeScreen = useSizeScreen();
@@ -15,17 +17,19 @@ export default function Header() {
   );
   return (
     <header className="header">
-      <div className="headerContainer">
-        <div className="headerLogo">
-          <h1 className="headerTitle">Wallet</h1>
+      <Container>
+        <div className="headerContainer">
+          <div className="headerLogo">
+            <h1 className="headerTitle">Wallet</h1>
+          </div>
+          <div className="userLogout">
+            <span className="userName">{name}</span>
+            <button className="buttonExit" type="button" onClick={onLogout}>
+              {Number(sizeScreen) >= 768 && <span className="exit">Exit</span>}
+            </button>
+          </div>
         </div>
-        <div className="userLogout">
-          <span className="userName">{name}</span>
-          <button className="buttonExit" type="button" onClick={onLogout}>
-            {Number(sizeScreen) >= 768 && <span className="exit">Exit</span>}
-          </button>
-        </div>
-      </div>
+      </Container>
     </header>
   );
 }

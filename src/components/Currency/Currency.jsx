@@ -3,6 +3,7 @@ import moment from 'moment';
 import apiService from '../../services/api-service';
 import Loader from '../Loader';
 import styles from './Currency.module.scss';
+import cx from 'classnames';
 
 const Currency = () => {
   const [currencyRates, setCurrencyRates] = useState([]);
@@ -23,21 +24,27 @@ const Currency = () => {
         setCurrencyRates(data);
         setIsLoading(false);
         setCurrentDate(moment().format('MMM Do YY'));
-        setLocalStorage (currencyRates, currentDate);
+        setLocalStorage(currencyRates, currentDate);
       })
       .catch(err => {
-        const currencyFromLocalStorage = JSON.parse(localStorage.getItem('currency'));
-        if (!currencyFromLocalStorage || currentDate !== currencyFromLocalStorage.date) return setTimeout(getRates, HOUR);
+        const currencyFromLocalStorage = JSON.parse(
+          localStorage.getItem('currency'),
+        );
+        if (
+          !currencyFromLocalStorage ||
+          currentDate !== currencyFromLocalStorage.date
+        )
+          return setTimeout(getRates, HOUR);
 
         setCurrencyRates(currencyFromLocalStorage.data);
         console.log(err);
       });
   };
 
-  const setLocalStorage =(currencyRates, currentDate)=>{
-        const localStorageData = {rates: currencyRates, date: currentDate}
-        localStorage.setItem('currency', JSON.stringify(localStorageData));
-  }
+  const setLocalStorage = (currencyRates, currentDate) => {
+    const localStorageData = { rates: currencyRates, date: currentDate };
+    localStorage.setItem('currency', JSON.stringify(localStorageData));
+  };
 
   const round = number => {
     return parseFloat(number).toFixed(2);
@@ -59,9 +66,13 @@ const Currency = () => {
             item =>
               item.base_ccy === 'UAH' && (
                 <tr key={item.ccy} className={styles.traw}>
-                  <td className={styles.left}>{item.ccy}</td>
-                  <td className={styles.center}>{round(item.buy)}</td>
-                  <td className={styles.right}>{round(item.sale)}</td>
+                  <td className={cx(styles.left, styles.td)}>{item.ccy}</td>
+                  <td className={cx(styles.center, styles.td)}>
+                    {round(item.buy)}
+                  </td>
+                  <td className={cx(styles.right, styles.td)}>
+                    {round(item.sale)}
+                  </td>
                 </tr>
               ),
           )}
