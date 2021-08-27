@@ -6,7 +6,7 @@ import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
 defaults.delay = '3000';
 defaults.width = '200px';
-const errorCodesArray=[400, 401, 409, 429, 500];
+const errorCodesArray = [400, 401, 409, 429, 500];
 
 axios.defaults.baseURL = 'https://db-wallet.herokuapp.com';
 // axios.defaults.baseURL = 'http://localhost:4444';
@@ -20,8 +20,8 @@ const token = {
 };
 
 const registerUser = user => dispatch => {
-console.log("user", user)
-  
+  console.log('user', user);
+
   axios
     .post('/api/users/signup', user)
     .then(answer => {
@@ -66,11 +66,11 @@ const loginUser = user => dispatch => {
     .post('/api/users/login', user)
     .then(answer => {
       if (answer.data.code === 200) {
-        console.log("answer.data", answer.data)
+        console.log('answer.data', answer.data);
         token.set(answer.data.accessToken);
         dispatch(actions.loginSuccess(answer.data.data));
         localStorage.setItem('refreshToken', answer.data.data.refreshToken);
-        
+
         alert({
           text: `${answer.data.data.message}`,
         });
@@ -126,7 +126,7 @@ const logoutUser = () => dispatch => {
   //   },
   // })
   return axios
-  .post('/api/users/logout')
+    .post('/api/users/logout')
     .then(() => {
       token.unset();
       localStorage.setItem('refreshToken', '');
@@ -147,29 +147,33 @@ const logoutUser = () => dispatch => {
 
 const getCurrentUser = () => (dispatch, getState) => {
   // if (!token) {
-    //   return;
-    // }
-    const {
-      auth: { token: persistedToken },
-    } = getState();
+  //   return;
+  // }
+  const {
+    auth: { token: persistedToken },
+  } = getState();
 
-    if (!persistedToken) {
-      const refreshToken = localStorage.getItem('refreshToken');
-      
-       if(!refreshToken) return dispatch(actions.getCurrentUserError('No valid token'));
+  if (!persistedToken) {
+    const refreshToken = localStorage.getItem('refreshToken');
 
-      axios.post('api/users/updateTokens',refreshToken).then(response=>{
-      if (response.data.code === 200) {
-        token.set(response.data.accessToken);
-        localStorage.setItem('refreshToken', response.data.data.refreshToken);
-      }
-    }).catch(error=>{
-      localStorage.setItem('refreshToken', '');
-      return dispatch(actions.getCurrentUserError(error));
-    })
+    if (!refreshToken)
+      return dispatch(actions.getCurrentUserError('No valid token'));
+
+    axios
+      .post('api/users/updateTokens', refreshToken)
+      .then(response => {
+        if (response.data.code === 200) {
+          token.set(response.data.accessToken);
+          localStorage.setItem('refreshToken', response.data.data.refreshToken);
+        }
+      })
+      .catch(error => {
+        localStorage.setItem('refreshToken', '');
+        return dispatch(actions.getCurrentUserError(error));
+      });
   }
 
-  token.set(persistedToken)
+  token.set(persistedToken);
 
   axios({
     method: 'get',
