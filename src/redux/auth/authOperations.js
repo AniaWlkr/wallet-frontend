@@ -66,11 +66,9 @@ const loginUser = user => dispatch => {
     .post('/api/users/login', user)
     .then(answer => {
       if (answer.data.code === 200) {
-        console.log('answer.data', answer.data);
         token.set(answer.data.accessToken);
         dispatch(actions.loginSuccess(answer.data.data));
-        localStorage.setItem('refreshToken', answer.data.data.refreshToken);
-
+       
         alert({
           text: `${answer.data.data.message}`,
         });
@@ -129,7 +127,6 @@ const logoutUser = () => dispatch => {
     .post('/api/users/logout')
     .then(() => {
       token.unset();
-      localStorage.setItem('refreshToken', '');
       dispatch(actions.logoutSuccess());
       alert({
         text: `Logout success!`,
@@ -153,46 +150,16 @@ const getCurrentUser = () => (dispatch, getState) => {
     auth: { token: persistedToken },
   } = getState();
 
-  if (!persistedToken) {
-    const refreshToken = localStorage.getItem('refreshToken');
-
-    if (!refreshToken)
-      return dispatch(actions.getCurrentUserError('No valid token'));
-
-    axios
-      .post('api/users/updateTokens', refreshToken)
-      .then(response => {
-        if (response.data.code === 200) {
-          token.set(response.data.accessToken);
-          localStorage.setItem('refreshToken', response.data.data.refreshToken);
-        }
-      })
-      .catch(error => {
-        localStorage.setItem('refreshToken', '');
-        return dispatch(actions.getCurrentUserError(error));
-      });
-  }
+  if (!persistedToken)
+    return dispatch(actions.getCurrentUserError('There is no valid token'));
 
   token.set(persistedToken);
 
-  axios({
-    method: 'get',
-    url: '/api/users/current',
-    // headers: {
-    //   Authorization: `Bearer ${token}`,
-    // },
-  })
-    .then(answer => {
-      const email = answer.data.data.email;
-      const name = answer.data.data.name;
-      const user = {
-        email,
-        name,
-      };
-      dispatch(actions.getCurrentUserSuccess(user));
-      alert({
-        text: `Hi!`,
-      });
+  axios
+    .get('/api/users/current')
+    .then(response => {
+      const { email, name } = response.data.data;
+      dispatch(actions.getCurrentUserSuccess({ email, name }));
     })
     .catch(error => {
       token.unset();
