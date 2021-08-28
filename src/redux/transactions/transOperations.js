@@ -13,8 +13,10 @@ import {
   // deleteTransactionRequest,
   deleteTransactionSuccess,
   deleteTransactionError,
-  openModal,
-  closeModal,
+  openTransactionModal,
+  closeTransactionModal,
+  openExitModal,
+  closeExitModal,
 } from './transActions';
 
 export const getTransactionsOperation = () => (dispatch, getStore) => {
@@ -81,10 +83,16 @@ export const deleteTransactionOperation = id => (dispatch, getState) => {
     .catch(() => dispatch(deleteTransactionError()));
 };
 
-export const setModalOpen = () => dispatch => {
-  dispatch(openModal());
+export const setTransactionModalOpen = () => dispatch => {
+  dispatch(openTransactionModal());
+};
+export const setTransactionModalClose = () => dispatch => {
+  dispatch(closeTransactionModal());
 };
 
-export const setModalClose = () => dispatch => {
-  dispatch(closeModal());
+export const setExitModalOpen = () => dispatch => {
+  dispatch(openExitModal());
+};
+export const setExitModalClose = () => dispatch => {
+  dispatch(closeExitModal());
 };

@@ -2,7 +2,9 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const getLoading = state => state.transactions.loading;
 const getAllTransactions = state => state.transactions.items;
-const isModalOpen = state => state.transactions.isModalOpen;
+const isTransactionModalOpen = state =>
+  state.transactions.isTransactionModalOpen;
+const isExitModalOpen = state => state.transactions.isExitModalOpen;
 
 const getSpend = createSelector(getAllTransactions, items => {
   const value = items.reduce((sum, current) => {
@@ -47,6 +49,7 @@ export default {
   getSpend,
   getIncome,
   getBalance,
-  isModalOpen,
+  isTransactionModalOpen,
+  isExitModalOpen,
   getSpendPerCategory,
 };
