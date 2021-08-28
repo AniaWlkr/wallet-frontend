@@ -2,7 +2,7 @@
 @import '../../stylesheet/main.scss';
 
 .container {
-  position: relative;
+  // position: relative;
   margin: 0 auto;
   text-align: center;
 
@@ -12,11 +12,13 @@
 
   @media screen and (min-width: $tablet) {
     width: $tablet;
-    padding: 0 40px;
+    padding-left: 114px;
   }
 
   @media screen and (min-width: $desktop) {
     width: $desktop;
-    padding: 0 85px;
+
+    display: flex;
+    padding-left: 0;
   }
 }
