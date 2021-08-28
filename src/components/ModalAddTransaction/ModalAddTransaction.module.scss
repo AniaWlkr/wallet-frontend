@@ -10,6 +10,7 @@
 .switch {
   display: flex;
   align-items: center;
+  margin-bottom: 40px;
 }
 
 .switchControl {
@@ -88,4 +89,155 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  height: 600px;
+  background-color: $text-color-on-accent;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.label {
+  position: relative;
+  cursor: pointer;
+  color: $placeholder-color;
+  width: 280px;
+}
+
+::placeholder {
+  font-size: 18px;
+}
+
+.input {
+  width: 280px;
+  border: none;
+  border-bottom: 1px solid $placeholder-color;
+  outline: none;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 40px;
+}
+
+.textarea {
+  resize: none;
+  padding-bottom: 30px;
+}
+
+.span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.text {
+  font-family: $poppins-font;
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 40px;
+}
+
+.grey {
+  font-family: $montserrat-font;
+  font-weight: bold;
+  font-size: 16px;
+  color: $placeholder-color;
+}
+
+.positionAdd {
+  position: absolute;
+  top: 90px;
+  left: 50px;
+}
+
+.positionExpense {
+  position: absolute;
+  top: 90px;
+  right: 35px;
+}
+
+.addAccent {
+  position: absolute;
+  color: $accent-light-color;
+}
+
+.expenseAccent {
+  position: absolute;
+  color: $accent-color-expense;
+}
+
+.button {
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  outline: none;
+  background-color: inherit;
+}
+
+.buttonAdd,
+.buttonAdd:active {
+  background-color: $accent-light-color;
+  color: $text-color-on-accent;
+  border: 1px solid $accent-light-color;
+  margin-bottom: 20px;
+}
+
+.buttonAdd:hover,
+  // .enter:focus,
+  .buttonAdd:active {
+  background-color: $accent-deep-color;
+  border: 1px solid $accent-deep-color;
+}
+
+.buttonCancel {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 1px solid $accent-deep-color;
+  color: $accent-deep-color;
+}
+
+.buttonCancel:hover,
+  // .register:focus ,
+  .buttonCancel:active {
+  color: $accent-light-color;
+  border: 1px solid $accent-light-color;
+}
+
+.datetime {
+  border: none;
+  outline: none;
+}
+
+.select {
+  width: 280px;
+  border-bottom: 1px solid $placeholder-color;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 40px;
+
+  border: none;
+  outline: none;
+  color: $placeholder-color;
+  font-size: 18px;
+  font-family: $montserrat-font;
 }

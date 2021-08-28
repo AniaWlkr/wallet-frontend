@@ -10,6 +10,7 @@ import styles from './LoginForm.module.scss';
 import { alert, defaults } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
+import ContainerForLoginAndRegistration from '../ContainerForLoginAndRegistration';
 
 defaults.delay = '3000';
 defaults.width = '280px';
@@ -80,59 +81,61 @@ export default function LoginForm() {
   };
 
   return (
-    <div className={styles.mainDiv}>
-      <div>
-        <p className={styles.wallet}>Wallet</p>
+    <ContainerForLoginAndRegistration>
+      <div className={styles.mainDiv}>
+        <form className={styles.form} onSubmit={userToLogin}>
+          <div>
+            <p className={styles.wallet}>Wallet</p>
+          </div>
+          <div className={styles.labelsDiv}>
+            <label className={styles.label}>
+              <span className={`${styles.span} ${styles.mailSpan}`}>
+                <MailOutlineSharpIcon></MailOutlineSharpIcon>
+              </span>
+              <input
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                value={email}
+                onChange={handleEmail}
+                className={
+                  validEmail
+                    ? `${styles.input} `
+                    : `${styles.input} ${styles.inputError}`
+                }
+              ></input>
+            </label>
+            <label className={styles.label}>
+              <span className={styles.span}>
+                <LockSharpIcon></LockSharpIcon>
+              </span>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={handlePassword}
+                className={
+                  validPassword
+                    ? `${styles.input} `
+                    : `${styles.input} ${styles.inputError}`
+                }
+              ></input>
+            </label>
+          </div>
+
+          <button className={`${styles.button} ${styles.enter}`} type="submit">
+            Login
+          </button>
+
+          <NavLink
+            className={`${styles.button} ${styles.register}`}
+            to={routes.register}
+          >
+            Register
+          </NavLink>
+        </form>
       </div>
-      <form className={styles.form} onSubmit={userToLogin}>
-        <div className={styles.labelsDiv}>
-          <label className={styles.label}>
-            <span className={`${styles.span} ${styles.mailSpan}`}>
-              <MailOutlineSharpIcon></MailOutlineSharpIcon>
-            </span>
-            <input
-              type="email"
-              name="email"
-              placeholder="E-mail"
-              value={email}
-              onChange={handleEmail}
-              className={
-                validEmail
-                  ? `${styles.input} `
-                  : `${styles.input} ${styles.inputError}`
-              }
-            ></input>
-          </label>
-          <label className={styles.label}>
-            <span className={styles.span}>
-              <LockSharpIcon></LockSharpIcon>
-            </span>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={password}
-              onChange={handlePassword}
-              className={
-                validPassword
-                  ? `${styles.input} `
-                  : `${styles.input} ${styles.inputError}`
-              }
-            ></input>
-          </label>
-        </div>
-
-        <button className={`${styles.button} ${styles.enter}`} type="submit">
-          Login
-        </button>
-
-        <NavLink
-          className={`${styles.button} ${styles.register}`}
-          to={routes.register}
-        >
-          Register
-        </NavLink>
-      </form>
-    </div>
+    </ContainerForLoginAndRegistration>
   );
 }

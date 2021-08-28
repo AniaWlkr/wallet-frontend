@@ -1,0 +1,31 @@
+@import '../../stylesheet/main.scss';
+
+.wrapper {
+  padding: 40px 20px 37px 20px;
+
+  @media screen and (min-width: $tablet) {
+    padding: 40px 23px 35px 40px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding: 30px 85px 35px 30px;
+  }
+}
+
+.tabTitle {
+  font-family: $poppins-font;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.5;
+  text-align: start;
+  color: #000000;
+}
+
+.diagramWrapper {
+  margin-top: 10px;
+
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    margin-top: 20px;
+  }
+}

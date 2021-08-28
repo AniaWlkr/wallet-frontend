@@ -1,8 +1,8 @@
 import './Header.scss';
-// import authSelectors from '../../redux/auth/authSelectors';
+import authSelectors from '../../redux/auth/authSelectors';
 import authOperations from '../../redux/auth/authOperations';
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import useSizeScreen from '../../utils/useSizeScreen';
 
 import Container from '../Container';
@@ -10,7 +10,7 @@ import Container from '../Container';
 export default function Header() {
   const dispatch = useDispatch();
   const sizeScreen = useSizeScreen();
-  // const name = useSelector(authSelectors.getUserName);
+  const name = useSelector(authSelectors.getUserName);
   const onLogout = useCallback(
     () => dispatch(authOperations.logoutUser()),
     [dispatch],

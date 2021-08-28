@@ -45,5 +45,6 @@
   @media screen and (min-width: $desktop) {
     width: $desktop;
     padding: 0 85px;
+    display: flex;
   }
 }

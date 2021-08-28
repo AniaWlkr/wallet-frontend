@@ -61,7 +61,7 @@ export const addTransactionOperation =
         console.dir(err);
         let errData = err;
         if (err instanceof Error) {
-          errData = err.response.data;
+          errData = err.response;
         }
         dispatch(addTransactionError(errData));
       });

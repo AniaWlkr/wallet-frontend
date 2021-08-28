@@ -189,8 +189,8 @@ export default function RegistrationForm() {
               onChange={handleRepeatPassword}
               className={
                 password !== repeatPassword || repeatPassword === ''
-                  ? `${styles.input} `
-                  : `${styles.input} ${styles.inputError}`
+                  ? `${styles.input} ${styles.inputRepeat}`
+                  : `${styles.input}${styles.inputRepeat} ${styles.inputError}`
               }
             ></input>
           </label>

@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import authOperations from '../../redux/auth/authOperations';
 import Router from '../Router';
-// import Navigation from '../Navigation';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -14,8 +13,9 @@ export default function App() {
 
   return (
     <>
-      {/* <Navigation /> */}
-      <Router />
+      <Container>
+        <Router />
+      </Container>
     </>
   );
 }
