@@ -17,7 +17,7 @@ export const getCategoriesOperation = () => dispatch => {
     .then(res => {
       if (res.data.status === 'success') {
         const categories = {
-          categories: res.data,
+          categories: [...res.data.data.result],
         };
         dispatch(fetchCategoriesSuccess(categories));
       } else {

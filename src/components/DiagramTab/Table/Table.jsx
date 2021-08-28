@@ -12,6 +12,10 @@ export default function Table({
   yearState,
   monthState,
 }) {
+  /* methods to selectors */
+  const changeMonth = month => console.log(month);
+  const changeYear = year => console.log(year);
+
   return (
     <div className="tableWrapper">
       <div className="tableSelectors">
@@ -20,9 +24,14 @@ export default function Table({
             options={yearOptions}
             initialState={yearState}
             className="firstSelector"
+            changeSelector={changeMonth}
           />
         </div>
-        <Selector options={monthOptions} initialState={monthState} />
+        <Selector
+          options={monthOptions}
+          initialState={monthState}
+          changeSelector={changeYear}
+        />
       </div>
       <div className="tableHead">
         <span className="tableHead_item">Категория</span>

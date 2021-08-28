@@ -6,19 +6,22 @@ import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
 defaults.delay = '3000';
 defaults.width = '200px';
+const errorCodesArray = [400, 401, 409, 429, 500];
 
-// axios.defaults.baseURL = 'https://db-wallet.herokuapp.com';
-axios.defaults.baseURL = 'http://localhost:4444';
-// const token = {
-//   set(token) {
-//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//   },
-//   unset() {
-//     axios.defaults.headers.common.Authorization = '';
-//   },
-// };
+axios.defaults.baseURL = 'https://db-wallet.herokuapp.com';
+// axios.defaults.baseURL = 'http://localhost:4444';
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
 
 const registerUser = user => dispatch => {
+  console.log('user', user);
+
   axios
     .post('/api/users/signup', user)
     .then(answer => {
@@ -32,27 +35,29 @@ const registerUser = user => dispatch => {
     })
     .catch(error => {
       // console.dir(error);
-      if (error.response.data.code === 400) {
-        dispatch(actions.registerError(error.response.data.message));
-      }
-      if (error.response.data.code === 409) {
-        dispatch(actions.registerError(error.response.data.message));
-        alert({
-          text: `${error.response.data.message}`,
-        });
-      }
-      if (error.response.data.code === 429) {
+      // if (error.response.data.code === 400) {
+      //   dispatch(actions.registerError(error.response.data.message));
+      // }
+      if (errorCodesArray.includes(error.response.data.code)) {
         dispatch(actions.registerError(error.response.data.message));
         alert({
           text: `${error.response.data.message}`,
         });
       }
-      if (error.response.data.code === 500) {
-        dispatch(actions.registerError(error.response.data.message));
-        alert({
-          text: `${error.response.data.message}`,
-        });
-      }
+      // if (error.response.data.code === 429) {
+      //   dispatch(actions.registerError(error.response.data.message));
+      //   alert({
+      //     text: `${error.response.data.message}`,
+      //   });
+      // }
+      // if (error.response.data.code === 500) {
+      //   dispatch(actions.registerError(error.response.data.message));
+      //   alert({
+      //     text: `${error.response.data.message}`,
+      //   });
+      // }
+
+      dispatch(actions.loginError(error));
     });
 };
 
@@ -61,55 +66,67 @@ const loginUser = user => dispatch => {
     .post('/api/users/login', user)
     .then(answer => {
       if (answer.data.code === 200) {
+        token.set(answer.data.accessToken);
         dispatch(actions.loginSuccess(answer.data.data));
-        localStorage.setItem('wallet-token', answer.data.data.accessToken);
+       
         alert({
           text: `${answer.data.data.message}`,
         });
       }
     })
     .catch(error => {
-      // console.dir(error);
-      if (error.response.data.code === 400) {
+      console.dir(error);
+      if (!error.response) {
+        dispatch(actions.loginError(error.message));
+        alert({
+          text: `${error.message}`,
+        });
+        return;
+      }
+      // if (error.response.data.code === 400) {
+      //   dispatch(actions.loginError(error.response.data.message));
+      //   alert({
+      //     text: `${error.response.data.message}`,
+      //   });
+      // }
+      if (errorCodesArray.includes(error.response.data.code)) {
         dispatch(actions.loginError(error.response.data.message));
         alert({
           text: `${error.response.data.message}`,
         });
       }
-      if (error.response.data.code === 401) {
-        dispatch(actions.loginError(error.response.data.message));
-        alert({
-          text: `${error.response.data.message}`,
-        });
-      }
-      if (error.response.data.code === 429) {
-        dispatch(actions.loginError(error.response.data.message));
-        alert({
-          text: `${error.response.data.message}`,
-        });
-      }
-      if (error.response.data.code === 500) {
-        dispatch(actions.loginError(error.response.data.message));
-        alert({
-          text: `${error.response.data.message}`,
-        });
-      }
+      // if (error.response.data.code === 429) {
+      //   dispatch(actions.loginError(error.response.data.message));
+      //   alert({
+      //     text: `${error.response.data.message}`,
+      //   });
+      // }
+      // if (error.response.data.code === 500) {
+      //   dispatch(actions.loginError(error.response.data.message));
+      //   alert({
+      //     text: `${error.response.data.message}`,
+      //   });
+      // }
+      dispatch(actions.loginError(error));
     });
 };
 
 const logoutUser = () => dispatch => {
-  const token = localStorage.getItem('wallet-token');
-  if (!token) {
-    return console.log('no token');
-  }
-  axios({
-    method: 'post',
-    url: '/api/users/logout',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  // const token = localStorage.getItem('wallet-token');
+  // if (!token) {
+  //   return console.log('no token');
+  // }
+  // axios({
+  //   method: 'post',
+  //   url: '/api/users/logout',
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // })
+  return axios
+    .post('/api/users/logout')
     .then(() => {
+      token.unset();
       dispatch(actions.logoutSuccess());
       alert({
         text: `Logout success!`,
@@ -126,54 +143,34 @@ const logoutUser = () => dispatch => {
 };
 
 const getCurrentUser = () => (dispatch, getState) => {
-  const token = localStorage.getItem('wallet-token');
-  if (!token) {
-    return console.log('no token');
-  }
-  axios({
-    method: 'get',
-    url: '/api/users/current',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then(answer => {
-      const email = answer.data.data.email;
-      const name = answer.data.data.name;
-      const user = {
-        email,
-        name,
-      };
-      dispatch(actions.getCurrentUserSuccess(user));
-      alert({
-        text: `Hi!`,
-      });
-    })
-    .catch(error => {
-      console.dir(error);
-      dispatch(actions.getCurrentUserError(error));
-      alert({
-        text: `${error.response.data.message}`,
-      });
-    });
-
-  // const {
-  //   auth: { token: persistedToken },
-  // } = getState();
-
-  // if (!persistedToken) {
+  // if (!token) {
   //   return;
   // }
-  // token.set(persistedToken);
-  // dispatch(actions.getCurrentUserRequest());
+  const {
+    auth: { token: persistedToken },
+  } = getState();
 
-  // return axios
-  //   .get('/api/users/current')
-  //   .then(({ data }) => dispatch(actions.getCurrentUserSuccess(data)))
-  //   .catch(error => {
-  //     token.unset();
-  //     dispatch(actions.getCurrentUserError(error.message));
-  //   });
+  if (!persistedToken)
+    return dispatch(actions.getCurrentUserError('There is no valid token'));
+
+  token.set(persistedToken);
+
+  axios
+    .get('/api/users/current')
+    .then(response => {
+      const { email, name } = response.data.data;
+      dispatch(actions.getCurrentUserSuccess({ email, name }));
+    })
+    .catch(error => {
+      token.unset();
+      dispatch(actions.getCurrentUserError(error));
+      if (error.response.data.message) {
+        alert({
+          text: `${error.response.data.message}`,
+        });
+      }
+      console.dir(error);
+    });
 };
 
 export default {

@@ -44,9 +44,7 @@ export const getTransactionsOperation = () => (dispatch, getStore) => {
 export const addTransactionOperation =
   newTransaction => (dispatch, getStore) => {
     const {
-      auth: {
-        user: { token },
-      },
+      auth: { token },
     } = getStore();
 
     dispatch(addTransactionRequest());
@@ -60,6 +58,7 @@ export const addTransactionOperation =
         throw response;
       })
       .catch(err => {
+        console.dir(err);
         let errData = err;
         if (err instanceof Error) {
           errData = err.response.data;

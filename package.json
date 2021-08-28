@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "chart.js": "^3.5.1",
+    "classnames": "^2.3.1",
     "formik": "^2.2.9",
     "indicative": "^7.4.4",
     "modern-normalize": "^1.1.0",
@@ -67,7 +68,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-html": "^6.1.2",
-    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
@@ -78,17 +79,19 @@
     "prop-types": "^15.7.2"
   },
   "lint-staged": {
-    "*.{js,jsx}": "npm run lint:fix"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "*.{js,jsx}": "npm run lint:fix",
+    "*.{jsx,js}": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   },
   "eslintIgnore": [
     "package.json",
     "package-lock.json",
     ".gitignore",
     ".eslintrc.js"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }

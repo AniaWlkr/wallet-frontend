@@ -3,10 +3,10 @@
 @import '../../../stylesheet//utils/common.scss';
 
 @media screen and (min-width: 768px) {
-  body {
-    background: url(../../../images/tablet.png) no-repeat;
-    background-size: cover;
-  }
+  // body {
+  //   background: url(../../../images/tablet.png) no-repeat;
+  //   background-size: cover;
+  // }
 
   .background {
     background: url(../../../images//Frame.svg) no-repeat;
@@ -29,10 +29,10 @@
 }
 
 @media screen and (min-width: 1200px) {
-  body {
-    background: url(../../../images/iMac.png) no-repeat;
-    background-size: cover;
-  }
+  // body {
+  //   background: url(../../../images/iMac.png) no-repeat;
+  //   background-size: cover;
+  // }
 
   .background {
     background: url(../../../images//Frame.svg) no-repeat;

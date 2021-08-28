@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import Container from '../Container';
 import authOperations from '../../redux/auth/authOperations';
 import Router from '../Router';
 
