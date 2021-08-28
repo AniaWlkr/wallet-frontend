@@ -40,7 +40,6 @@ export default function DashboardPage() {
   // console.dir(isAuthed);
   // const isOpenSelector = useSelector(transSelectors.isModalOpen);
 
-
   return (
     <section className={styles.section}>
       <Header />

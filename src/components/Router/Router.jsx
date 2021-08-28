@@ -35,7 +35,13 @@ const Router = () => {
           <PrivateRoute path={routes.dashBoard} redirectTo={routes.login}>
             <DashBoardPage />
           </PrivateRoute>
-          {/* <Redirect to={routes.dashBoard} /> */}
+          <PrivateRoute path={routes.statistics} redirectTo={routes.login}>
+            <DashBoardPage />
+          </PrivateRoute>
+          <PrivateRoute path={routes.currency} redirectTo={routes.login}>
+            <DashBoardPage />
+          </PrivateRoute>
+          <Redirect to={routes.dashBoard} />
         </Switch>
       </Suspense>
     </div>
