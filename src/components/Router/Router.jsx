@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
-import { Switch } from 'react-router-dom';
-// import { Switch, Redirect } from 'react-router-dom';
+// import { Switch } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 import routes from '../../routes/routes';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
