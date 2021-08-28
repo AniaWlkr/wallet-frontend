@@ -7,16 +7,18 @@ const options = {
   cutout: '70%',
 };
 
-const Chart = ({ data }) => {
+const Chart = ({ data, totalBalance }) => {
   return (
     <div className="Chart">
       <Doughnut options={options} data={data} />
+      <span>₴ {totalBalance}</span>
     </div>
   );
 };
 
 Chart.propTypes = {
   data: PropTypes.object,
+  totalBalance: PropTypes.number,
 };
 
 export default Chart;
