@@ -2,29 +2,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import {
   setModalClose,
-  // addTransactionOperation,
+  addTransactionOperation,
 } from '../../redux/transactions/transOperations';
 import { getCategoriesOperation } from '../../redux/categories/categoriesOperations';
 import selectors from '../../redux/categories/categoriesSelectors';
 import styles from './ModalAddTransaction.module.scss';
 import AddSharpIcon from '@material-ui/icons/AddSharp';
 import RemoveSharpIcon from '@material-ui/icons/RemoveSharp';
+import 'react-datetime/css/react-datetime.css';
+import Datetime from 'react-datetime';
+import { validate } from 'indicative/validator';
+import { alert, defaults } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+// import LockSharpIcon from '@material-ui/icons/LockSharp';
+
+defaults.delay = '3000';
+defaults.width = '280px';
 
 export default function ModallAddTransaction() {
   useEffect(() => {
     dispatch(getCategoriesOperation());
   }, []);
 
-  const day = new Date().getDate();
-  const month = new Date().getMonth();
-  const year = new Date().getFullYear();
-
-  const dateNow = `${day}.${month}.${year}`;
-
   const [checkbox, setCheckbox] = useState(true);
   const [category, setCategory] = useState('Выберите категорию');
+  // const [categoryId, setCategoryId] = useState(null);
   const [sum, setSum] = useState(null);
-  const [date, setDate] = useState(`${dateNow}`);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [textarea, setTextarea] = useState('');
 
   const dispatch = useDispatch();
@@ -38,7 +42,7 @@ export default function ModallAddTransaction() {
 
   const handleCategory = e => {
     setCategory(e.target.value);
-    console.dir(e.target);
+    // console.dir(e);
   };
 
   const handleSum = e => {
@@ -46,8 +50,19 @@ export default function ModallAddTransaction() {
   };
 
   const handleDate = e => {
-    setDate(e.target.value);
-    console.dir(e.target);
+    setSelectedDate(String(e._d));
+
+    // const [day, mounth, dateNumber, year, time, zone] = date.split(' ');
+
+    // const dateObj = {
+    //   day,
+    //   mounth,
+    //   dateNumber,
+    //   year,
+    //   time,
+    //   zone,
+    // };
+    // console.log(dateObj);
   };
 
   const handleTextarea = e => {
@@ -60,34 +75,67 @@ export default function ModallAddTransaction() {
 
   const addTransaction = e => {
     e.preventDefault();
-    const transaction = {
-      transType: `${!checkbox ? 'Расход' : 'Доход'}`,
-      category,
-      sum,
-      date,
-      comment: textarea,
+
+    const rules = {
+      sum: 'required',
+      selectedDate: 'required',
+      category: 'required',
     };
 
+    const messages = {
+      required: 'Make sure to enter the field value)',
+    };
+
+    const transaction = {
+      transType: `${!checkbox ? 'spend' : 'income'}`,
+      sum,
+      date: selectedDate,
+      comment: textarea,
+      balance: 9000,
+      categoryId: category,
+    };
+
+    validate({ sum, selectedDate, category }, rules, messages)
+      .then(() => {
+        dispatch(addTransactionOperation(transaction));
+        dispatch(setModalClose());
+        alert({
+          text: `Added!`,
+        });
+      })
+      .catch(error => {
+        console.dir(error);
+        alert({
+          text: `${error[0].message}`,
+        });
+      });
+
     console.log(transaction);
-
-    //     {
-    //   "transType": "spend",
-    //   "date": "2021-08-23",
-    //   "sum": 2000,
-    //   "comment": "some coment",
-    //   "balance": 9000,
-    //   "categoryId": "6122284cfd194a14a7cfe3c9"
-    // }
-
-    // dispatch(addTransactionOperation(transaction));
-    dispatch(setModalClose());
   };
 
   return (
-    <div>
-      <p>Добавить транзакцию</p>
+    <div className={styles.mainDiv}>
+      <p className={styles.text}>Добавить транзакцию</p>
 
       <form onSubmit={addTransaction} className={styles.form}>
+        <p
+          className={
+            !checkbox
+              ? `${styles.grey} ${styles.positionAdd}`
+              : `${styles.grey}  ${styles.positionAdd} ${styles.addAccent}`
+          }
+        >
+          Доход
+        </p>
+        <p
+          className={
+            !checkbox
+              ? `${styles.grey}  ${styles.positionExpense} ${styles.expenseAccent}`
+              : `${styles.positionExpense} ${styles.grey}`
+          }
+        >
+          Расход
+        </p>
         <div className={styles.switch}>
           <div className={styles.switchControl}>
             <input
@@ -110,77 +158,66 @@ export default function ModallAddTransaction() {
               )}
             </div>
           </div>
-          <p>Доход</p>
-          <p>Расход</p>
         </div>
-        {!checkbox ? (
-          <div>
-            <label>
-              <select onChange={handleCategory} name="select" value={category}>
-                {allCategories.map(category => {
-                  return (
-                    <option
-                      key={category._id}
-                      id={`${category._id}`}
-                      value={category.categoryName}
-                    >
-                      {category.categoryName}
-                    </option>
-                  );
-                })}
-              </select>
-            </label>
-            <label>
-              <input
-                onChange={handleSum}
-                value={sum}
-                type="number"
-                name="sum"
-                placeholder="0.00"
-              ></input>
-            </label>
-            <label>
-              <input
-                onChange={handleDate}
-                value={date}
-                type="date"
-                name="date"
-              ></input>
-            </label>
-            <textarea
-              onChange={handleTextarea}
-              value={textarea}
-              name="comment"
-              maxLength="300"
-            ></textarea>
-          </div>
-        ) : (
-          <div>
-            <label>
-              <input
-                onChange={handleSum}
-                value={sum}
-                type="number"
-                name="sum"
-                placeholder="0.00"
-              ></input>
-            </label>
-            <label>
-              <input
-                onChange={handleDate}
-                value={date}
-                type="date"
-                name="date"
-              ></input>
-            </label>
-            <textarea
-              onChange={handleTextarea}
-              value={textarea}
-              name="comment"
-              maxLength="300"
-            ></textarea>
-          </div>
+
+        {/* <div> */}
+        {checkbox ? null : (
+          <label className={styles.label}>
+            <select
+              className={styles.select}
+              onChange={handleCategory}
+              name="select"
+              value={category}
+            >
+              {allCategories.map(category => {
+                return (
+                  <option
+                    key={category._id}
+                    value={category._id}
+                    // value={category.categoryName}
+                  >
+                    {category.categoryName}
+                  </option>
+                );
+              })}
+            </select>
+          </label>
         )}
+        <label className={styles.label}>
+          <input
+            onChange={handleSum}
+            value={sum}
+            type="number"
+            name="sum"
+            placeholder="0.00"
+            className={styles.input}
+          ></input>
+        </label>
+        <label className={styles.label}>
+          <Datetime
+            selected={selectedDate}
+            dateFormat="DD.MM.YYYY"
+            timeFormat={false}
+            locale="fr-ca"
+            type="date"
+            value={selectedDate}
+            onChange={handleDate}
+            className={styles.input}
+            inputProps={{ className: styles.datetime }}
+          />
+          {/* <span className={styles.span}>
+              <LockSharpIcon></LockSharpIcon>
+            </span> */}
+        </label>
+        <textarea
+          onChange={handleTextarea}
+          value={textarea}
+          name="comment"
+          maxLength="300"
+          className={`${styles.input} ${styles.textarea}`}
+          placeholder="Комментарий"
+        ></textarea>
+        {/* </div> */}
         <button
           type="submit"
           className={`${styles.button} ${styles.buttonAdd}`}
