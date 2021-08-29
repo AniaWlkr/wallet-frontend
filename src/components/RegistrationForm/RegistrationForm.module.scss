@@ -18,8 +18,8 @@
   height: 568px;
   width: 320px;
   background-color: $text-color-on-accent;
-  margin-right: auto;
-  margin-left: auto;
+  // margin-right: auto;
+  // margin-left: auto;
 }
 
 .wallet {
@@ -147,7 +147,7 @@ input:-webkit-autofill:active {
     border-radius: 20px;
     padding-top: 40px;
     padding-bottom: 60px;
-    margin-top: 360px;
+    // margin-top: 360px;
   }
 
   .wallet {
@@ -177,18 +177,18 @@ input:-webkit-autofill:active {
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .mainDiv {
-    position: absolute;
-    top: -220px;
-    right: 60px;
-  }
-}
+// @media screen and (min-width: 1200px) {
+//   .mainDiv {
+//     position: absolute;
+//     top: -220px;
+//     right: 60px;
+//   }
+// }
 
-@media screen and (min-width: 1400px) {
-  .mainDiv {
-    position: absolute;
-    top: -270px;
-    right: 220px;
-  }
-}
+// @media screen and (min-width: 1400px) {
+//   .mainDiv {
+//     position: absolute;
+//     top: -270px;
+//     right: 220px;
+//   }
+// }

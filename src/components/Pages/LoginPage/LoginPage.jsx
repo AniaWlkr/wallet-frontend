@@ -1,19 +1,16 @@
 import LoginForm from '../../LoginForm';
 import styles from './LoginPage.module.scss';
-import Container from '../../Container';
+import ContainerForLoginAndRegistration from '../../ContainerForLoginAndRegistration';
 
 export default function LoginPage() {
   return (
-    <Container>
-      <div className={styles.desctop}>
-        <div className={styles.svg}>
-          <div className={styles.background}></div>
-          <p className={styles.financeApp}>Finance App</p>
-        </div>
-        <div>
-          <LoginForm />
-        </div>
+    <ContainerForLoginAndRegistration>
+      <div className={styles.sideBar}>
+        <p className={styles.financeApp}>Finance App</p>
       </div>
-    </Container>
+      <div className={styles.formWraper}>
+        <LoginForm />
+      </div>
+    </ContainerForLoginAndRegistration>
   );
 }

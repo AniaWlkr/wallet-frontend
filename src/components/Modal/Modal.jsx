@@ -1,7 +1,10 @@
-// import React, { useState } from 'react';
+// import { useState } from 'react';
 import styles from './Modal.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { setModalClose } from '../../redux/transactions/transOperations';
+import {
+  setTransactionModalClose,
+  setExitModalClose,
+} from '../../redux/transactions/transOperations';
 import CloseSharpIcon from '@material-ui/icons/CloseSharp';
 
 import PropTypes from 'prop-types';
@@ -9,43 +12,47 @@ import PropTypes from 'prop-types';
 import selectors from '../../redux/transactions/transSelectors';
 
 export default function Modal({ component: Component }) {
-  const isOpen = useSelector(selectors.isModalOpen);
+  // const [openModal, setOpenModal] = useState(false);
+
+  const isTransactionModalOpen = useSelector(selectors.isTransactionModalOpen);
+  const isExitModalOpen = useSelector(selectors.isExitModalOpen);
+
   const dispatch = useDispatch();
 
   const closeModal = () => {
-    dispatch(setModalClose());
+    dispatch(setTransactionModalClose());
+    dispatch(setExitModalClose());
   };
 
+  // const propsOpen = () => {
+  //   if (propsOpenModal) {
+  //     setOpenModal(false);
+  //   }
+  //   if (!propsOpenModal) {
+  //     setOpenModal(true);
+  //   }
+  // };
+
   const closeByEsc = e => {
-    // if (e.code === 27) {
-    //   dispatch(setModalClose());
-    // }
+    if (e.code === 27) {
+      dispatch(selectors.set);
+    }
     console.log(e);
   };
 
+  // propsOpen();
+
   return (
     <div>
-      {isOpen ? (
-        <div
-          className={styles.modal}
-          // className={
-          //   isOpen ? `${styles.modal}` : `${styles.modal} ${styles.isOpen}`
-          // }
-        >
+      {isTransactionModalOpen || isExitModalOpen ? (
+        <div className={styles.modal}>
           <div
             onKeyDown={closeByEsc}
             onClick={closeModal}
             className={styles.overlay}
           ></div>
 
-          <div
-            className={styles.content}
-            // className={
-            //   isOpen
-            //     ? `${styles.content}`
-            //     : `${styles.content} ${styles.isOpen}`
-            // }
-          >
+          <div className={styles.content}>
             <Component />
             <button
               onClick={closeModal}

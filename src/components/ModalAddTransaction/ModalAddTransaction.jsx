@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import {
-  setModalClose,
+  setTransactionModalClose,
   addTransactionOperation,
 } from '../../redux/transactions/transOperations';
 import { getCategoriesOperation } from '../../redux/categories/categoriesOperations';
@@ -14,7 +14,10 @@ import Datetime from 'react-datetime';
 import { validate } from 'indicative/validator';
 import { alert, defaults } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
-// import LockSharpIcon from '@material-ui/icons/LockSharp';
+import DateRangeSharpIcon from '@material-ui/icons/DateRangeSharp';
+// import ContainerForLoginAndRegistration from '../ContainerForLoginAndRegistration';
+
+// import Modal from '../Modal';
 
 defaults.delay = '3000';
 defaults.width = '280px';
@@ -23,6 +26,8 @@ export default function ModallAddTransaction() {
   useEffect(() => {
     dispatch(getCategoriesOperation());
   }, []);
+
+  // const [openModal, setOpenModal] = useState(false);
 
   const [checkbox, setCheckbox] = useState(true);
   const [category, setCategory] = useState('Выберите категорию');
@@ -70,7 +75,7 @@ export default function ModallAddTransaction() {
   };
 
   const closeModal = () => {
-    dispatch(setModalClose());
+    dispatch(setTransactionModalClose());
   };
 
   const addTransaction = e => {
@@ -98,7 +103,7 @@ export default function ModallAddTransaction() {
     validate({ sum, selectedDate, category }, rules, messages)
       .then(() => {
         dispatch(addTransactionOperation(transaction));
-        dispatch(setModalClose());
+        dispatch(setTransactionModalClose());
         alert({
           text: `Added!`,
         });
@@ -114,6 +119,7 @@ export default function ModallAddTransaction() {
   };
 
   return (
+    // <ContainerForLoginAndRegistration>
     <div className={styles.mainDiv}>
       <p className={styles.text}>Добавить транзакцию</p>
 
@@ -169,9 +175,22 @@ export default function ModallAddTransaction() {
               name="select"
               value={category}
             >
+              <option
+                className={styles.selected}
+                value="Выберите категорию"
+                disabled
+                selected
+              >
+                Выберите категорию
+              </option>
               {allCategories.map(category => {
                 return (
                   <option
+                    className={
+                      checkbox
+                        ? `${styles.option} ${styles.optionAdd}`
+                        : `${styles.option} ${styles.optionExpence}`
+                    }
                     key={category._id}
                     value={category._id}
                     // value={category.categoryName}
@@ -183,32 +202,34 @@ export default function ModallAddTransaction() {
             </select>
           </label>
         )}
-        <label className={styles.label}>
-          <input
-            onChange={handleSum}
-            value={sum}
-            type="number"
-            name="sum"
-            placeholder="0.00"
-            className={styles.input}
-          ></input>
-        </label>
-        <label className={styles.label}>
-          <Datetime
-            selected={selectedDate}
-            dateFormat="DD.MM.YYYY"
-            timeFormat={false}
-            locale="fr-ca"
-            type="date"
-            value={selectedDate}
-            onChange={handleDate}
-            className={styles.input}
-            inputProps={{ className: styles.datetime }}
-          />
-          {/* <span className={styles.span}>
-              <LockSharpIcon></LockSharpIcon>
-            </span> */}
-        </label>
+        <div className={styles.sumAndDate}>
+          <label className={styles.label}>
+            <input
+              onChange={handleSum}
+              value={sum}
+              type="number"
+              name="sum"
+              placeholder="0.00"
+              className={`${styles.input} ${styles.sumInput}`}
+            ></input>
+          </label>
+          <label className={styles.label}>
+            <Datetime
+              selected={selectedDate}
+              dateFormat="DD.MM.YYYY"
+              timeFormat={false}
+              locale="fr-ca"
+              type="date"
+              value={selectedDate}
+              onChange={handleDate}
+              className={`${styles.input} ${styles.datetimeInput}`}
+              inputProps={{ className: styles.datetime }}
+            />
+            <DateRangeSharpIcon
+              className={styles.calendarIcon}
+            ></DateRangeSharpIcon>
+          </label>
+        </div>
         <textarea
           onChange={handleTextarea}
           value={textarea}
@@ -232,5 +253,6 @@ export default function ModallAddTransaction() {
         </button>
       </form>
     </div>
+    // </ContainerForLoginAndRegistration>
   );
 }

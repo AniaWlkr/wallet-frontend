@@ -5,6 +5,11 @@ import './Chart.scss';
 
 const options = {
   cutout: '70%',
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
 };
 
 const Chart = ({ data, totalBalance }) => {
@@ -18,7 +23,7 @@ const Chart = ({ data, totalBalance }) => {
 
 Chart.propTypes = {
   data: PropTypes.object,
-  totalBalance: PropTypes.number,
+  totalBalance: PropTypes.string,
 };
 
 export default Chart;

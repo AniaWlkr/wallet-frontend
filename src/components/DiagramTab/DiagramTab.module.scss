@@ -19,7 +19,7 @@
   font-size: 30px;
   line-height: 1.5;
   text-align: start;
-  color: #000000;
+  color: $headers-color;
 }
 
 .diagramWrapper {
@@ -30,4 +30,11 @@
     align-items: flex-start;
     margin-top: 20px;
   }
+}
+
+.noTrans {
+  height: 280px;
+  width: 280px;
+  display: flex;
+  align-items: center;
 }

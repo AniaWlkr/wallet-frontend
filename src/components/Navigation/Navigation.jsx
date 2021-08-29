@@ -28,7 +28,11 @@ export default function Navigation() {
         </button>
       </NavLink>
 
-      <NavLink to={routes.statistics} className="NavLink">
+      <NavLink
+        to={routes.statistics}
+        className="Navlink"
+        activeClassName="Navlink active"
+      >
         <button className="buttonNav">
           {sizeScreen <= 767 ? (
             <Statistics svg="svgNav" />

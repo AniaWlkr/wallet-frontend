@@ -2,64 +2,67 @@
 @import '../../../stylesheet//utils//breakpoints.scss';
 @import '../../../stylesheet//utils/common.scss';
 
-@media screen and (min-width: 768px) {
-  // body {
-  //   background: url(../../../images/tablet.png) no-repeat;
-  //   background-size: cover;
-  // }
+.sideBar {
+  display: none;
+}
 
-  .background {
-    background: url(../../../images//Frame.svg) no-repeat;
-    position: absolute;
-    top: 60px;
-    left: 125px;
-    width: 260px;
-    height: 250px;
+@media screen and (min-width: $tablet) {
+  .sideBar {
+    display: flex;
+    background-image: url('../../../images/login/boyTabl.svg');
+    background-repeat: no-repeat;
+    background-size: 260px 250px;
+
+    height: 260px;
+    width: 540px;
+
+    margin-top: 60px;
   }
 
   .financeApp {
-    position: absolute;
-    top: 180px;
-    right: 170px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 50px;
+
+    font-family: Poppins;
+    font-weight: 400;
     font-size: 30px;
-    font-weight: normal;
-    font-family: $poppins-font;
-    color: $headers-color;
+    line-height: 1.5;
+  }
+
+  .formWraper {
+    padding-top: 50px;
+    padding-bottom: 196px;
   }
 }
 
-@media screen and (min-width: 1200px) {
-  // body {
-  //   background: url(../../../images/iMac.png) no-repeat;
-  //   background-size: cover;
-  // }
+@media screen and (min-width: $desktop) {
+  .sideBar {
+    margin-top: 150px;
+    margin-left: 76px;
 
-  .background {
-    background: url(../../../images//Frame.svg) no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 146px;
-    left: 60px;
-    width: 435px;
-    height: 419px;
+    background-image: url('../../../images/login/boyDesk.svg');
+    background-size: 435px 420px;
+
+    height: 468px;
+  }
+
+  .formWraper {
+    margin-top: 0;
+    width: 720px;
+    padding: 135px 85px 115px 95px;
+
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(50px);
   }
 
   .financeApp {
-    top: 600px;
-    right: 900px;
-  }
-}
+    margin-top: 28px;
+    margin-right: 0;
 
-@media screen and (min-width: 1400px) {
-  .background {
-    top: 140px;
-    left: 80px;
-    width: 435px;
-    height: 419px;
-  }
-
-  .financeApp {
-    top: 600px;
-    right: 1100px;
+    align-items: flex-end;
+    justify-content: center;
   }
 }

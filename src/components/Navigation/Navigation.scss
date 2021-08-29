@@ -9,11 +9,13 @@
   fill: $table-header-color;
   padding: 0px;
 }
+
 .active .svgNav {
   fill: $accent-deep-color;
   background-color: #fff;
   filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
 }
+
 @media screen and (min-width: $mobile) {
   .itemLink {
     display: flex;
@@ -71,6 +73,7 @@
   .active .textNav {
     font-weight: 700;
   }
+
   .svgNav {
     width: 18px;
     height: 18px;
@@ -99,17 +102,20 @@
     font-weight: bold;
     fill: $table-header-color;
   }
+
   .textNav {
     font-family: $poppins-font;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 18px;
     line-height: 27px;
     color: $headers-color;
   }
+
   .active .textNav {
-    font-weight: bold;
+    font-weight: 700;
   }
+
   .svgNav {
     width: 18px;
     height: 18px;

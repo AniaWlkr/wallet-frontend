@@ -21,6 +21,7 @@ import styles from './DashboardPage.module.scss';
 import Modal from '../../Modal';
 import ButtonAddTransactions from '../../ButtonAddTransactions';
 import ModallAddTransaction from '../../ModalAddTransaction';
+import ModalLogout from '../../ModalLogout';
 
 // import authSelectors from '../../../redux/auth/authSelectors';
 import transSelectors from '../../../redux/transactions/transSelectors';
@@ -45,7 +46,12 @@ export default function DashboardPage() {
     getBalance();
   }, []);
 
-  const isModalOpenSelector = useSelector(transSelectors.isModalOpen);
+  const isTransactionModalOpenSelector = useSelector(
+    transSelectors.isTransactionModalOpen,
+  );
+  const isExitModalOpenSelector = useSelector(transSelectors.isExitModalOpen);
+
+  // console.log(isExitModalOpenSelector);
 
   // console.log(isModalOpenSelector);
   // const isAuthed = useSelector(authSelectors.isAuthed);
@@ -110,10 +116,14 @@ export default function DashboardPage() {
           </Container>
 
           <div>
-            <ButtonAddTransactions></ButtonAddTransactions>
-            <Modal component={ModallAddTransaction} />
+           <ButtonAddTransactions></ButtonAddTransactions>
+        {/* <Modal component={ModallAddTransaction} propsOpenModal={openModal} /> */}
 
-            {isModalOpenSelector ? <ModallAddTransaction /> : null}
+        {isTransactionModalOpenSelector ? (
+          <Modal component={ModallAddTransaction} />
+        ) : null}
+
+        {isExitModalOpenSelector ? <Modal component={ModalLogout} /> : null}
           </div>
         </div>
       </section>
