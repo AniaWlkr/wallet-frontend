@@ -7,9 +7,9 @@
 .headerTitle {
   font-family: $poppins-font;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 25px;
-  line-height: 40px;
+  line-height: 1.6;
 }
 
 .headerTitle::before {
@@ -32,9 +32,9 @@
 .userName {
   font-family: $montserrat-font;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 18px;
-  line-height: 27px;
+  line-height: 1.5;
   color: $placeholder-color;
   padding-right: 15px;
 }
@@ -57,11 +57,11 @@
 
   .headerTitle {
     font-size: 30px;
-    line-height: 45px;
+    line-height: 1.5;
   }
 
   .userLogout {
-    margin-left: 320px;
+    margin-left: 400px;
   }
 
   .userName {
@@ -75,9 +75,9 @@
   .exit {
     font-family: $montserrat-font;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 18px;
-    line-height: 27px;
+    line-height: 1.5;
     color: $placeholder-color;
   }
 }
@@ -91,7 +91,7 @@
 
   .headerTitle {
     font-size: 30px;
-    line-height: 45px;
+    line-height: 1.5;
   }
 
   .userName {
@@ -99,7 +99,7 @@
   }
 
   .userLogout {
-    margin-left: 650px;
+    margin-left: 800px;
   }
 
   .buttonExit {
@@ -109,9 +109,9 @@
   .exit {
     font-family: $montserrat-font;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 18px;
-    line-height: 27px;
+    line-height: 1.5;
     color: $placeholder-color;
   }
 }
