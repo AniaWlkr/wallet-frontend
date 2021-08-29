@@ -2,54 +2,66 @@
 @import '../../../stylesheet//utils//breakpoints.scss';
 @import '../../../stylesheet//utils/common.scss';
 
-@media screen and (min-width: 768px) {
-  .background {
-    background: url(../../../images/FrameGirl.svg) no-repeat;
-    position: absolute;
-    top: 60px;
-    left: 125px;
-    width: 260px;
-    height: 250px;
+.sideBar {
+  display: none;
+}
+
+@media screen and (min-width: $tablet) {
+  .sideBar {
+    display: flex;
+    background-image: url('../../../images/login/girlTabl.svg');
+    background-repeat: no-repeat;
+    background-size: 274px 250px;
+
+    height: 260px;
+    width: 540px;
+
+    margin-top: 60px;
   }
 
   .financeApp {
-    position: absolute;
-    top: 180px;
-    right: 170px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 50px;
+
+    font-family: Poppins;
+    font-weight: 400;
     font-size: 30px;
-    font-weight: normal;
-    font-family: $poppins-font;
-    color: $headers-color;
+    line-height: 1.5;
+  }
+
+  .formWraper {
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .background {
-    background: url(../../../images/FrameGirl.svg) no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 146px;
-    left: 60px;
-    width: 435px;
-    height: 419px;
+@media screen and (min-width: $desktop) {
+  .sideBar {
+    margin-top: 153px;
+    margin-left: 66px;
+
+    background-image: url('../../../images/login/girlDesk.svg');
+    background-size: 452px 413px;
+
+    height: 500px;
+  }
+
+  .formWraper {
+    margin-top: 0;
+    width: 720px;
+    padding: 52px 85px 52px 95px;
+
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(50px);
   }
 
   .financeApp {
-    top: 600px;
-    right: 900px;
-  }
-}
+    margin-right: 0;
 
-@media screen and (min-width: 1400px) {
-  .background {
-    top: 140px;
-    left: 80px;
-    width: 435px;
-    height: 419px;
-  }
-
-  .financeApp {
-    top: 600px;
-    right: 1100px;
+    align-items: flex-end;
+    justify-content: center;
   }
 }

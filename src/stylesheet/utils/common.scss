@@ -1,4 +1,5 @@
 @import '../utils//vars.scss';
+@import '../utils/breakpoints.scss';
 
 *,
 *::before,
@@ -24,6 +25,18 @@ body {
   font-family: $montserrat-font;
   font-style: normal;
   background-color: $overlay-color;
+
+  @media screen and (min-width: $tablet) {
+    background-image: url('../../images/ellipseLeft.svg'),
+      url('../../images/rightEllipseTabl.svg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: bottom left, top right;
+  }
+
+  @media screen and (min-width: $desktop) {
+    background-image: url('../../images/ellipseLeft.svg'),
+      url('../../images/ellipseRight.svg');
+  }
 }
 
 body.no-scroll {
