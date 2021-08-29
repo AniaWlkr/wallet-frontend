@@ -9,8 +9,10 @@ import {
   deleteTransactionRequest,
   deleteTransactionSuccess,
   deleteTransactionError,
-  openModal,
-  closeModal,
+  openTransactionModal,
+  closeTransactionModal,
+  openExitModal,
+  closeExitModal,
 } from './transActions';
 
 const items = createReducer([], {
@@ -34,9 +36,19 @@ const loading = createReducer(false, {
   [deleteTransactionError]: () => false,
 });
 
-const isModalOpen = createReducer(false, {
-  [openModal]: () => true,
-  [closeModal]: () => false,
+const isTransactionModalOpen = createReducer(false, {
+  [openTransactionModal]: () => true,
+  [closeTransactionModal]: () => false,
 });
 
-export default combineReducers({ items, loading, isModalOpen });
+const isExitModalOpen = createReducer(false, {
+  [openExitModal]: () => true,
+  [closeExitModal]: () => false,
+});
+
+export default combineReducers({
+  items,
+  loading,
+  isTransactionModalOpen,
+  isExitModalOpen,
+});

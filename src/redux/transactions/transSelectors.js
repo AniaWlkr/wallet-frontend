@@ -58,7 +58,11 @@ const INCOME = 'income';
 
 const getLoading = state => state.transactions.loading;
 const getAllTransactions = memoize(state => state.transactions.items);
-const isModalOpen = state => state.transactions.isModalOpen;
+
+const isTransactionModalOpen = state =>
+  state.transactions.isTransactionModalOpen;
+const isExitModalOpen = state => state.transactions.isExitModalOpen;
+
 
 const getTransactionsPerMonth = (month, year) =>
   createSelector(
@@ -130,7 +134,8 @@ export default {
   getAllTransactions,
   getSpend,
   getIncome,
-  isModalOpen,
+  isTransactionModalOpen,
+  isExitModalOpen,
   getSpendPerCategory,
   getTransactionsPerMonth,
 };
