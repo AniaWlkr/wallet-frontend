@@ -51,7 +51,7 @@ const Currency = () => {
   };
 
   return (
-    <>
+    <div className={styles.wrapper}>
       {/* {isLoading && <Loader />} */}
       <table className={styles.table}>
         <thead className={styles.thead}>
@@ -78,7 +78,7 @@ const Currency = () => {
           )}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

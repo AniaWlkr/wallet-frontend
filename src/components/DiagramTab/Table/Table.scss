@@ -1,7 +1,7 @@
 @import '../../../stylesheet/main.scss';
 .tableWrapper {
   @media screen and (min-width: $tablet) {
-    max-width: 350px;
+    min-width: 350px;
   }
 }
 .tableHead {
@@ -85,6 +85,7 @@
     }
   }
 }
+
 .firstSelectorWrapper {
   @media screen and (max-width: $mobileMax) {
     margin-bottom: 20px;

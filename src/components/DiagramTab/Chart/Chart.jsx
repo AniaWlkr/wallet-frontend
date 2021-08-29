@@ -16,7 +16,7 @@ const Chart = ({ data, totalBalance }) => {
   return (
     <div className="Chart">
       <Doughnut options={options} data={data} />
-      <span className="currentBalance">₴ {totalBalance}</span>
+      <span className="text">₴ {totalBalance}</span>
     </div>
   );
 };

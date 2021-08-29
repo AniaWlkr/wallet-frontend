@@ -1,10 +1,14 @@
 @import '../../../stylesheet/main.scss';
 
 .Chart {
-  width: 280px;
-  height: 280px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  // margin: 0 auto;
   position: relative;
+
+  @media screen and (max-width: $mobileMax) {
+    margin-bottom: 30px;
+  }
 
   @media screen and (min-width: $tablet) {
     width: 320px;
@@ -15,19 +19,18 @@
   margin-right: 30px;
 }
 
-.currentBalance {
+.text {
   position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(38%, -100%);
+  // transform: translate(0%, 0%);
   font-family: $montserrat-font;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 18px;
-  line-height: 27px;
+  line-height: 1.5;
+  /* identical to box height */
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
-  text-align: center;
-  color: $headers-color;
 }

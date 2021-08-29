@@ -13,8 +13,8 @@ export default function Navigation() {
       <NavLink
         exact
         to={routes.dashBoard}
-        className="Navlink"
-        activeClassName="Navlink active"
+        className="NavLink"
+        activeClassName="active"
       >
         <button className="buttonNav">
           {sizeScreen <= 767 ? (
@@ -22,11 +22,12 @@ export default function Navigation() {
           ) : (
             <div className="boxNav">
               <Home svg="svgNav" />
-              <span className="textNav">Home</span>
+              <span className="textNav">Главная</span>
             </div>
           )}
         </button>
       </NavLink>
+
       <NavLink
         to={routes.statistics}
         className="Navlink"
@@ -38,13 +39,14 @@ export default function Navigation() {
           ) : (
             <div className="boxNav">
               <Statistics svg="svgNav" />
-              <span className="textNav">Statistics</span>
+              <span className="textNav">Статистика</span>
             </div>
           )}
         </button>
       </NavLink>
+
       {sizeScreen <= 767 && (
-        <NavLink className="NavLink" to={routes.currency}>
+        <NavLink activeClassName="active" to={routes.currency}>
           <button className="buttonNav">
             <Currency svg="svgNav" />
           </button>

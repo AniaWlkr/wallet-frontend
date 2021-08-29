@@ -1,16 +1,19 @@
 @import '../../stylesheet/main.scss';
-
-.itemLink {
-  background-color: rgb(239, 239, 239);
+// .itemLink {
+// background-color: rgb(239, 239, 239);
+// }
+.NavLink {
+  text-decoration: none;
 }
-
 .svgNav {
-  fill: $accent-deep-color;
+  fill: $table-header-color;
   padding: 0px;
 }
 
 .active .svgNav {
-  fill: $table-header-color;
+  fill: $accent-deep-color;
+  background-color: #fff;
+  filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
 }
 
 @media screen and (min-width: $mobile) {
@@ -21,16 +24,19 @@
     padding-top: 13px;
     padding-bottom: 13px;
   }
-
   .buttonNav {
     border: none;
     outline: none;
     cursor: pointer;
-  }
-
-  .svgNav {
+    border-radius: 6px;
     width: 38px;
     height: 38px;
+  }
+  .svgNav {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    background-color: transparent;
   }
 }
 
@@ -39,42 +45,41 @@
     display: grid;
     justify-content: start;
   }
-
   .buttonNav {
     display: flex;
-    border-radius: 5px 5px 5px 5px;
+    // border-radius: 5px 5px 5px 5px;
     margin-left: 6px;
     margin-right: 6px;
-    outline: none;
-    cursor: pointer;
+    background-color: transparent;
+    // outline: none;
+    // cursor: pointer;
   }
-
   .boxNav {
     display: flex;
     align-items: center;
-    font-weight: bold;
-    fill: $table-header-color;
-  }
 
+    fill: $table-header-color;
+    background-color: transparent;
+  }
   .textNav {
     font-family: $poppins-font;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    line-height: 27px;
+    line-height: 1.5;
+    font-weight: 400;
     color: $headers-color;
   }
-
   .active .textNav {
-    font-weight: bold;
+    font-weight: 700;
   }
 
   .svgNav {
     width: 18px;
     height: 18px;
     margin-right: 23px;
-    margin-top: 13px;
-    margin-bottom: 13px;
+    //   margin-top: 13px;
+    //   margin-bottom: 13px;
   }
 }
 
@@ -83,7 +88,6 @@
     display: grid;
     justify-content: start;
   }
-
   .buttonNav {
     display: flex;
     border-radius: 5px 5px 5px 5px;
@@ -92,7 +96,6 @@
     outline: none;
     cursor: pointer;
   }
-
   .boxNav {
     display: flex;
     align-items: center;
@@ -103,14 +106,14 @@
   .textNav {
     font-family: $poppins-font;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 18px;
     line-height: 27px;
     color: $headers-color;
   }
 
   .active .textNav {
-    font-weight: bold;
+    font-weight: 700;
   }
 
   .svgNav {

@@ -4,13 +4,15 @@
   width: 280px;
   height: 80px;
   padding: 8px 40px 13px;
-  margin: 25px 0 15px;
+  // margin: 25px 0 15px;
+  margin-bottom: 30px;
 
   background: $text-color-on-accent;
   border-radius: 30px;
 
   @media screen and (min-width: $tablet) {
     width: 334px;
+    margin-bottom: 0px;
   }
 
   @media screen and (min-width: $desktop) {
