@@ -1,6 +1,10 @@
 @import '../../stylesheet//utils/vars.scss';
 @import '../../stylesheet//utils//common.scss';
 
+// * {
+//   border: 1px solid salmon;
+// }
+
 .form {
   display: flex;
   flex-direction: column;
@@ -95,12 +99,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
+  justify-content: flex-start;
+  padding-top: 25px;
   padding-bottom: 40px;
-  height: 600px;
+  // height: 680px;
   background-color: $text-color-on-accent;
-  margin-right: auto;
-  margin-left: auto;
+  // margin-right: auto;
+  // margin-left: auto;
 }
 
 input:-webkit-autofill,
@@ -120,7 +125,7 @@ input::-webkit-inner-spin-button {
   position: relative;
   cursor: pointer;
   color: $placeholder-color;
-  width: 280px;
+  // width: 280px;
 }
 
 ::placeholder {
@@ -165,13 +170,13 @@ input::-webkit-inner-spin-button {
 
 .positionAdd {
   position: absolute;
-  top: 90px;
+  top: 95px;
   left: 50px;
 }
 
 .positionExpense {
   position: absolute;
-  top: 90px;
+  top: 95px;
   right: 35px;
 }
 
@@ -223,21 +228,136 @@ input::-webkit-inner-spin-button {
 }
 
 .datetime {
+  font-size: 18px;
+  font-family: $montserrat-font;
+  font-size: normal;
   border: none;
   outline: none;
 }
 
+.datetimeInput {
+  padding-left: 0px;
+  padding-right: 10px;
+}
+
 .select {
   width: 280px;
-  border-bottom: 1px solid $placeholder-color;
-  padding-left: 20px;
+  padding-left: 30px;
   padding-bottom: 10px;
   padding-top: 10px;
+  padding-right: 10px;
   margin-bottom: 40px;
-
   border: none;
+  border-bottom: 1px solid $placeholder-color;
   outline: none;
-  color: $placeholder-color;
+  color: $headers-color;
   font-size: 18px;
   font-family: $montserrat-font;
+  appearance: none;
+  // z-index: 5;
+  background-image: url('../../images/selectorAppearence.svg');
+  background-repeat: no-repeat;
+  background-position: 84% 48%;
+}
+
+.option {
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  color: $headers-color;
+  cursor: pointer;
+  font-family: $montserrat-font;
+}
+
+.selected {
+  font-family: $montserrat-font;
+  color: $placeholder-color;
+}
+
+// .optionAdd:hover {
+//   color: salmon;
+// }
+
+// .optionExpence:hover {
+//   color: salmon;
+// }
+
+.calendarIcon {
+  position: absolute;
+  top: 7px;
+  right: 40px;
+  color: $accent-deep-color;
+  transition-property: color;
+  transition-duration: 500ms;
+}
+
+.sumAndDate {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .mainDiv {
+    width: 540px;
+    // height: 100%;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    // padding-right: 50px;
+    border-radius: 20px;
+  }
+
+  .text {
+    font-size: 30px;
+  }
+
+  .sumAndDate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .sumInput {
+    width: 190px;
+    text-align: center;
+    padding-left: 0;
+    margin-right: 30px;
+  }
+
+  .datetimeInput {
+    width: 190px;
+    text-align: center;
+    padding-left: 20px;
+    padding-bottom: 8px;
+  }
+
+  .calendarIcon {
+    right: 40px;
+  }
+
+  .positionAdd {
+    position: absolute;
+    top: 120px;
+    left: 160px;
+  }
+
+  .positionExpense {
+    position: absolute;
+    top: 120px;
+    right: 370px;
+  }
+
+  .textarea {
+    resize: none;
+    padding-bottom: 5px;
+    width: 409px;
+  }
+
+  .select {
+    width: 409px;
+  }
+
+  // .label {
+  //   width: 280px;
+  // }
 }
