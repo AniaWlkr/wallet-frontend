@@ -11,7 +11,7 @@ export default function HomeTabMobileTable({ transactions, btnHandleClick }) {
         <h2 className="mobile_title">У Вас нет транзакций за текущий период</h2>
       )}
 
-      {transactions.length === 0 && (
+      {transactions.length !== 0 && (
         <ul className={'mobile-table-list'}>
           {transactions.map(transaction => (
             <li key={transaction.id} className={'mobile-table-list_item'}>
