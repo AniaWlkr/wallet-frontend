@@ -67,8 +67,9 @@ const loginUser = user => dispatch => {
     .then(answer => {
       if (answer.data.code === 200) {
         token.set(answer.data.accessToken);
+        localStorage.setItem('refreshToken', answer.data.data.refreshToken);
         dispatch(actions.loginSuccess(answer.data.data));
-       
+
         alert({
           text: `${answer.data.data.message}`,
         });
@@ -127,6 +128,7 @@ const logoutUser = () => dispatch => {
     .post('/api/users/logout')
     .then(() => {
       token.unset();
+      localStorage.setItem('refreshToken', '');
       dispatch(actions.logoutSuccess());
       alert({
         text: `Logout success!`,
@@ -143,16 +145,17 @@ const logoutUser = () => dispatch => {
 };
 
 const getCurrentUser = () => (dispatch, getState) => {
-  // if (!token) {
-  //   return;
-  // }
+  // retrieve token & refresh token
   const {
     auth: { token: persistedToken },
   } = getState();
+  const refreshToken = localStorage.getItem('refreshToken');
 
-  if (!persistedToken)
+  // check if both tokens are null
+  if (!persistedToken && !refreshToken)
     return dispatch(actions.getCurrentUserError('There is no valid token'));
 
+  // requiest with token
   token.set(persistedToken);
 
   axios
@@ -162,15 +165,41 @@ const getCurrentUser = () => (dispatch, getState) => {
       dispatch(actions.getCurrentUserSuccess({ email, name }));
     })
     .catch(error => {
-      token.unset();
-      dispatch(actions.getCurrentUserError(error));
-      if (error.response.data.message) {
-        alert({
-          text: `${error.response.data.message}`,
-        });
+      // if token is not valid
+      if (error.response.data.code === 401) {
+        // request for token update with refreshToken
+        axios
+          .post('api/users/updateTokens', refreshToken)
+          .then(response => {
+            const { accessToken, refreshToken } = response.data.data;
+            token.set(accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
+          })
+          .catch(error => dispatchGetCurrUserError(error));
+        // request with new token
+        axios
+          .get('/api/users/current')
+          .then(response => {
+            const { email, name } = response.data.data;
+            return dispatch(actions.getCurrentUserSuccess({ email, name }));
+          })
+          .catch(error => dispatchGetCurrUserError(error));
       }
-      console.dir(error);
+      // if all requests fail
+      token.unset();
+      localStorage.setItem('refreshToken', '');
+      dispatchGetCurrUserError(error);
     });
+};
+
+const dispatchGetCurrUserError = error => dispatch => {
+  if (errorCodesArray.includes(error.response.data.code)) {
+    alert({
+      text: `${error.response.data.message}`,
+    });
+    return dispatch(actions.getCurrentUserError(error.response.data.message));
+  }
+  return dispatch(actions.getCurrentUserError(error));
 };
 
 export default {
