@@ -3,6 +3,42 @@
 .section {
   z-index: 0;
   background: $main-background-blur;
-  backdrop-filter: blur(50px);
-  padding-bottom: 40px;
+  // backdrop-filter: blur(50px);
+
+  min-height: 100vh;
+  &_wrapper {
+    min-height: 100vh;
+    background: $main-background-blur;
+  }
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  @media screen and (min-width: $desktop) {
+    flex-direction: row;
+  }
+}
+.sidebar {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    padding-top: 20px;
+    // margin-bottom: 40px;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  @media screen and (min-width: $desktop) {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-right: 30px;
+  }
+}
+@media screen and (min-width: $desktop) {
+  .tab_wrapper {
+    height: 100%;
+    border-left: 1px solid #e7e5f2;
+    box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
+      1px 0px 0px rgba(255, 255, 255, 0.6);
+  }
 }

@@ -10,18 +10,24 @@ export default function Navigation() {
   const sizeScreen = useSizeScreen();
   return (
     <nav className="itemLink">
-      <NavLink exact to={routes.dashBoard} className="NavLink active">
+      <NavLink
+        exact
+        to={routes.dashBoard}
+        className="NavLink"
+        activeClassName="active"
+      >
         <button className="buttonNav">
           {sizeScreen <= 767 ? (
             <Home svg="svgNav" />
           ) : (
             <div className="boxNav">
               <Home svg="svgNav" />
-              <span className="textNav">Home</span>
+              <span className="textNav">Главная</span>
             </div>
           )}
         </button>
       </NavLink>
+
       <NavLink to={routes.statistics} className="NavLink">
         <button className="buttonNav">
           {sizeScreen <= 767 ? (
@@ -29,13 +35,14 @@ export default function Navigation() {
           ) : (
             <div className="boxNav">
               <Statistics svg="svgNav" />
-              <span className="textNav">Statistics</span>
+              <span className="textNav">Статистика</span>
             </div>
           )}
         </button>
       </NavLink>
+
       {sizeScreen <= 767 && (
-        <NavLink className="NavLink" to={routes.currency}>
+        <NavLink activeClassName="active" to={routes.currency}>
           <button className="buttonNav">
             <Currency svg="svgNav" />
           </button>

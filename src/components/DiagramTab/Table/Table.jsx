@@ -9,8 +9,6 @@ export default function Table({
   totalFinanceData,
   monthOptions,
   yearOptions,
-  yearState,
-  monthState,
 }) {
   /* methods to selectors */
   const changeMonth = month => console.log(month);
@@ -21,15 +19,14 @@ export default function Table({
       <div className="tableSelectors">
         <div className="firstSelectorWrapper">
           <Selector
-            options={yearOptions}
-            initialState={yearState}
-            className="firstSelector"
+            options={monthOptions}
+            initialState={'Месяц'}
             changeSelector={changeMonth}
           />
         </div>
         <Selector
-          options={monthOptions}
-          initialState={monthState}
+          options={yearOptions}
+          initialState={'Год'}
           changeSelector={changeYear}
         />
       </div>
@@ -64,6 +61,4 @@ Table.propTypes = {
   totalFinanceData: PropTypes.array,
   monthOptions: PropTypes.array,
   yearOptions: PropTypes.array,
-  yearState: PropTypes.string,
-  monthState: PropTypes.string,
 };

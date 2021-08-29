@@ -7,12 +7,7 @@ import { normalizedSum } from '../../utils/normalizedSum';
 import style from './DiagramTab.module.scss';
 
 // import { totalFinanceData } from './data/financeData';
-import {
-  monthOptions,
-  yearOptions,
-  YEAR_INITIAL_STATE,
-  MONTH_INITIAL_STATE,
-} from './data/selectorsData';
+import { monthOptions, yearOptions } from './data/selectorsData';
 
 export default function DiagramTab() {
   const getTransByCateg = useSelector(transSelectors.getSpendPerCategory);
@@ -90,8 +85,6 @@ export default function DiagramTab() {
           totalFinanceData={totalFinanceData}
           monthOptions={monthOptions}
           yearOptions={yearOptions}
-          yearState={YEAR_INITIAL_STATE}
-          monthState={MONTH_INITIAL_STATE}
         />
       </div>
     </div>

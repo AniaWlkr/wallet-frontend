@@ -1,0 +1,11 @@
+@import '../../stylesheet/main.scss';
+
+.wrapper {
+  @media screen and (min-width: $tablet) {
+    padding-top: 40px;
+  }
+  @media screen and (min-width: $desktop) {
+    padding-top: 46px;
+    padding-left: 30px;
+  }
+}
