@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import styles from './Modal.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -6,41 +5,30 @@ import {
   setExitModalClose,
 } from '../../redux/transactions/transOperations';
 import CloseSharpIcon from '@material-ui/icons/CloseSharp';
-
 import PropTypes from 'prop-types';
-
 import selectors from '../../redux/transactions/transSelectors';
 
 export default function Modal({ component: Component }) {
-  // const [openModal, setOpenModal] = useState(false);
-
   const isTransactionModalOpen = useSelector(selectors.isTransactionModalOpen);
   const isExitModalOpen = useSelector(selectors.isExitModalOpen);
+
+  const closeByEsc = e => {
+    if (e.code === 'Escape') {
+      dispatch(setTransactionModalClose());
+      dispatch(setExitModalClose());
+      window.removeEventListener('keydown', closeByEsc);
+    }
+  };
+
+  window.addEventListener('keydown', closeByEsc);
 
   const dispatch = useDispatch();
 
   const closeModal = () => {
     dispatch(setTransactionModalClose());
     dispatch(setExitModalClose());
+    window.removeEventListener('keydown', closeByEsc);
   };
-
-  // const propsOpen = () => {
-  //   if (propsOpenModal) {
-  //     setOpenModal(false);
-  //   }
-  //   if (!propsOpenModal) {
-  //     setOpenModal(true);
-  //   }
-  // };
-
-  const closeByEsc = e => {
-    if (e.code === 27) {
-      dispatch(selectors.set);
-    }
-    console.log(e);
-  };
-
-  // propsOpen();
 
   return (
     <div>
