@@ -1,36 +1,39 @@
 import './Table.scss';
 import PropTypes from 'prop-types';
-
 import TableItem from './TableItem';
 import Selector from '../Selector';
+import {
+  YEAR_INITIAL_STATE,
+  MONTH_INITIAL_STATE,
+} from '../../../utils/helpers';
 
 export default function Table({
   financeData,
   totalFinanceData,
   monthOptions,
   yearOptions,
-  yearState,
-  monthState,
+  onSelectMonth,
+  onSelectYear,
 }) {
   /* methods to selectors */
-  const changeMonth = month => console.log(month);
-  const changeYear = year => console.log(year);
+  // const changeMonth = month => console.log(month);
+  // const changeYear = year => console.log(year);
 
   return (
     <div className="tableWrapper">
       <div className="tableSelectors">
         <div className="firstSelectorWrapper">
           <Selector
-            options={yearOptions}
-            initialState={yearState}
-            className="firstSelector"
-            changeSelector={changeMonth}
+            options={monthOptions}
+            initialState={MONTH_INITIAL_STATE}
+            changeSelector={onSelectMonth}
           />
         </div>
         <Selector
-          options={monthOptions}
-          initialState={monthState}
-          changeSelector={changeYear}
+          options={yearOptions}
+          initialState={YEAR_INITIAL_STATE}
+          className="firstSelector"
+          changeSelector={onSelectYear}
         />
       </div>
       <div className="tableHead">
@@ -66,4 +69,6 @@ Table.propTypes = {
   yearOptions: PropTypes.array,
   yearState: PropTypes.string,
   monthState: PropTypes.string,
+  onSelectMonth: PropTypes.func,
+  onSelectYear: PropTypes.func,
 };
