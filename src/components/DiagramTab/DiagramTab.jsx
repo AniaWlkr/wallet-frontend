@@ -9,7 +9,7 @@ import { normalizedSum } from '../../utils/normalizedSum';
 import style from './DiagramTab.module.scss';
 // import { totalFinanceData } from './data/financeData';
 import { monthOptions, yearOptions } from './data/selectorsData';
-
+// import { monthOptions, yearOptions } from '../../utils/helpers';
 
 export default function DiagramTab() {
   const dispatch = useDispatch();

@@ -17,6 +17,10 @@
     &:not(:last-child) {
       border-bottom: 1px solid #dcdcdf;
     }
+    &:last-child {
+      justify-content: space-evenly;
+      // justify-content: flex-end;
+    }
   }
   &_category {
     font-style: normal;
@@ -37,6 +41,31 @@
     }
     &--spend {
       color: #ff6596;
+    }
+  }
+  &_btn {
+    min-width: 30px;
+    // display: block;
+    min-height: 30px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
+    }
+
+    &--update {
+      background: url('../../../../images/transaction/Vector.svg') no-repeat
+        center;
+      background-size: 30px;
+    }
+    &--delete {
+      // margin-left: 10px;
+      // margin-left: 90px;
+      background: url('../../../../images/transaction/delete.svg') no-repeat
+        center;
+      background-size: 30px;
     }
   }
 }

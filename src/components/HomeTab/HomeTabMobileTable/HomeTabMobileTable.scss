@@ -1,4 +1,9 @@
 @import '../../../stylesheet/main.scss';
+.mobile_title {
+  padding: 16px 21px 15px 20px;
+  background-color: #fff;
+  border-radius: 30px;
+}
 
 .mobile-table-list {
   @extend %list;

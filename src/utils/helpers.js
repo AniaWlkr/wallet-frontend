@@ -20,9 +20,10 @@ const yearOptions = [
   { value: '2022', label: '2022' },
   { value: '2023', label: '2023' },
 ];
-const YEAR_INITIAL_STATE = new Date().getFullYear() + '';
-const currentMonth = new Date().getMonth();
-const monthObj = monthOptions.find(el => Number(el.value) === currentMonth + 1);
-const MONTH_INITIAL_STATE = monthObj.label;
+// const YEAR_INITIAL_STATE = new Date().getFullYear() + '';
+// const currentMonth = new Date().getMonth();
+// const monthObj = monthOptions.find(el => Number(el.value) === currentMonth + 1);
+// const MONTH_INITIAL_STATE = monthObj.label;
 
-export { monthOptions, yearOptions, YEAR_INITIAL_STATE, MONTH_INITIAL_STATE };
+// export { monthOptions, yearOptions, YEAR_INITIAL_STATE, MONTH_INITIAL_STATE };
+export { monthOptions, yearOptions };
