@@ -4,6 +4,7 @@
   width: 280px;
   height: 280px;
   margin: 0 auto;
+  position: relative;
 
   @media screen and (min-width: $tablet) {
     width: 320px;
@@ -12,4 +13,21 @@
   }
 
   margin-right: 30px;
+}
+
+.currentBalance {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: $montserrat-font;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: $headers-color;
 }
