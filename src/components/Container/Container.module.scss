@@ -29,7 +29,7 @@
 
 .container {
   position: relative;
-  padding: 0 20px;
+  // padding: 0 20px;
   margin: 0 auto;
   text-align: center;
 
@@ -45,6 +45,6 @@
   @media screen and (min-width: $desktop) {
     width: $desktop;
     padding: 0 85px;
-    display: flex;
+    // display: flex;
   }
 }
