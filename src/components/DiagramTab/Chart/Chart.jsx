@@ -5,20 +5,25 @@ import './Chart.scss';
 
 const options = {
   cutout: '70%',
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
 };
 
 const Chart = ({ data, totalBalance }) => {
   return (
     <div className="Chart">
       <Doughnut options={options} data={data} />
-      <span>₴ {totalBalance}</span>
+      <span className="currentBalance">₴ {totalBalance}</span>
     </div>
   );
 };
 
 Chart.propTypes = {
   data: PropTypes.object,
-  totalBalance: PropTypes.number,
+  totalBalance: PropTypes.string,
 };
 
 export default Chart;

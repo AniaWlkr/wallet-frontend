@@ -1,29 +1,48 @@
 import Chart from './Chart';
 import Table from './Table';
 import transSelectors from '../../redux/transactions/transSelectors';
-// import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { getTransactionsOperation } from '../../redux/transactions/transOperations';
+import financeSelectors from '../../redux/finance/financeSelectors';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { normalizedSum } from '../../utils/normalizedSum';
 import style from './DiagramTab.module.scss';
-
-// import { totalFinanceData } from './data/financeData';
-import {
-  monthOptions,
-  yearOptions,
-  YEAR_INITIAL_STATE,
-  MONTH_INITIAL_STATE,
-} from './data/selectorsData';
+import { monthOptions, yearOptions } from '../../utils/helpers';
 
 export default function DiagramTab() {
-  const getTransByCateg = useSelector(transSelectors.getSpendPerCategory);
-  // const getAllTrans = useSelector(transSelectors.getAllTransactions);
-  const totalBalance = useSelector(transSelectors.getBalance);
-  const totalSpend = useSelector(transSelectors.getSpend);
-  const totalIncome = useSelector(transSelectors.getIncome);
+  const dispatch = useDispatch();
+  const currentMonth = new Date().getMonth() + 1;
+  const [seletcMonth, setSeletcMonth] = useState(currentMonth);
+  const currentYear = new Date().getFullYear();
+  const [seletcYear, setSeletcYear] = useState(currentYear);
 
-  // const spendTrans = getTransByCateg.filter(
-  //   trans => !trans.category.includes('Основной'),
-  // );
+  useEffect(() => {
+    dispatch(getTransactionsOperation(seletcMonth, seletcYear));
+  }, [dispatch, seletcMonth, seletcYear]);
+
+  const onSelectMonth = itemTitle => {
+    const mnthObj = monthOptions.find(item => item.label === itemTitle);
+    const month = Number(mnthObj.value);
+    setSeletcMonth(month);
+  };
+
+  const onSelectYear = itemTitle => {
+    const year = Number(itemTitle);
+    setSeletcYear(year);
+  };
+
+  const getTransByCateg = useSelector(
+    transSelectors.getSpendPerCategory(seletcMonth, seletcYear),
+  );
+
+  const totalBalance = useSelector(financeSelectors.getCurrentUserBalance);
+  const currentBalanse = normalizedSum(totalBalance);
+  const totalSpend = useSelector(
+    transSelectors.getSpend(seletcMonth, seletcYear),
+  );
+  const totalIncome = useSelector(
+    transSelectors.getIncome(seletcMonth, seletcYear),
+  );
 
   const bgColor = [
     '#FED057',
@@ -46,23 +65,37 @@ export default function DiagramTab() {
     '#A255DC',
     '#509EA6',
     '#BCE3B1',
-  ];
+  ]; // переделать, Катя
 
   const financeData = getTransByCateg.map(({ category, sum }) => {
     const color = bgColor[Math.floor(Math.random() * bgColor.length)];
+    // const color =
+    //   '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
     const nrmlSum = normalizedSum(sum);
     return { categoryName: category, total: nrmlSum, color };
   });
 
+  const nofinanceData = [
+    {
+      categoryName: 'No transactions',
+      total: '0.00',
+      color: '#FF0000',
+    },
+  ];
+
+  const dataCategory = financeData.map(({ categoryName }) => categoryName);
   const dataSum = getTransByCateg.map(({ sum }) => sum);
   const dataBgColor = financeData.map(({ color }) => color);
 
   const data = {
+    labels: dataCategory,
     datasets: [
       {
+        lable: 'Category',
         data: dataSum,
         backgroundColor: dataBgColor,
-        borderWidth: 0,
+        borderWidth: 1,
+        hoverOffset: 2,
       },
     ],
   };
@@ -80,18 +113,23 @@ export default function DiagramTab() {
     },
   ];
 
+  console.log('test');
   return (
     <div className={style.wrapper}>
       <h2 className={style.tabTitle}>Статистика</h2>
       <div className={style.diagramWrapper}>
-        <Chart data={data} totalBalance={totalBalance} />
+        {financeData.length > 0 ? (
+          <Chart data={data} totalBalance={currentBalanse} />
+        ) : (
+          <h3 className={style.noTrans}>У Вас нет транзакций в этом месяце</h3>
+        )}
         <Table
-          financeData={financeData}
+          financeData={financeData.length > 0 ? financeData : nofinanceData}
           totalFinanceData={totalFinanceData}
           monthOptions={monthOptions}
           yearOptions={yearOptions}
-          yearState={YEAR_INITIAL_STATE}
-          monthState={MONTH_INITIAL_STATE}
+          onSelectMonth={onSelectMonth}
+          onSelectYear={onSelectYear}
         />
       </div>
     </div>

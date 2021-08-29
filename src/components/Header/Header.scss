@@ -1,20 +1,7 @@
 @import '../../stylesheet/main.scss';
 
 .header {
-  // padding: 20px 0;
   background-color: #fff;
-}
-
-.headerContainer {
-  padding: 20px 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.headerLogo .userLogout {
-  display: flex;
-  align-items: center;
 }
 
 .headerTitle {
@@ -23,8 +10,6 @@
   font-weight: bold;
   font-size: 25px;
   line-height: 40px;
-  // position: absolute;
-  z-index: 1;
 }
 
 .headerTitle::before {
@@ -54,10 +39,29 @@
   padding-right: 15px;
 }
 
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: $mobile) and (max-width: $mobileMax) {
+  .headerContainer {
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: $tablet) and (max-width: $tabletMax) {
+  .headerContainer {
+    height: 80px;
+    display: flex;
+    align-items: center;
+  }
+
   .headerTitle {
     font-size: 30px;
     line-height: 45px;
+  }
+
+  .userLogout {
+    margin-left: 320px;
   }
 
   .userName {
@@ -67,6 +71,7 @@
   .buttonExit {
     margin-left: 15px;
   }
+
   .exit {
     font-family: $montserrat-font;
     font-style: normal;
@@ -78,12 +83,23 @@
 }
 
 @media screen and (min-width: $desktop) {
+  .headerContainer {
+    height: 80px;
+    display: flex;
+    align-items: center;
+  }
+
   .headerTitle {
     font-size: 30px;
     line-height: 45px;
   }
+
   .userName {
     border-right: 1px solid;
+  }
+
+  .userLogout {
+    margin-left: 650px;
   }
 
   .buttonExit {
