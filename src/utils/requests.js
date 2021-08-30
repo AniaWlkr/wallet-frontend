@@ -40,4 +40,6 @@ export const getTransactions = token =>
 export const addTransaction = (newTransaction, token) =>
   axios.post(api.transactions(), newTransaction, setToken(token));
 export const deleteTransaction = (id, token) =>
-  axios.delet(api.transaction(id), setToken(token));
+  axios.delete(api.transaction(id), setToken(token));
+export const editTransaction = (id, token, updatedTransaction) =>
+  axios.put(api.transaction(id), updatedTransaction, setToken(token));

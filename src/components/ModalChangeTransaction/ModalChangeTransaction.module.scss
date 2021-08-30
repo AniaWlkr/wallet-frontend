@@ -1,0 +1,208 @@
+@import '../../stylesheet//utils/vars.scss';
+@import '../../stylesheet//utils//common.scss';
+
+// * {
+//   border: 1px solid salmon;
+// }
+
+.form {
+  margin-top: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
+  padding-bottom: 40px;
+
+  background-color: $text-color-on-accent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.label {
+  position: relative;
+  cursor: pointer;
+  color: $placeholder-color;
+}
+
+::placeholder {
+  font-size: 18px;
+}
+
+.input {
+  width: 280px;
+  border: none;
+  border-bottom: 1px solid $placeholder-color;
+  outline: none;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 40px;
+}
+
+.textarea {
+  resize: none;
+  padding-bottom: 30px;
+}
+
+.text {
+  font-family: $poppins-font;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.transType {
+  margin-top: 40px;
+  font-family: Circe;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.income {
+  color: $accent-light-color;
+}
+
+.spend {
+  color: $accent-color-expense;
+}
+
+.button {
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  outline: none;
+  background-color: inherit;
+}
+
+.buttonAdd,
+.buttonAdd:active {
+  background-color: $accent-light-color;
+  color: $text-color-on-accent;
+  border: 1px solid $accent-light-color;
+  margin-bottom: 20px;
+}
+
+.buttonAdd:hover,
+  // .enter:focus,
+  .buttonAdd:active {
+  background-color: $accent-deep-color;
+  border: 1px solid $accent-deep-color;
+}
+
+.buttonCancel {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 1px solid $accent-deep-color;
+  color: $accent-deep-color;
+}
+
+.buttonCancel:hover,
+  // .register:focus ,
+  .buttonCancel:active {
+  color: $accent-light-color;
+  border: 1px solid $accent-light-color;
+}
+
+.datetime {
+  font-size: 18px;
+  font-family: $montserrat-font;
+  font-weight: 400;
+  border: none;
+  outline: none;
+}
+
+.datetimeInput {
+  padding-left: 0px;
+  padding-right: 10px;
+}
+
+.select {
+  width: 280px;
+  border: none;
+  border-bottom: 1px solid $placeholder-color;
+  outline: none;
+  color: $headers-color;
+  font-size: 18px;
+  font-family: $montserrat-font;
+  appearance: none;
+  background-image: url('../../images/selectorAppearence.svg');
+  background-repeat: no-repeat;
+  background-position: 84% 48%;
+}
+
+.selected {
+  font-family: $montserrat-font;
+  color: $placeholder-color;
+}
+
+.sumAndDate {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .mainDiv {
+    width: 540px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    border-radius: 20px;
+  }
+
+  .text {
+    font-size: 30px;
+  }
+
+  .sumAndDate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 18px;
+  }
+
+  .sumInput {
+    width: 190px;
+    text-align: center;
+    padding-left: 0;
+    margin-right: 30px;
+    font-size: 18px;
+  }
+
+  .datetimeInput {
+    width: 190px;
+    text-align: center;
+    padding-left: 20px;
+    padding-bottom: 8px;
+  }
+
+  .textarea {
+    resize: none;
+    padding-bottom: 5px;
+    width: 409px;
+    font-size: 18px;
+  }
+
+  .select {
+    width: 409px;
+  }
+}
