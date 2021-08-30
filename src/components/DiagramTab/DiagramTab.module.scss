@@ -37,4 +37,10 @@
   width: 280px;
   display: flex;
   align-items: center;
+
+  @media screen and (min-width: $tablet) {
+    height: 320px;
+    width: 320px;
+    margin-right: 35px;
+  }
 }

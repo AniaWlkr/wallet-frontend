@@ -12,18 +12,14 @@ import Currency from '../../Currency';
 import Balance from '../../Balance';
 
 import { getTransactionsOperation } from '../../../redux/transactions/transOperations';
+import { getCategoriesOperation } from '../../../redux/categories/categoriesOperations';
 import { getCurrentBalance } from '../../../redux/finance/financeOperations';
-
 import routes from '../../../routes/routes';
-
 import styles from './DashboardPage.module.scss';
-
 import Modal from '../../Modal';
 import ButtonAddTransactions from '../../ButtonAddTransactions';
 import ModallAddTransaction from '../../ModalAddTransaction';
 import ModalLogout from '../../ModalLogout';
-
-// import authSelectors from '../../../redux/auth/authSelectors';
 import transSelectors from '../../../redux/transactions/transSelectors';
 
 const breakpoints = {
@@ -40,23 +36,18 @@ export default function DashboardPage() {
 
   const getTransactions = () => dispatch(getTransactionsOperation());
   const getBalance = () => dispatch(getCurrentBalance());
+  const getCategories = () => dispatch(getCategoriesOperation());
 
   useEffect(() => {
     getTransactions();
     getBalance();
+    getCategories();
   }, []);
 
   const isTransactionModalOpenSelector = useSelector(
     transSelectors.isTransactionModalOpen,
   );
   const isExitModalOpenSelector = useSelector(transSelectors.isExitModalOpen);
-
-  // console.log(isExitModalOpenSelector);
-
-  // console.log(isModalOpenSelector);
-  // const isAuthed = useSelector(authSelectors.isAuthed);
-  // console.dir(isAuthed);
-  // const isOpenSelector = useSelector(transSelectors.isModalOpen);
 
   return (
     <>
@@ -116,14 +107,13 @@ export default function DashboardPage() {
           </Container>
 
           <div>
-           <ButtonAddTransactions></ButtonAddTransactions>
-        {/* <Modal component={ModallAddTransaction} propsOpenModal={openModal} /> */}
+            <ButtonAddTransactions></ButtonAddTransactions>
 
-        {isTransactionModalOpenSelector ? (
-          <Modal component={ModallAddTransaction} />
-        ) : null}
+            {isTransactionModalOpenSelector ? (
+              <Modal component={ModallAddTransaction} />
+            ) : null}
 
-        {isExitModalOpenSelector ? <Modal component={ModalLogout} /> : null}
+            {isExitModalOpenSelector ? <Modal component={ModalLogout} /> : null}
           </div>
         </div>
       </section>

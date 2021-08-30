@@ -128,6 +128,7 @@ const logoutUser = () => dispatch => {
     .post('/api/users/logout')
     .then(() => {
       token.unset();
+      console.log('clear refreshToken');
       localStorage.setItem('refreshToken', '');
       dispatch(actions.logoutSuccess());
       alert({
@@ -152,54 +153,83 @@ const getCurrentUser = () => (dispatch, getState) => {
   const refreshToken = localStorage.getItem('refreshToken');
 
   // check if both tokens are null
-  if (!persistedToken && !refreshToken)
+  if (!persistedToken) {
+    console.log('no token');
     return dispatch(actions.getCurrentUserError('There is no valid token'));
+  }
 
-  // requiest with token
+  // request with token
   token.set(persistedToken);
 
   axios
     .get('/api/users/current')
     .then(response => {
       const { email, name } = response.data.data;
-      dispatch(actions.getCurrentUserSuccess({ email, name }));
+      return dispatch(actions.getCurrentUserSuccess({ email, name }));
     })
     .catch(error => {
       // if token is not valid
+      console.log('token is invalid');
       if (error.response.data.code === 401) {
         // request for token update with refreshToken
+        if (!refreshToken) {
+          console.log('no refreshToken');
+          token.unset();
+          dispatch(actions.getCurrentUserError(error));
+          return null;
+        }
+        console.log('request for token update with refreshToken');
+        console.log('persisted token', persistedToken);
+        console.log('refreshToken', refreshToken);
+        token.set(persistedToken);
+
         axios
           .post('api/users/updateTokens', refreshToken)
           .then(response => {
+            console.log('refreshToken -> response', response);
             const { accessToken, refreshToken } = response.data.data;
-            token.set(accessToken);
+            console.log(
+              'New accessToken, refreshToken ',
+              accessToken,
+              refreshToken,
+            );
+            token.set(response.data.data);
             localStorage.setItem('refreshToken', refreshToken);
+            dispatch(actions.registerSuccess(response.data.data));
           })
-          .catch(error => dispatchGetCurrUserError(error));
+          .catch(error => {
+            console.log('update Token failed');
+            token.unset();
+            console.log('clear refreshToken');
+            localStorage.setItem('refreshToken', '');
+            return dispatch(actions.getCurrentUserError(error));
+          });
         // request with new token
+        console.log('request with new token');
         axios
           .get('/api/users/current')
           .then(response => {
+            console.log('request with new token -> response', response);
             const { email, name } = response.data.data;
             return dispatch(actions.getCurrentUserSuccess({ email, name }));
           })
-          .catch(error => dispatchGetCurrUserError(error));
+          .catch(error => dispatch(actions.getCurrentUserError(error)));
       }
       // if all requests fail
-      token.unset();
-      localStorage.setItem('refreshToken', '');
-      dispatchGetCurrUserError(error);
-    });
-};
 
-const dispatchGetCurrUserError = error => dispatch => {
-  if (errorCodesArray.includes(error.response.data.code)) {
-    alert({
-      text: `${error.response.data.message}`,
+      token.unset();
+      console.log('clear refreshToken');
+      localStorage.setItem('refreshToken', '');
+      if (errorCodesArray.includes(error.response.data.code)) {
+        alert({
+          text: `${error.response.data.message}`,
+        });
+        return dispatch(
+          actions.getCurrentUserError(error.response.data.message),
+        );
+      }
+      return dispatch(actions.getCurrentUserError(error));
     });
-    return dispatch(actions.getCurrentUserError(error.response.data.message));
-  }
-  return dispatch(actions.getCurrentUserError(error));
 };
 
 export default {

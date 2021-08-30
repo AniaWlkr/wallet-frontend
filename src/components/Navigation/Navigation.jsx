@@ -14,7 +14,7 @@ export default function Navigation() {
         exact
         to={routes.dashBoard}
         className="NavLink"
-        activeClassName="active"
+        activeClassName="NavLink active"
       >
         <button className="buttonNav">
           {sizeScreen <= 767 ? (
@@ -30,8 +30,8 @@ export default function Navigation() {
 
       <NavLink
         to={routes.statistics}
-        className="NavLink"
-        activeClassName="active"
+        className="Navlink"
+        activeClassName="NavLink active"
       >
         <button className="buttonNav">
           {sizeScreen <= 767 ? (

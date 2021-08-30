@@ -13,77 +13,70 @@ import { monthOptions, yearOptions } from '../../utils/helpers';
 
 export default function DiagramTab() {
   const dispatch = useDispatch();
+  const [currentIncome, setCurrentIncome] = useState(0);
+  const [currentSpend, setCurrentSpend] = useState(0);
   const currentMonth = new Date().getMonth() + 1;
-  const [seletcMonth, setSeletcMonth] = useState(currentMonth);
+  const [selectMonth, setSelectMonth] = useState(currentMonth);
   const currentYear = new Date().getFullYear();
-  const [seletcYear, setSeletcYear] = useState(currentYear);
+  const [selectYear, setSelectYear] = useState(currentYear);
 
   useEffect(() => {
-    dispatch(getTransactionsOperation(seletcMonth, seletcYear));
-  }, [dispatch, seletcMonth, seletcYear]);
+    dispatch(getTransactionsOperation(selectMonth, selectYear));
+  }, [dispatch, selectMonth, selectYear]);
+
+  useEffect(() => {
+    currentSum(getAllTransByMonth);
+  }, [selectMonth, selectYear]);
 
   const onSelectMonth = itemTitle => {
     const mnthObj = monthOptions.find(item => item.label === itemTitle);
     const month = Number(mnthObj.value);
-    setSeletcMonth(month);
+    setSelectMonth(month);
   };
 
   const onSelectYear = itemTitle => {
     const year = Number(itemTitle);
-    setSeletcYear(year);
+    setSelectYear(year);
+  };
+
+  const getAllTransByMonth = useSelector(
+    transSelectors.getTransactionsPerMonth(selectMonth, selectYear),
+  );
+
+  const currentSum = getAllTransByMonth => {
+    let currentIncome = 0;
+    let currentSpend = 0;
+    if (getAllTransByMonth) {
+      // eslint-disable-next-line array-callback-return
+      getAllTransByMonth.map(({ transType, sum }) => {
+        switch (transType) {
+          case 'income':
+            currentIncome = currentIncome + sum;
+            break;
+          case 'spend':
+            currentSpend = currentSpend + sum;
+            break;
+          default:
+            console.warn('This type of transaction is not found');
+        }
+        // return console.log('success');
+      });
+      setCurrentIncome(currentIncome);
+      setCurrentSpend(currentSpend);
+    }
   };
 
   const getTransByCateg = useSelector(
-    transSelectors.getSpendPerCategory(seletcMonth, seletcYear),
+    transSelectors.getSpendPerCategory(selectMonth, selectYear),
   );
 
   const totalBalance = useSelector(financeSelectors.getCurrentUserBalance);
   const currentBalanse = normalizedSum(totalBalance);
-  const totalSpend = useSelector(
-    transSelectors.getSpend(seletcMonth, seletcYear),
-  );
-  const totalIncome = useSelector(
-    transSelectors.getIncome(seletcMonth, seletcYear),
-  );
 
-  const bgColor = [
-    '#FED057',
-    '#FFD8D0',
-    '#FD9498',
-    '#C5BAFF',
-    '#4A56E2',
-    '#81E1FF',
-    '#24CCA7',
-    '#00AD84',
-    '#F5C3A3',
-    '#B483B6',
-    '#C68BFD',
-    '#1D1BC8',
-    '#3CBA2C',
-    '#9589C0',
-    '#6B6BDB',
-    '#F241E7',
-    '#8E0190',
-    '#A255DC',
-    '#509EA6',
-    '#BCE3B1',
-  ]; // переделать, Катя
-
-  const financeData = getTransByCateg.map(({ category, sum }) => {
-    const color = bgColor[Math.floor(Math.random() * bgColor.length)];
-    // const color =
-    //   '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
+  const financeData = getTransByCateg.map(({ category, sum, color }) => {
     const nrmlSum = normalizedSum(sum);
     return { categoryName: category, total: nrmlSum, color };
   });
-
-  const nofinanceData = [
-    {
-      categoryName: 'No transactions',
-      total: '0.00',
-      color: '#FF0000',
-    },
-  ];
 
   const dataCategory = financeData.map(({ categoryName }) => categoryName);
   const dataSum = getTransByCateg.map(({ sum }) => sum);
@@ -105,17 +98,16 @@ export default function DiagramTab() {
   const totalFinanceData = [
     {
       categoryName: 'Расходы:',
-      total: normalizedSum(totalSpend),
+      total: normalizedSum(currentSpend),
       color: '#FF6596',
     },
     {
       categoryName: 'Доходы:',
-      total: normalizedSum(totalIncome),
+      total: normalizedSum(currentIncome),
       color: '#24CCA7',
     },
   ];
 
-  console.log('test');
   return (
     <div className={style.wrapper}>
       <h2 className={style.tabTitle}>Статистика</h2>
@@ -126,7 +118,7 @@ export default function DiagramTab() {
           <h3 className={style.noTrans}>У Вас нет транзакций в этом месяце</h3>
         )}
         <Table
-          financeData={financeData.length > 0 ? financeData : nofinanceData}
+          financeData={financeData}
           totalFinanceData={totalFinanceData}
           monthOptions={monthOptions}
           yearOptions={yearOptions}

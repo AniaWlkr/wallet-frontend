@@ -154,6 +154,12 @@ input::-webkit-inner-spin-button {
   bottom: 0;
 }
 
+.textDiv {
+  width: 280px;
+  display: flex;
+  justify-content: space-around;
+}
+
 .text {
   font-family: $poppins-font;
   font-size: 24px;
@@ -168,17 +174,17 @@ input::-webkit-inner-spin-button {
   color: $placeholder-color;
 }
 
-.positionAdd {
-  position: absolute;
-  top: 95px;
-  left: 50px;
-}
+// .positionAdd {
+//   position: absolute;
+//   top: 95px;
+//   left: 50px;
+// }
 
-.positionExpense {
-  position: absolute;
-  top: 95px;
-  right: 35px;
-}
+// .positionExpense {
+//   position: absolute;
+//   top: 95px;
+//   right: 35px;
+// }
 
 .addAccent {
   position: absolute;
@@ -236,28 +242,33 @@ input::-webkit-inner-spin-button {
 }
 
 .datetimeInput {
-  padding-left: 0px;
+  padding-left: 30px;
   padding-right: 10px;
 }
 
+// .select {
+//   width: 280px;
+//   padding-left: 30px;
+//   padding-bottom: 10px;
+//   padding-top: 10px;
+//   padding-right: 10px;
+//   margin-bottom: 40px;
+//   border: none;
+//   border-bottom: 1px solid $placeholder-color;
+//   outline: none;
+//   color: $headers-color;
+//   font-size: 18px;
+//   font-family: $montserrat-font;
+//   appearance: none;
+//   // z-index: 5;
+//   background-image: url('../../images/selectorAppearence.svg');
+//   background-repeat: no-repeat;
+//   background-position: 84% 48%;
+// }
+
 .select {
-  width: 280px;
-  padding-left: 30px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  padding-right: 10px;
   margin-bottom: 40px;
-  border: none;
-  border-bottom: 1px solid $placeholder-color;
-  outline: none;
-  color: $headers-color;
-  font-size: 18px;
-  font-family: $montserrat-font;
-  appearance: none;
-  // z-index: 5;
-  background-image: url('../../images/selectorAppearence.svg');
-  background-repeat: no-repeat;
-  background-position: 84% 48%;
+  width: 280px;
 }
 
 .option {
@@ -274,14 +285,6 @@ input::-webkit-inner-spin-button {
   font-family: $montserrat-font;
   color: $placeholder-color;
 }
-
-// .optionAdd:hover {
-//   color: salmon;
-// }
-
-// .optionExpence:hover {
-//   color: salmon;
-// }
 
 .calendarIcon {
   position: absolute;

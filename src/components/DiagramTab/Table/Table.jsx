@@ -25,21 +25,26 @@ export default function Table({
         <div className="firstSelectorWrapper">
           <Selector
             options={monthOptions}
-            initialState={'Месяц'}
+            // initialState={'Месяц'}
+            initialState={MONTH_INITIAL_STATE}
+
             changeSelector={onSelectMonth}
           />
         </div>
         <Selector
           options={yearOptions}
-          initialState={'Год'}
+          // initialState={'Год'}
+          initialState={YEAR_INITIAL_STATE}
           className="firstSelector"
           changeSelector={onSelectYear}
         />
       </div>
-      <div className="tableHead">
-        <span className="tableHead_item">Категория</span>
-        <span className="tableHead_item">Сумма</span>
-      </div>
+      {financeData.length > 0 ? (
+        <div className="tableHead">
+          <span className="tableHead_item">Категория</span>
+          <span className="tableHead_item">Сумма</span>
+        </div>
+      ) : null}
       <ul className="categoryList">
         {financeData.map(item => (
           <TableItem
