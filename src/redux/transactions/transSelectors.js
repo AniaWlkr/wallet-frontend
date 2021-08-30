@@ -53,8 +53,9 @@
 
 import { createSelector } from '@reduxjs/toolkit';
 import memoize from 'lodash.memoize';
+import { generateLightColorHex } from '../../utils/helpers';
 const SPEND = 'spend';
-const INCOME = 'income';
+// const INCOME = 'income';
 
 const getLoading = state => state.transactions.loading;
 const getAllTransactions = memoize(state => state.transactions.items);
@@ -63,46 +64,40 @@ const isTransactionModalOpen = state =>
   state.transactions.isTransactionModalOpen;
 const isExitModalOpen = state => state.transactions.isExitModalOpen;
 
-
 const getTransactionsPerMonth = (month, year) =>
   createSelector(
     getAllTransactions,
     items =>
-      items.filter(
-        item =>
-          item.month === month &&
-          item.year === year &&
-          item.transType === SPEND,
-      ) || [],
+      items.filter(item => item.month === month && item.year === year) || [],
   );
 
-const getSpend = (month, year) =>
-  createSelector(getAllTransactions, items => {
-    const value = items.reduce((sum, current) => {
-      if (
-        current.month === month &&
-        current.year === year &&
-        current.transType !== SPEND
-      )
-        return sum;
-      return sum + current.sum;
-    }, 0);
-    return value;
-  });
+// const getSpend = (month, year) =>
+//   createSelector(getAllTransactions, items => {
+//     const value = items.reduce((sum, current) => {
+//       if (
+//         current.month === month &&
+//         current.year === year &&
+//         current.transType === SPEND
+//       )
+//         return sum;
+//       return sum + current.sum;
+//     }, 0);
+//     return value;
+//   });
 
-const getIncome = (month, year) =>
-  createSelector(getAllTransactions, items => {
-    const value = items.reduce((sum, current) => {
-      if (
-        current.month === month &&
-        current.year === year &&
-        current.transType !== INCOME
-      )
-        return sum;
-      return sum + current.sum;
-    }, 0);
-    return value;
-  });
+// const getIncome = (month, year) =>
+//   createSelector(getAllTransactions, items => {
+//     const value = items.reduce((sum, current) => {
+//       if (
+//         current.month === month &&
+//         current.year === year &&
+//         current.transType === INCOME
+//       )
+//         return sum;
+//       return sum + current.sum;
+//     }, 0);
+//     return value;
+//   });
 
 const getSpendPerCategory = (month, year) =>
   createSelector(getAllTransactions, items => {
@@ -117,11 +112,14 @@ const getSpendPerCategory = (month, year) =>
         const index = arr.findIndex(
           arrItem => item.categoryId._id === arrItem.id,
         );
+
+        const color = generateLightColorHex();
         if (index === -1)
           arr.push({
             id: item.categoryId._id,
             category: item.categoryId.categoryName,
             sum: item.sum,
+            color,
           });
         if (index !== -1) arr[index].sum += item.sum;
         return arr;
@@ -132,8 +130,8 @@ const getSpendPerCategory = (month, year) =>
 export default {
   getLoading,
   getAllTransactions,
-  getSpend,
-  getIncome,
+  // getSpend,
+  // getIncome,
   isTransactionModalOpen,
   isExitModalOpen,
   getSpendPerCategory,
