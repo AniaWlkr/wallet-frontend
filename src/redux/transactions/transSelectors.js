@@ -64,6 +64,12 @@ const isTransactionModalOpen = state =>
   state.transactions.isTransactionModalOpen;
 const isExitModalOpen = state => state.transactions.isExitModalOpen;
 
+const getTransactionById = transactionId =>
+  createSelector(getAllTransactions, items => {
+    const transactionArr = items.filter(item => item._id === transactionId);
+    return transactionArr[0];
+  });
+
 const getTransactionsPerMonth = (month, year) =>
   createSelector(
     getAllTransactions,
@@ -136,4 +142,5 @@ export default {
   isExitModalOpen,
   getSpendPerCategory,
   getTransactionsPerMonth,
+  getTransactionById,
 };
