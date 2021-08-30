@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   setTransactionModalClose,
   addTransactionOperation,
 } from '../../redux/transactions/transOperations';
-import { getCategoriesOperation } from '../../redux/categories/categoriesOperations';
+// import { getCategoriesOperation } from '../../redux/categories/categoriesOperations';
 import selectors from '../../redux/categories/categoriesSelectors';
 import styles from './ModalAddTransaction.module.scss';
 import AddSharpIcon from '@material-ui/icons/AddSharp';
@@ -15,23 +15,82 @@ import { validate } from 'indicative/validator';
 import { alert, defaults } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import DateRangeSharpIcon from '@material-ui/icons/DateRangeSharp';
-// import ContainerForLoginAndRegistration from '../ContainerForLoginAndRegistration';
-
-// import Modal from '../Modal';
+import Select from 'react-select';
 
 defaults.delay = '3000';
 defaults.width = '280px';
 
+const customStyles = {
+  container: (provided, state) => ({
+    ...provided,
+    outline: 'none',
+    marginButton: '40',
+    borderColor: 'none',
+  }),
+  control: (provided, state) => ({
+    ...provided,
+    boxShadow: 'none',
+    border: 'none',
+    borderBottom: '1px solid #bdbdbd',
+    outline: 'none',
+    marginButton: '40',
+    borderRadius: 0,
+    cursor: 'text',
+    paddingLeft: 20,
+    '&:hover': {
+      borderColor: 'none',
+    },
+  }),
+  placeholder: (provided, state) => ({
+    ...provided,
+    fontSize: 18,
+    color: state.categoryId ? '#000000' : '#bdbdbd',
+  }),
+  indicatorsContainer: (provided, state) => ({
+    ...provided,
+    paddingRight: 30,
+    border: 'none',
+  }),
+  indicatorSeparator: (provided, state) => ({
+    ...provided,
+    backgroundColor: 'none',
+  }),
+  menu: (provided, state) => ({
+    ...provided,
+    backgroundColor: '#ffffffb3',
+    borderRadius: 20,
+    padding: 8,
+  }),
+  menuList: (provided, state) => ({
+    ...provided,
+    color: '#000000',
+    borderRadius: 20,
+    fontSize: 18,
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: '#ffffffb3',
+    '&:hover': {
+      color: '#ff6596',
+      cursor: 'pointer',
+      backgroundColor: '#ffffff',
+    },
+    '&:active': {
+      color: '#ff6596',
+      cursor: 'pointer',
+      backgroundColor: '#ffffff',
+    },
+    singleValue: (provided, state) => ({
+      ...provided,
+      color: '#000000',
+    }),
+  }),
+};
+
 export default function ModallAddTransaction() {
-  useEffect(() => {
-    dispatch(getCategoriesOperation());
-  }, []);
-
-  // const [openModal, setOpenModal] = useState(false);
-
   const [checkbox, setCheckbox] = useState(true);
+  const [categoryId, setCategoryId] = useState('Выберите категорию');
   const [category, setCategory] = useState('Выберите категорию');
-  // const [categoryId, setCategoryId] = useState(null);
   const [sum, setSum] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [textarea, setTextarea] = useState('');
@@ -39,15 +98,14 @@ export default function ModallAddTransaction() {
   const dispatch = useDispatch();
 
   const allCategories = useSelector(selectors.getCategories);
-  // console.log(allCategories);
 
   const changeChekbox = e => {
     setCheckbox(!checkbox);
   };
 
   const handleCategory = e => {
-    setCategory(e.target.value);
-    // console.dir(e);
+    setCategoryId(e.value);
+    setCategory(e.label);
   };
 
   const handleSum = e => {
@@ -97,7 +155,7 @@ export default function ModallAddTransaction() {
       date: selectedDate,
       comment: textarea,
       balance: 9000,
-      categoryId: category,
+      categoryId: categoryId,
     };
 
     validate({ sum, selectedDate, category }, rules, messages)
@@ -118,30 +176,40 @@ export default function ModallAddTransaction() {
     console.log(transaction);
   };
 
+  const options = allCategories.map(category => ({
+    value: category._id,
+    label: category.categoryName,
+  }));
+
   return (
-    // <ContainerForLoginAndRegistration>
     <div className={styles.mainDiv}>
       <p className={styles.text}>Добавить транзакцию</p>
-
       <form onSubmit={addTransaction} className={styles.form}>
-        <p
-          className={
-            !checkbox
-              ? `${styles.grey} ${styles.positionAdd}`
-              : `${styles.grey}  ${styles.positionAdd} ${styles.addAccent}`
-          }
-        >
-          Доход
-        </p>
-        <p
-          className={
-            !checkbox
-              ? `${styles.grey}  ${styles.positionExpense} ${styles.expenseAccent}`
-              : `${styles.positionExpense} ${styles.grey}`
-          }
-        >
-          Расход
-        </p>
+        <div className={styles.textDiv}>
+          <div>
+            {' '}
+            <p
+              className={
+                !checkbox
+                  ? `${styles.grey} ${styles.positionAdd}`
+                  : `${styles.grey}  ${styles.positionAdd} ${styles.addAccent}`
+              }
+            >
+              Доход
+            </p>
+          </div>
+          <div>
+            <p
+              className={
+                !checkbox
+                  ? `${styles.grey}  ${styles.positionExpense} ${styles.expenseAccent}`
+                  : `${styles.positionExpense} ${styles.grey}`
+              }
+            >
+              Расход
+            </p>
+          </div>
+        </div>
         <div className={styles.switch}>
           <div className={styles.switchControl}>
             <input
@@ -166,41 +234,51 @@ export default function ModallAddTransaction() {
           </div>
         </div>
 
-        {/* <div> */}
         {checkbox ? null : (
-          <label className={styles.label}>
-            <select
-              className={styles.select}
-              onChange={handleCategory}
-              name="select"
-              value={category}
-            >
-              <option
-                className={styles.selected}
-                value="Выберите категорию"
-                disabled
-                selected
-              >
-                Выберите категорию
-              </option>
-              {allCategories.map(category => {
-                return (
-                  <option
-                    className={
-                      checkbox
-                        ? `${styles.option} ${styles.optionAdd}`
-                        : `${styles.option} ${styles.optionExpence}`
-                    }
-                    key={category._id}
-                    value={category._id}
-                    // value={category.categoryName}
-                  >
-                    {category.categoryName}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
+          <Select
+            styles={customStyles}
+            options={options}
+            // classNamePrefix="react-select"
+            // className="select"
+            className={styles.select}
+            onChange={handleCategory}
+            name="select"
+            value={category}
+            placeholder={category}
+          />
+          // <label className={styles.label}>
+          //   <select
+          //     className={styles.select}
+          //     onChange={handleCategory}
+          //     name="select"
+          //     value={category}
+          //   >
+          //     <option
+          //       className={styles.selected}
+          //       value="Выберите категорию"
+          //       disabled
+          //       selected
+          //     >
+          //       Выберите категорию
+          //     </option>
+          //     {/* {allCategories.map(category => {
+          //       return (
+          //         <option
+          //           className={
+          //             checkbox
+          //               ? `${styles.option} ${styles.optionAdd}`
+          //               : `${styles.option} ${styles.optionExpence}`
+          //           }
+          //           key={category._id}
+          //           value={category._id}
+          //           // value={category.categoryName}
+          //         >
+          //           {category.categoryName}
+          //         </option>
+          //       );
+          //     })} */}
+          //   </select>
+          // </label>
         )}
         <div className={styles.sumAndDate}>
           <label className={styles.label}>
@@ -238,7 +316,6 @@ export default function ModallAddTransaction() {
           className={`${styles.input} ${styles.textarea}`}
           placeholder="Комментарий"
         ></textarea>
-        {/* </div> */}
         <button
           type="submit"
           className={`${styles.button} ${styles.buttonAdd}`}
@@ -253,6 +330,5 @@ export default function ModallAddTransaction() {
         </button>
       </form>
     </div>
-    // </ContainerForLoginAndRegistration>
   );
 }
