@@ -53,8 +53,6 @@ export const addTransactionOperation =
     const {
       auth: { token },
     } = getStore();
-    console.log('newTransaction', newTransaction);
-    console.log('token', token);
 
     dispatch(addTransactionRequest());
     return addTransaction(newTransaction, token)
@@ -91,7 +89,6 @@ export const deleteTransactionOperation = id => (dispatch, getStore) => {
 
 export const editTransactionOperation =
   (id, updatedTransaction) => (dispatch, getStore) => {
-    console.log('id, updatedTransaction', id, updatedTransaction);
     const {
       auth: { token },
     } = getStore();
@@ -102,17 +99,9 @@ export const editTransactionOperation =
 
     return editTransaction(id, token, updatedTransaction)
       .then(response => {
-        console.log('response.data.data.result', response.data.data.result);
         return dispatch(editTransactionSuccess(response.data.data.result));
       })
       .catch(error => {
-        console.log('error', error);
-        // if (errorCodesArray.includes(error.response.data.data.code)) {
-        //   alert({
-        //     text: `${error.response.data.message}`,
-        //   });
-        //   return dispatch(editTransactionError(error.response.data.message));
-        // }
         return dispatch(editTransactionError(error));
       });
   };

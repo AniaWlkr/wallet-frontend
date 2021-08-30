@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 import apiService from '../../services/api-service';
-// import Loader from '../Loader';
+import Loader from '../Loader';
 import styles from './Currency.module.scss';
 import cx from 'classnames';
 
 const Currency = () => {
   const [currencyRates, setCurrencyRates] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentDate, setCurrentDate] = useState();
   const HOUR = 3600000;
 
@@ -16,13 +16,13 @@ const Currency = () => {
   }, []);
 
   const getRates = async () => {
-    // setIsLoading(true);
+    setIsLoading(true);
 
     apiService
       .getCurrencyRates()
       .then(data => {
         setCurrencyRates(data);
-        // setIsLoading(false);
+        setIsLoading(false);
         setCurrentDate(moment().format('MMM Do YY'));
         setLocalStorage(currencyRates, currentDate);
       })
@@ -52,7 +52,7 @@ const Currency = () => {
 
   return (
     <div className={styles.wrapper}>
-      {/* {isLoading && <Loader />} */}
+      {isLoading && <Loader />}
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr>
