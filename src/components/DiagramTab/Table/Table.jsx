@@ -2,10 +2,10 @@ import './Table.scss';
 import PropTypes from 'prop-types';
 import TableItem from './TableItem';
 import Selector from '../Selector';
-import {
-  YEAR_INITIAL_STATE,
-  MONTH_INITIAL_STATE,
-} from '../../../utils/helpers';
+// import {
+//   YEAR_INITIAL_STATE,
+//   MONTH_INITIAL_STATE,
+// } from '../../../utils/helpers';
 
 export default function Table({
   financeData,
@@ -27,6 +27,7 @@ export default function Table({
             options={monthOptions}
             // initialState={'Месяц'}
             initialState={MONTH_INITIAL_STATE}
+
             changeSelector={onSelectMonth}
           />
         </div>

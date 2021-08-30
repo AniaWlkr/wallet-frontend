@@ -14,11 +14,23 @@ export default function HomeTab({ style = 'otherScreenSize' }) {
 
   const transactions = normalizedTransactions(data);
 
+  // для открытия модалки на редактирование и модалки на удаления транзакции
+  const btnHandleClick = (operation, idTransaction) =>
+    console.log(operation, idTransaction);
+
   return (
     <section className={styles.wrapper}>
-      {style === 'mobile' && <HomeTabMobileTable transactions={transactions} />}
+      {style === 'mobile' && (
+        <HomeTabMobileTable
+          transactions={transactions}
+          btnHandleClick={btnHandleClick}
+        />
+      )}
       {style === 'otherScreenSize' && (
-        <HomeTabTable transactions={transactions} />
+        <HomeTabTable
+          transactions={transactions}
+          btnHandleClick={btnHandleClick}
+        />
       )}
     </section>
   );

@@ -2,8 +2,12 @@ import './HomeTabMobileTableItem.scss';
 import PropTypes from 'prop-types';
 
 export default function HomeTabMobileTableItem({
-  transaction: { date, transType, category, commentary, sum, balance },
+  transaction: { id, date, transType, category, commentary, sum, balance },
+  btnHandleClick,
 }) {
+  const handleClick = event =>
+    btnHandleClick(event.target.value, event.target.id);
+
   return (
     <ul
       className={
@@ -46,10 +50,27 @@ export default function HomeTabMobileTableItem({
         <span className="mobile-list_category">Баланс</span>
         <span className="mobile-list_data">{balance}</span>
       </li>
+      <li className="mobile-list_item">
+        <button
+          type="button"
+          className="mobile-list_btn mobile-list_btn--update"
+          value="upgrade"
+          id={id}
+          onClick={handleClick}
+        />
+        <button
+          type="button"
+          className="mobile-list_btn mobile-list_btn--delete"
+          value="delete"
+          id={id}
+          onClick={handleClick}
+        />
+      </li>
     </ul>
   );
 }
 
 HomeTabMobileTableItem.propTypes = {
   transaction: PropTypes.object,
+  btnHandleClick: PropTypes.func,
 };
