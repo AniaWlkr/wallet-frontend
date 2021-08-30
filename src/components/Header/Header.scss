@@ -43,7 +43,7 @@
   .headerContainer {
     height: 80px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
   }
 }
@@ -61,7 +61,7 @@
   }
 
   .userLogout {
-    margin-left: 400px;
+    margin-left: 320px;
   }
 
   .userName {
@@ -99,7 +99,7 @@
   }
 
   .userLogout {
-    margin-left: 800px;
+    margin-left: 750px;
   }
 
   .buttonExit {

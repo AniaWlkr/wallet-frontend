@@ -24,7 +24,7 @@ export default function Header() {
           <div className="userLogout">
             <span className="userName">{name}</span>
             <button className="buttonExit" type="button" onClick={openModal}>
-              {Number(sizeScreen) >= 768 && <span className="exit">Exit</span>}
+              {Number(sizeScreen) >= 768 && <span className="exit">Выйти</span>}
             </button>
           </div>
         </div>
