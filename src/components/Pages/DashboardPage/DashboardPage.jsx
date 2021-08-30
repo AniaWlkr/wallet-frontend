@@ -8,10 +8,10 @@ import DiagramTab from '../../DiagramTab';
 import Header from '../../Header';
 import Container from '../../Container';
 import Navigation from '../../Navigation';
-import Currency from '../../Currency';
+// import Currency from '../../Currency';
 import Balance from '../../Balance';
 
-import { getTransactionsOperation } from '../../../redux/transactions/transOperations';
+// import { getTransactionsOperation } from '../../../redux/transactions/transOperations';
 import { getCategoriesOperation } from '../../../redux/categories/categoriesOperations';
 import { getCurrentBalance } from '../../../redux/finance/financeOperations';
 import routes from '../../../routes/routes';
@@ -34,12 +34,12 @@ export default function DashboardPage() {
 
   const goToHomePage = () => history.push(routes.dashBoard);
 
-  const getTransactions = () => dispatch(getTransactionsOperation());
+  // const getTransactions = () => dispatch(getTransactionsOperation());
   const getBalance = () => dispatch(getCurrentBalance());
   const getCategories = () => dispatch(getCategoriesOperation());
 
   useEffect(() => {
-    getTransactions();
+    // getTransactions();
     getBalance();
     getCategories();
   }, []);
@@ -69,7 +69,7 @@ export default function DashboardPage() {
                       <>
                         <Navigation />
                         {location.pathname === routes.dashBoard && <Balance />}
-                        {location.pathname === routes.currency && <Currency />}
+                        {/* {location.pathname === routes.currency && <Currency />} */}
                         {location.pathname === routes.dashBoard && (
                           <HomeTab style={'mobile'} />
                         )}
@@ -86,9 +86,7 @@ export default function DashboardPage() {
                             <Navigation />
                             <Balance />
                           </div>
-                          <div>
-                            <Currency />
-                          </div>
+                          <div>{/* <Currency /> */}</div>
                         </div>
                         <div className={styles.tab_wrapper}>
                           {location.pathname === routes.dashBoard && (
