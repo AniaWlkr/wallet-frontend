@@ -12,7 +12,6 @@ const TransactionDelete = ({ toggleModal, transactionId }) => {
   const initialTransaction = useSelector(
     selectors.getTransactionById(transactionId),
   );
-  console.log('initialTransaction', initialTransaction);
 
   const handleSubmit = event => {
     event.preventDefault();

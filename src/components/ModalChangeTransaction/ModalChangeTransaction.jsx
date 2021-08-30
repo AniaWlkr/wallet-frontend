@@ -79,7 +79,7 @@ const TransactionEdit = ({ toggleModal, transactionId }) => {
   const initialTransaction = useSelector(
     selectors.getTransactionById(transactionId),
   );
-  console.log('initialTransaction', initialTransaction);
+
   const getCategories = () => dispatch(getCategoriesOperation());
 
   const [sum, setSum] = useState(0);
@@ -88,13 +88,11 @@ const TransactionEdit = ({ toggleModal, transactionId }) => {
   const [categoryId, setCategoryId] = useState('');
 
   const categories = useSelector(categoriesSelector.getCategories);
-  console.log('categories', categories);
 
   const categoryArray = categories?.map(category => ({
     value: category._id,
     label: category.categoryName,
   }));
-  console.log('categoryArray', categoryArray);
 
   useEffect(() => {
     getCategories();
@@ -126,7 +124,6 @@ const TransactionEdit = ({ toggleModal, transactionId }) => {
       categoryId,
     };
     if (comment) updatedTransaction = { ...updatedTransaction, comment };
-    console.log('updatedTransaction', updatedTransaction);
 
     dispatch(editTransactionOperation(transactionId, updatedTransaction));
     toggleModal();
