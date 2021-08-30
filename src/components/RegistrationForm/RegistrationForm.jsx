@@ -15,6 +15,59 @@ import '@pnotify/mobile/dist/PNotifyMobile.css';
 defaults.delay = '3000';
 defaults.width = '280px';
 
+const progressBarClass = state => {
+  if (state.name && !state.email && !state.password && !state.repeatPassword) {
+    return <span className={`${styles.OnlyOne} ${styles.formFilled}`}></span>;
+  }
+  if (!state.name && state.email && !state.password && !state.repeatPassword) {
+    return <span className={`${styles.OnlyOne} ${styles.formFilled}`}></span>;
+  }
+  if (!state.name && !state.email && state.password && !state.repeatPassword) {
+    return <span className={`${styles.OnlyOne} ${styles.formFilled}`}></span>;
+  }
+  if (!state.name && !state.email && !state.password && state.repeatPassword) {
+    return <span className={`${styles.OnlyOne} ${styles.formFilled}`}></span>;
+  }
+
+  if (state.name && state.email && !state.password && !state.repeatPassword) {
+    return <span className={`${styles.OnlyTwo} ${styles.formFilled}`}></span>;
+  }
+  if (state.name && !state.email && state.password && !state.repeatPassword) {
+    return <span className={`${styles.OnlyTwo} ${styles.formFilled}`}></span>;
+  }
+  if (state.name && !state.email && !state.password && state.repeatPassword) {
+    return <span className={`${styles.OnlyTwo} ${styles.formFilled}`}></span>;
+  }
+  if (!state.name && state.email && state.password && !state.repeatPassword) {
+    return <span className={`${styles.OnlyTwo} ${styles.formFilled}`}></span>;
+  }
+  if (!state.name && state.email && !state.password && state.repeatPassword) {
+    return <span className={`${styles.OnlyTwo} ${styles.formFilled}`}></span>;
+  }
+  if (!state.name && !state.email && state.password && state.repeatPassword) {
+    return <span className={`${styles.OnlyTwo} ${styles.formFilled}`}></span>;
+  }
+
+  if (state.name && state.email && state.password && !state.repeatPassword) {
+    return <span className={`${styles.OnlyThree} ${styles.formFilled}`}></span>;
+  }
+  if (state.name && state.email && !state.password && state.repeatPassword) {
+    return <span className={`${styles.OnlyThree} ${styles.formFilled}`}></span>;
+  }
+  if (state.name && !state.email && state.password && state.repeatPassword) {
+    return <span className={`${styles.OnlyThree} ${styles.formFilled}`}></span>;
+  }
+  if (!state.name && state.email && state.password && state.repeatPassword) {
+    return <span className={`${styles.OnlyThree} ${styles.formFilled}`}></span>;
+  }
+
+  if (state.name && state.email && state.password && state.repeatPassword) {
+    return <span className={`${styles.OnlyFour} ${styles.formFilled}`}></span>;
+  }
+};
+
+// const progressBar = progressBarClass(state);
+
 export default function RegistrationForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,6 +77,7 @@ export default function RegistrationForm() {
   const [validName, setValidName] = useState(true);
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
+
   const dispatch = useDispatch();
 
   const handleName = e => {
@@ -61,7 +115,7 @@ export default function RegistrationForm() {
     };
 
     const messages = {
-      required: 'Make sure to enter the field value)',
+      required: 'Make sure to enter the field value',
       email: 'Enter valid email address, please',
       min: 'Too small',
       max: 'Too big',
@@ -193,8 +247,12 @@ export default function RegistrationForm() {
                   : `${styles.input}${styles.inputRepeat} ${styles.inputError}`
               }
             ></input>
+            <div>
+              {progressBarClass({ name, email, password, repeatPassword })}
+            </div>
           </label>
         </div>
+
         <button className={`${styles.button} ${styles.enter}`} type="submit">
           Register
         </button>

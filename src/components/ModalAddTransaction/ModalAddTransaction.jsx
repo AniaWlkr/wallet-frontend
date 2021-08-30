@@ -44,7 +44,7 @@ const customStyles = {
   placeholder: (provided, state) => ({
     ...provided,
     fontSize: 18,
-    color: state.categoryId ? '#000000' : '#bdbdbd',
+    color: !state.categoryId ? '#000000' : '#bdbdbd',
   }),
   indicatorsContainer: (provided, state) => ({
     ...provided,
@@ -89,7 +89,7 @@ const customStyles = {
 
 export default function ModallAddTransaction() {
   const [checkbox, setCheckbox] = useState(true);
-  const [categoryId, setCategoryId] = useState('Выберите категорию');
+  const [categoryId, setCategoryId] = useState('61222863fd194a14a7cfe3cf');
   const [category, setCategory] = useState('Выберите категорию');
   const [sum, setSum] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -109,6 +109,7 @@ export default function ModallAddTransaction() {
   };
 
   const handleSum = e => {
+    // if(e.target.value === '0')
     setSum(e.target.value);
   };
 
@@ -130,6 +131,7 @@ export default function ModallAddTransaction() {
 
   const handleTextarea = e => {
     setTextarea(e.target.value);
+    // console.log(e.target.value);
   };
 
   const closeModal = () => {
@@ -140,22 +142,65 @@ export default function ModallAddTransaction() {
     e.preventDefault();
 
     const rules = {
-      sum: 'required',
+      sum: 'required|above:0',
       selectedDate: 'required',
       category: 'required',
     };
 
     const messages = {
-      required: 'Make sure to enter the field value)',
+      required: 'Make sure to enter the field value',
     };
 
-    const transaction = {
-      transType: `${!checkbox ? 'spend' : 'income'}`,
-      sum,
-      date: selectedDate,
-      comment: textarea,
-      balance: 9000,
-      categoryId: categoryId,
+    //   const transaction = () => {
+    //  !checkbox ?
+    //   }
+
+    // const transaction = {
+    //   transType: `${!checkbox ? 'spend' : 'income'}`,
+    //   sum,
+    //   date: selectedDate,
+    //   comment: textarea,
+    // };
+
+    // !checkbox ? (transaction.categoryId = categoryId) : null;
+
+    const makeTransaction = () => {
+      if (!checkbox && !textarea) {
+        return {
+          transType: 'spend',
+          sum,
+          date: selectedDate,
+          //  comment: textarea,
+          categoryId: categoryId,
+        };
+      }
+      if (checkbox && !textarea) {
+        return {
+          transType: 'income',
+          sum,
+          date: selectedDate,
+          categoryId: '612b739e357da905903ec848',
+          //  comment: textarea,
+        };
+      }
+      if (!checkbox && textarea) {
+        return {
+          transType: 'spend',
+          sum,
+          date: selectedDate,
+          comment: textarea,
+          categoryId: categoryId,
+        };
+      }
+      if (checkbox && textarea) {
+        return {
+          transType: 'income',
+          sum,
+          date: selectedDate,
+          comment: textarea,
+          categoryId: '612b739e357da905903ec848',
+        };
+      }
     };
 
     validate({ sum, selectedDate, category }, rules, messages)
@@ -173,6 +218,7 @@ export default function ModallAddTransaction() {
         });
       });
 
+    const transaction = makeTransaction();
     console.log(transaction);
   };
 
@@ -187,7 +233,6 @@ export default function ModallAddTransaction() {
       <form onSubmit={addTransaction} className={styles.form}>
         <div className={styles.textDiv}>
           <div>
-            {' '}
             <p
               className={
                 !checkbox
@@ -197,6 +242,30 @@ export default function ModallAddTransaction() {
             >
               Доход
             </p>
+          </div>
+
+          <div className={styles.switch}>
+            <div className={styles.switchControl}>
+              <input
+                onClick={changeChekbox}
+                name="checkbox"
+                type="checkbox"
+                className={styles.switchToggle}
+                id="switchToggle"
+                value={checkbox}
+              ></input>
+              <label
+                className={styles.switchTrack}
+                htmlFor="switchToggle"
+              ></label>
+              <div className={styles.switchMarker}>
+                {!checkbox ? (
+                  <RemoveSharpIcon className={styles.icon} />
+                ) : (
+                  <AddSharpIcon className={styles.icon} />
+                )}
+              </div>
+            </div>
           </div>
           <div>
             <p
@@ -210,75 +279,17 @@ export default function ModallAddTransaction() {
             </p>
           </div>
         </div>
-        <div className={styles.switch}>
-          <div className={styles.switchControl}>
-            <input
-              onClick={changeChekbox}
-              name="checkbox"
-              type="checkbox"
-              className={styles.switchToggle}
-              id="switchToggle"
-              value={checkbox}
-            ></input>
-            <label
-              className={styles.switchTrack}
-              htmlFor="switchToggle"
-            ></label>
-            <div className={styles.switchMarker}>
-              {!checkbox ? (
-                <RemoveSharpIcon className={styles.icon} />
-              ) : (
-                <AddSharpIcon className={styles.icon} />
-              )}
-            </div>
-          </div>
-        </div>
 
         {checkbox ? null : (
           <Select
             styles={customStyles}
             options={options}
-            // classNamePrefix="react-select"
-            // className="select"
             className={styles.select}
             onChange={handleCategory}
             name="select"
-            value={category}
+            value={categoryId}
             placeholder={category}
           />
-          // <label className={styles.label}>
-          //   <select
-          //     className={styles.select}
-          //     onChange={handleCategory}
-          //     name="select"
-          //     value={category}
-          //   >
-          //     <option
-          //       className={styles.selected}
-          //       value="Выберите категорию"
-          //       disabled
-          //       selected
-          //     >
-          //       Выберите категорию
-          //     </option>
-          //     {/* {allCategories.map(category => {
-          //       return (
-          //         <option
-          //           className={
-          //             checkbox
-          //               ? `${styles.option} ${styles.optionAdd}`
-          //               : `${styles.option} ${styles.optionExpence}`
-          //           }
-          //           key={category._id}
-          //           value={category._id}
-          //           // value={category.categoryName}
-          //         >
-          //           {category.categoryName}
-          //         </option>
-          //       );
-          //     })} */}
-          //   </select>
-          // </label>
         )}
         <div className={styles.sumAndDate}>
           <label className={styles.label}>

@@ -1,9 +1,9 @@
 @import '../../stylesheet//utils//vars.scss';
 
 .modal {
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -34,11 +34,13 @@
 }
 
 .content {
+  // width: 300px;
+  position: relative;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  // margin-right: auto;
-  // margin-left: auto;
+  // justify-content: baseline;
+  margin-right: auto;
+  margin-left: auto;
 
   z-index: 99;
   transition-property: transform;
@@ -53,8 +55,8 @@
 
 .button {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 5px;
+  right: 5px;
   cursor: pointer;
   outline: none;
   border: none;
@@ -68,4 +70,15 @@
 
 .cross:hover {
   color: $accent-light-color;
+}
+
+@media screen and (min-width: 768px) {
+  // .content {
+  //   max-width: 540px;
+  // }
+
+  .button {
+    top: 10px;
+    right: 10px;
+  }
 }

@@ -39,9 +39,8 @@ export default function Modal({ component: Component }) {
             onClick={closeModal}
             className={styles.overlay}
           ></div>
-
           <div className={styles.content}>
-            <Component />
+            {' '}
             <button
               onClick={closeModal}
               type="button"
@@ -51,6 +50,7 @@ export default function Modal({ component: Component }) {
                 <CloseSharpIcon />
               </span>
             </button>
+            <Component />
           </div>
         </div>
       ) : null}

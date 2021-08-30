@@ -14,7 +14,7 @@
 .switch {
   display: flex;
   align-items: center;
-  margin-bottom: 40px;
+  // margin-bottom: 40px;
 }
 
 .switchControl {
@@ -102,10 +102,10 @@
   justify-content: flex-start;
   padding-top: 25px;
   padding-bottom: 40px;
-  // height: 680px;
   background-color: $text-color-on-accent;
-  // margin-right: auto;
-  // margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
+  margin: auto;
 }
 
 input:-webkit-autofill,
@@ -158,6 +158,8 @@ input::-webkit-inner-spin-button {
   width: 280px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
 .text {
@@ -174,25 +176,13 @@ input::-webkit-inner-spin-button {
   color: $placeholder-color;
 }
 
-// .positionAdd {
-//   position: absolute;
-//   top: 95px;
-//   left: 50px;
-// }
-
-// .positionExpense {
-//   position: absolute;
-//   top: 95px;
-//   right: 35px;
-// }
-
 .addAccent {
-  position: absolute;
+  // position: absolute;
   color: $accent-light-color;
 }
 
 .expenseAccent {
-  position: absolute;
+  // position: absolute;
   color: $accent-color-expense;
 }
 
@@ -303,10 +293,8 @@ input::-webkit-inner-spin-button {
 @media screen and (min-width: 768px) {
   .mainDiv {
     width: 540px;
-    // height: 100%;
     padding-top: 40px;
     padding-bottom: 60px;
-    // padding-right: 50px;
     border-radius: 20px;
   }
 
@@ -338,18 +326,6 @@ input::-webkit-inner-spin-button {
     right: 40px;
   }
 
-  .positionAdd {
-    position: absolute;
-    top: 120px;
-    left: 160px;
-  }
-
-  .positionExpense {
-    position: absolute;
-    top: 120px;
-    right: 370px;
-  }
-
   .textarea {
     resize: none;
     padding-bottom: 5px;
@@ -359,8 +335,4 @@ input::-webkit-inner-spin-button {
   .select {
     width: 409px;
   }
-
-  // .label {
-  //   width: 280px;
-  // }
 }
