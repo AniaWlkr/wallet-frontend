@@ -3,10 +3,14 @@
 .wrapper {
   @media screen and (min-width: $tablet) {
     padding-top: 40px;
+    max-height: 60vh;
+    overflow: scroll;
   }
   @media screen and (min-width: $desktop) {
     padding-top: 46px;
     width: 100%;
     padding-left: 30px;
+    max-height: 80vh;
+    overflow: scroll;
   }
 }
