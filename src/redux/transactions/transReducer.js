@@ -18,9 +18,11 @@ import {
   closeExitModal,
 } from './transActions';
 
+import actions from '../auth/authActions';
+
 const items = createReducer([], {
   [fetchTransactionsSuccess]: (_, { payload }) => payload,
-  [addTransactionSuccess]: (state, { payload }) => [...state.items, payload],
+  [addTransactionSuccess]: (state, { payload }) => [...state, payload],
   [deleteTransactionSuccess]: (state, { payload }) =>
     state.filter(transaction => transaction._id !== payload),
   [editTransactionSuccess]: (state, { payload }) =>
@@ -32,6 +34,7 @@ const items = createReducer([], {
       );
       return transaction._id === payload._id ? payload : transaction;
     }),
+  [actions.logoutSuccess]: () => [],
 });
 
 const loading = createReducer(false, {

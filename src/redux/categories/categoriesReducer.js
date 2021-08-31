@@ -11,11 +11,14 @@ import {
   deleteCategoryError,
 } from './categoriesActions';
 
+import actions from '../auth/authActions';
+
 const items = createReducer([], {
   [fetchCategoriesSuccess]: (_, { payload }) => payload,
   [addCategorySuccess]: (state, { payload }) => [...state.items, payload],
   [deleteCategorySuccess]: (state, { payload }) =>
     state.filter(category => category.id !== payload),
+  [actions.logoutSuccess]: () => [],
 });
 
 const loading = createReducer(false, {
