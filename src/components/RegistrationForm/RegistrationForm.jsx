@@ -38,10 +38,15 @@ export default function RegistrationForm() {
 
   const handleName = e => {
     setName(e.target.value);
+
     if (!nameBar) {
       setProgressBarWidth(progressBarWidth + 25);
     }
     setNameBar(true);
+    if (e.target.value === '' && progressBarWidth !== 0) {
+      setProgressBarWidth(progressBarWidth - 25);
+      setNameBar(false);
+    }
   };
 
   const handleEmail = e => {
@@ -50,6 +55,10 @@ export default function RegistrationForm() {
       setProgressBarWidth(progressBarWidth + 25);
     }
     setEmailBar(true);
+    if (e.target.value === '' && progressBarWidth !== 0) {
+      setProgressBarWidth(progressBarWidth - 25);
+      setEmailBar(false);
+    }
   };
 
   const handlePassword = e => {
@@ -58,6 +67,10 @@ export default function RegistrationForm() {
       setProgressBarWidth(progressBarWidth + 25);
     }
     setPasswordBar(true);
+    if (e.target.value === '' && progressBarWidth !== 0) {
+      setProgressBarWidth(progressBarWidth - 25);
+      setPasswordBar(false);
+    }
   };
 
   const handleRepeatPassword = e => {
@@ -66,6 +79,10 @@ export default function RegistrationForm() {
       setProgressBarWidth(progressBarWidth + 25);
     }
     setRepeatPasswordBar(true);
+    if (e.target.value === '' && progressBarWidth !== 0) {
+      setProgressBarWidth(progressBarWidth - 25);
+      setRepeatPasswordBar(false);
+    }
   };
 
   const createUserToRegister = e => {
@@ -217,7 +234,7 @@ export default function RegistrationForm() {
               className={
                 password !== repeatPassword || repeatPassword === ''
                   ? `${styles.input} ${styles.inputRepeat}`
-                  : `${styles.input}${styles.inputRepeat} ${styles.inputError}`
+                  : `${styles.input} ${styles.inputRepeat} ${styles.inputError}`
               }
             ></input>
             <div className={styles.progressDiv}>
