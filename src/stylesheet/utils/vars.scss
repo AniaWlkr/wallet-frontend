@@ -1,0 +1,56 @@
+$accent-light-color: #24cca7;
+$accent-deep-color: #4a56e2;
+$accent-color-expense: #ff6596;
+$error-color: #f73e3e;
+$text-color-on-accent: #ffffff;
+$headers-color: #000000;
+$placeholder-color: #bdbdbd;
+$overlay-color: #e7eaf2;
+$background-blur-list-color: #ffffffb3;
+$main-background-blur: rgba(255, 255, 255, 0.4);
+$main-background-blur-test: #ffffff27;
+$transition-duration: 250ms;
+$transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+$loader-colors: #24cca7 #c5baff #ff6596 #ffd8d0;
+$table-header-color: #6e78e8;
+$modal-backdrop-color: rgba(0, 0, 0, 0.25);
+
+$poppins-font: 'Poppins', sans-serif;
+$montserrat-font: 'Circe', 'Manrope', sans-serif;
+
+%centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%list {
+  list-style: none;
+}
+
+%link {
+  display: block;
+  text-decoration: none;
+}
+
+%img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+%standart-text-style {
+  font-style: normal;
+  font-weight: 500;
+}
+
+%visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}

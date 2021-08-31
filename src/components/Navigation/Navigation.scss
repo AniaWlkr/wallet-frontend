@@ -1,0 +1,89 @@
+@import '../../stylesheet/main.scss';
+.NavLink {
+  text-decoration: none;
+}
+
+.NavLink .active {
+  text-transform: none;
+}
+
+.svgNav {
+  fill: $table-header-color;
+  padding: 0px;
+}
+
+.active .svgNav {
+  fill: $accent-deep-color;
+  background-color: #fff;
+  filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+}
+
+@media screen and (min-width: $mobile) {
+  .itemLink {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+
+  .buttonNav {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 6px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .svgNav {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    background-color: transparent;
+  }
+}
+
+@media screen and (min-width: $tablet) {
+  .itemLink {
+    display: grid;
+    justify-content: start;
+  }
+
+  .buttonNav {
+    display: flex;
+    margin-left: 6px;
+    margin-right: 6px;
+    background-color: transparent;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .boxNav {
+    display: flex;
+    align-items: center;
+    fill: $table-header-color;
+    background-color: transparent;
+  }
+
+  .textNav {
+    font-family: $poppins-font;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $headers-color;
+  }
+
+  .active .textNav {
+    font-weight: 700;
+  }
+
+  .svgNav {
+    width: 18px;
+    height: 18px;
+    margin-right: 23px;
+    border-radius: 2px;
+  }
+}

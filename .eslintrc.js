@@ -4,11 +4,13 @@ module.exports = {
     es2021: true,
   },
   extends: [
+    'eslint:recommended',
     'plugin:react/recommended',
     'standard',
     'plugin:json/recommended',
     'prettier',
   ],
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -16,11 +18,9 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react'],
-  rules: {},
-  // settings: {
-  //   react: {
-  //     version: 'detect',
-  //   },
-  // },
+  plugins: ['react', 'html'],
+  rules: {
+    'react/react-in-jsx-scope': 0,
+    'react/jsx-uses-react': 0,
+  },
 };

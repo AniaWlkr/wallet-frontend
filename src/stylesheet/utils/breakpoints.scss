@@ -1,0 +1,27 @@
+$mobile: 320px;
+$mobileMax: 767px;
+$tablet: 768px;
+$tabletMax: 1279px;
+$desktop: 1280px;
+// $desktop: 1024px;
+
+// .container {
+//   padding: 0 20px;
+//   margin: 0 auto;
+
+//   @media screen and (min-width: $mobile) {
+//     width: $mobile;
+//   }
+
+//   @media screen and (min-width: $tablet) {
+//     width: $tablet;
+//     // padding: 0 75px;
+//     padding: 0 40px;
+//   }
+
+//   @media screen and (min-width: $desktop) {
+//     width: $desktop;
+//     // padding: 0 71px;
+//     padding: 0 85px;
+//   }
+// }

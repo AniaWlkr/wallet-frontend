@@ -1,0 +1,180 @@
+@import '../../stylesheet/utils/vars.scss';
+@import '../../stylesheet//utils//breakpoints.scss';
+@import '../../stylesheet//utils//common.scss';
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 110px;
+  padding-bottom: 110px;
+  height: 568px;
+  background-color: $text-color-on-accent;
+  // margin-right: auto;
+  // margin-left: auto;
+}
+
+.wallet {
+  color: $headers-color;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: $poppins-font;
+  margin-bottom: 50px;
+}
+
+.wallet::before {
+  content: url('../../images//wallet.svg');
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  position: relative;
+  cursor: pointer;
+  color: $placeholder-color;
+  width: 280px;
+}
+
+::placeholder {
+  font-size: 18px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.input {
+  width: 280px;
+  border: none;
+  border-bottom: 1px solid $placeholder-color;
+  outline: none;
+  padding-left: 45px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 40px;
+  font-size: 18px;
+}
+
+.inputError {
+  border-bottom: 1px solid $error-color;
+}
+
+.inputSucces {
+  border-bottom: 1px solid $accent-light-color;
+}
+
+.span {
+  position: absolute;
+  top: 4px;
+}
+
+.mailSpan {
+  top: 5px;
+}
+
+.navLink {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button {
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  outline: none;
+}
+
+.enter,
+.enter:active {
+  background-color: $accent-light-color;
+  color: $text-color-on-accent;
+  border: 1px solid $accent-light-color;
+  margin-bottom: 20px;
+}
+
+.register {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 1px solid $accent-deep-color;
+  color: $accent-deep-color;
+}
+
+.enter:hover,
+  // .enter:focus,
+  .enter:active {
+  background-color: $accent-deep-color;
+  border: 1px solid $accent-deep-color;
+}
+
+.register:hover,
+  // .register:focus ,
+  .register:active {
+  color: $accent-light-color;
+  border: 1px solid $accent-light-color;
+}
+
+.labelsDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: $tablet) {
+  .mainDiv {
+    width: 540px;
+    height: 468px;
+    background-color: $text-color-on-accent;
+    border-radius: 20px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    // margin-top: 360px;
+  }
+
+  .wallet {
+    font-size: 40px;
+  }
+
+  .wallet::before {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+  }
+
+  .label {
+    width: 409px;
+  }
+
+  .labelsDiv {
+    margin-bottom: 10px;
+  }
+
+  .input {
+    width: 409px;
+  }
+
+  .button {
+    width: 300px;
+  }
+}
+
+// @media screen and (min-width: $tablet) {
+//   .mainDiv {
+//     // position: relative;
+//     // right: 85px;
+//   }
+// }
+
+// @media screen and (min-width: $desktop) {
+//   .mainDiv {
+//     margin: auto;
+//   }
+// }

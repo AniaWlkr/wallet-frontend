@@ -1,0 +1,130 @@
+@import '../../stylesheet/main.scss';
+
+.Loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @extend %list;
+  margin: 0;
+  padding: 0;
+  font-size: 0.5em;
+  width: 5em;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 1em;
+  }
+
+  .Point {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    border-radius: 50%;
+    box-sizing: border-box;
+    @extend %centered;
+    transform-origin: center center;
+    animation: spinner 1s ease-in-out infinite;
+    will-change: transform, filter;
+    &:nth-child(1) {
+      width: 1em;
+      height: 1em;
+      &:after {
+        content: '';
+        display: block;
+        font-size: 25%;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        box-shadow: scale(1) 0 0 rgba(nth($loader-colors, 1), 0.2),
+          -(scale(1)) 0 0 rgba(nth($loader-colors, 2), 0.2),
+          0 scale(1) 0 rgba(nth($loader-colors, 3), 0.2),
+          0 (-(scale(1))) 0 rgba(nth($loader-colors, 4), 0.2);
+      }
+    }
+
+    &:nth-child(2) {
+      animation-delay: 0.1s;
+      width: 2em;
+      height: 2em;
+      &:after {
+        content: '';
+        display: block;
+        font-size: 50%;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        box-shadow: scale(1.5) 0 0 rgba(nth($loader-colors, 1), 0.4),
+          -(scale(1.5)) 0 0 rgba(nth($loader-colors, 2), 0.4),
+          0 scale(1.5) 0 rgba(nth($loader-colors, 3), 0.4),
+          0 (-(scale(1.5))) 0 rgba(nth($loader-colors, 4), 0.4);
+      }
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.15s;
+      width: 3em;
+      height: 3em;
+      &:after {
+        content: '';
+        display: block;
+        font-size: 75%;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        box-shadow: 2em 0 0 rgba(nth($loader-colors, 1), 0.6),
+          -(2em) 0 0 rgba(nth($loader-colors, 2), 0.6),
+          0 2em 0 rgba(nth($loader-colors, 3), 0.6),
+          0 (-(2em)) 0 rgba(nth($loader-colors, 4), 0.6);
+      }
+    }
+
+    &:nth-child(4) {
+      animation-delay: 0.2s;
+      width: 4em;
+      height: 4em;
+      &:after {
+        content: '';
+        display: block;
+        font-size: 100%;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        box-shadow: 2.5em 0 0 rgba(nth($loader-colors, 1), 0.8),
+          -(2.5em) 0 0 rgba(nth($loader-colors, 2), 0.8),
+          0 2.5em 0 rgba(nth($loader-colors, 3), 0.8),
+          0 (-(2.5em)) 0 rgba(nth($loader-colors, 4), 0.8);
+      }
+    }
+
+    &:nth-child(5) {
+      animation-delay: 0.25s;
+      width: 5em;
+      height: 5em;
+      &:after {
+        content: '';
+        display: block;
+        font-size: 125%;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        box-shadow: 3em 0 0 nth($loader-colors, 1),
+          -(3em) 0 0 nth($loader-colors, 2), 0 3em 0 nth($loader-colors, 3),
+          0 (-(3em)) 0 nth($loader-colors, 4);
+      }
+    }
+  }
+}
+
+@keyframes spinner {
+  50% {
+    filter: blur(2px);
+  }
+  90%,
+  100% {
+    transform: rotate(1turn);
+    filter: blur(0);
+  }
+}

@@ -1,0 +1,339 @@
+@import '../../stylesheet//utils/vars.scss';
+@import '../../stylesheet//utils/common.scss';
+@import '../../stylesheet/utils/breakpoints.scss';
+
+// * {
+//   border: 1px solid salmon;
+// }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  // margin-bottom: 40px;
+}
+
+.switchControl {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  width: 64px;
+  height: 32px;
+  border-radius: 50em;
+  padding: 3px 0;
+}
+
+.switchToggle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.switchTrack {
+  position: absolute;
+  left: -1px;
+  top: -3px;
+  width: 80px;
+  height: 40px;
+  // color: transparent;
+  border: 1px solid $placeholder-color;
+  user-select: none;
+  background-color: $text-color-on-accent;
+  border-radius: 30px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.switchMarker {
+  position: relative;
+  background-color: $accent-light-color;
+  box-shadow: 0 0 10px $accent-light-color;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  transition-property: color, transform;
+  transition-duration: 500ms;
+  transform: translateX(0.01px);
+}
+
+.switchToggle:checked + .switchTrack {
+  background-color: $text-color-on-accent;
+  border: 1px solid $placeholder-color;
+}
+
+.switchToggle:checked ~ .switchMarker {
+  transform: translateX(35px);
+  background-color: $accent-color-expense;
+  box-shadow: 0 0 10px $accent-color-expense;
+}
+
+.switchToggle:focus + .switchTrack,
+.switchToggle:active + .switchTrack {
+  border: 1px solid $placeholder-color;
+}
+
+.icon {
+  color: $text-color-on-accent;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 25px;
+  padding-bottom: 40px;
+  background-color: $text-color-on-accent;
+  margin-right: auto;
+  margin-left: auto;
+  margin: auto;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.label {
+  position: relative;
+  cursor: pointer;
+  color: $placeholder-color;
+  // width: 280px;
+}
+
+::placeholder {
+  font-size: 18px;
+}
+
+.input {
+  width: 280px;
+  border: none;
+  border-bottom: 1px solid $placeholder-color;
+  outline: none;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 40px;
+}
+
+.textarea {
+  resize: none;
+  padding-bottom: 30px;
+}
+
+.span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.textDiv {
+  width: 280px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.text {
+  font-family: $poppins-font;
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 40px;
+}
+
+.grey {
+  font-family: $montserrat-font;
+  font-weight: bold;
+  font-size: 16px;
+  color: $placeholder-color;
+}
+
+.addAccent {
+  // position: absolute;
+  color: $accent-light-color;
+}
+
+.expenseAccent {
+  // position: absolute;
+  color: $accent-color-expense;
+}
+
+.button {
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  outline: none;
+  background-color: inherit;
+}
+
+.buttonAdd,
+.buttonAdd:active {
+  background-color: $accent-light-color;
+  color: $text-color-on-accent;
+  border: 1px solid $accent-light-color;
+  margin-bottom: 20px;
+}
+
+.buttonAdd:hover,
+  // .enter:focus,
+  .buttonAdd:active {
+  background-color: $accent-deep-color;
+  border: 1px solid $accent-deep-color;
+}
+
+.buttonCancel {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 1px solid $accent-deep-color;
+  color: $accent-deep-color;
+}
+
+.buttonCancel:hover,
+  // .register:focus ,
+  .buttonCancel:active {
+  color: $accent-light-color;
+  border: 1px solid $accent-light-color;
+}
+
+.datetime {
+  font-size: 18px;
+  font-family: $montserrat-font;
+  font-size: normal;
+  border: none;
+  outline: none;
+}
+
+.datetimeInput {
+  padding-left: 30px;
+  padding-right: 10px;
+}
+
+// .select {
+//   width: 280px;
+//   padding-left: 30px;
+//   padding-bottom: 10px;
+//   padding-top: 10px;
+//   padding-right: 10px;
+//   margin-bottom: 40px;
+//   border: none;
+//   border-bottom: 1px solid $placeholder-color;
+//   outline: none;
+//   color: $headers-color;
+//   font-size: 18px;
+//   font-family: $montserrat-font;
+//   appearance: none;
+//   // z-index: 5;
+//   background-image: url('../../images/selectorAppearence.svg');
+//   background-repeat: no-repeat;
+//   background-position: 84% 48%;
+// }
+
+.select {
+  margin-bottom: 40px;
+  width: 280px;
+}
+
+.option {
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  color: $headers-color;
+  cursor: pointer;
+  font-family: $montserrat-font;
+}
+
+.selected {
+  font-family: $montserrat-font;
+  color: $placeholder-color;
+}
+
+.calendarIcon {
+  position: absolute;
+  top: 7px;
+  right: 40px;
+  color: $accent-deep-color;
+  transition-property: color;
+  transition-duration: 500ms;
+}
+
+.sumAndDate {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: $tablet) {
+  .mainDiv {
+    width: 540px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    border-radius: 20px;
+  }
+
+  .text {
+    font-size: 30px;
+  }
+
+  .sumAndDate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .sumInput {
+    width: 190px;
+    text-align: center;
+    padding-left: 0;
+    margin-right: 30px;
+  }
+
+  .datetimeInput {
+    width: 190px;
+    text-align: center;
+    padding-left: 20px;
+    padding-bottom: 8px;
+  }
+
+  .calendarIcon {
+    right: 40px;
+  }
+
+  .textarea {
+    resize: none;
+    padding-bottom: 5px;
+    width: 409px;
+  }
+
+  .select {
+    width: 409px;
+  }
+}

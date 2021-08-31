@@ -1,52 +1,34 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import routes from '../../routes/routes';
-// import authSelectors from "../../redux/auth/authSelectors.js";
-// import { useSelector } from 'react-redux';
+import './Header.scss';
+import authSelectors from '../../redux/auth/authSelectors';
+import { useSelector, useDispatch } from 'react-redux';
+import useSizeScreen from '../../utils/useSizeScreen';
+import { setExitModalOpen } from '../../redux/transactions/transOperations';
+import Container from '../Container';
 
-export default function Homepage() {
-  // const isAuthed = useSelector(authSelectors.isAuthed);
-  // console.dir(isAuthed);
+export default function Header() {
+  const dispatch = useDispatch();
+  const sizeScreen = useSizeScreen();
+  const name = useSelector(authSelectors.getUserName);
+
+  const openModal = () => {
+    dispatch(setExitModalOpen());
+  };
 
   return (
-    <div>
-      <div>
-        <p>HOMEPAGE</p>
-        <NavLink to={routes.homepage}>Home</NavLink>
-        <NavLink to={routes.login}>Login</NavLink>
-        <NavLink to={routes.register}>Register</NavLink>
-        <NavLink to={routes.homepage}>Exit</NavLink>
-      </div>
-    </div>
+    <header className="header">
+      <Container>
+        <div className="headerContainer">
+          <div className="headerLogo">
+            <h1 className="headerTitle">Wallet</h1>
+          </div>
+          <div className="userLogout">
+            <span className="userName">{name}</span>
+            <button className="buttonExit" type="button" onClick={openModal}>
+              {Number(sizeScreen) >= 768 && <span className="exit">Выйти</span>}
+            </button>
+          </div>
+        </div>
+      </Container>
+    </header>
   );
 }
-
-// не удаляйте комментарий плз
-
-// {
-/* <div>
-  {isAuthed ? (
-    <div>
-      <p>
-        HOMEPAGE <br />
-            you isAuthed
-          </p>
-      <NavLink to={routes.homepage}>Home</NavLink>
-      <NavLink to={routes.homepage}>Exit</NavLink>
-    </div>
-  ) : (
-      <div>
-        <p>
-          HOMEPAGE
-            <br /> you is Not Authed
-          </p>
-        <NavLink to={routes.homepage}>Home</NavLink>
-        <NavLink to={routes.login}>Login</NavLink>
-        <NavLink to={routes.register}>Register</NavLink>
-      </div>
-    )}
-</div>
-  ); */
-// }
-
-// не удаляйте комментарий плз

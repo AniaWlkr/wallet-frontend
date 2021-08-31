@@ -1,0 +1,73 @@
+@import '../../stylesheet//utils//vars.scss';
+@import '../../stylesheet//utils/common.scss';
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 300px;
+  width: 200px;
+  background-color: $text-color-on-accent;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 20px;
+}
+
+.text {
+  text-align: center;
+  font-family: $poppins-font;
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 40px;
+}
+
+.button {
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+  outline: none;
+  margin-bottom: 15px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.exit,
+.exit:active {
+  background-color: $accent-light-color;
+  color: $text-color-on-accent;
+  border: 1px solid $accent-light-color;
+  margin-bottom: 20px;
+}
+
+.close {
+  border: 1px solid $accent-deep-color;
+  color: $accent-deep-color;
+  background-color: $text-color-on-accent;
+}
+
+.exit:hover,
+.exit:active {
+  background-color: $accent-color-expense;
+  border: 1px solid $accent-color-expense;
+}
+
+.close:hover,
+.close:active {
+  color: $accent-light-color;
+  border: 1px solid $accent-light-color;
+}
+
+@media screen and (min-width: 768px) {
+  .mainDiv {
+    width: 300px;
+  }
+
+  .button {
+    width: 200px;
+    height: 50px;
+  }
+}

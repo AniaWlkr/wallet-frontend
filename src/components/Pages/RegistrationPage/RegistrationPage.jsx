@@ -1,18 +1,18 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import routes from '../../../routes/routes';
+// import { NavLink } from 'react-router-dom';
+// import routes from '../../../routes/routes';
 import RegistrationForm from '../../RegistrationForm';
+import styles from './RegistrationPage.module.scss';
+import ContainerForLoginAndRegistration from '../../ContainerForLoginAndRegistration';
 
 export default function RegistrationPage() {
   return (
-    <div>
-      <div>
-        <p>RegistrationPage</p>
-        <div>
-          <NavLink to={routes.homepage}>Home</NavLink>
-        </div>
+    <ContainerForLoginAndRegistration>
+      <div className={styles.sideBar}>
+        <p className={styles.financeApp}>Finance App</p>
       </div>
-      <RegistrationForm />
-    </div>
+      <div className={styles.formWraper}>
+        <RegistrationForm />
+      </div>
+    </ContainerForLoginAndRegistration>
   );
 }

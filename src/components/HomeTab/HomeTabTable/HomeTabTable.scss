@@ -1,0 +1,149 @@
+@import '../../../stylesheet/main.scss';
+.title {
+  padding: 16px 21px 15px 20px;
+  background-color: #fff;
+  border-radius: 30px;
+}
+.table {
+  display: block;
+  min-width: 688px;
+  @media screen and (min-width: $desktop) {
+    width: 100%;
+  }
+}
+.table-head {
+  display: block;
+
+  &_row {
+    padding: 16px 21px 15px 20px;
+    background-color: #fff;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+  }
+  &_data {
+    font-family: $montserrat-font;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: left;
+    &:nth-child(1) {
+      flex-basis: 72px;
+      margin-right: 10px;
+    }
+    &:nth-child(2) {
+      text-align: center;
+      flex-basis: 50px;
+      margin-right: 20px;
+    }
+    &:nth-child(3) {
+      flex-basis: 126px;
+      margin-right: 20px;
+    }
+    &:nth-child(4) {
+      flex-basis: 124px;
+      margin-right: 20px;
+    }
+    &:nth-child(5) {
+      flex-basis: 80px;
+      margin-right: 20px;
+      text-align: right;
+    }
+    &:nth-child(6) {
+      flex-basis: 75px;
+      text-align: right;
+    }
+  }
+}
+
+.table-body {
+  display: block;
+  &_row {
+    display: flex;
+    align-items: center;
+    min-height: 54px;
+
+    padding: 0px 21px 0px 20px;
+    &:not(:last-child) {
+      border-bottom: 1px solid #dcdcdf;
+      box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+    }
+  }
+  &_data {
+    font-family: $montserrat-font;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    &--income {
+      color: #24cca7;
+    }
+    &--spend {
+      color: #ff6596;
+    }
+
+    &:nth-child(1) {
+      flex-basis: 72px;
+      margin-right: 10px;
+    }
+    &:nth-child(2) {
+      text-align: center;
+      flex-basis: 50px;
+      margin-right: 20px;
+    }
+    &:nth-child(3) {
+      flex-basis: 126px;
+      margin-right: 20px;
+      text-align: left;
+    }
+    &:nth-child(4) {
+      text-align: left;
+      flex-basis: 124px;
+      margin-right: 20px;
+      text-align: left;
+    }
+    &:nth-child(5) {
+      margin-right: 20px;
+      flex-basis: 80px;
+      text-align: right;
+    }
+    &:nth-child(6) {
+      flex-basis: 75px;
+      text-align: right;
+    }
+    &:last-child {
+      position: relative;
+      // padding: 10px 0 0 10px;
+      // display: flex;
+    }
+  }
+  &_btn {
+    position: absolute;
+    min-width: 20px;
+    // display: block;
+    min-height: 20px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    left: 20px;
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
+    }
+
+    &--update {
+      background: url('../../../images/transaction/Vector.svg') no-repeat center;
+      background-size: 20px;
+      top: -22px;
+    }
+    &--delete {
+      // margin-left: 10px;
+      // margin-left: 90px;
+      background: url('../../../images/transaction/delete.svg') no-repeat center;
+      background-size: 20px;
+      top: 2px;
+    }
+  }
+}

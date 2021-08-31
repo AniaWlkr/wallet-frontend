@@ -1,0 +1,67 @@
+@import '../../../stylesheet//utils//vars.scss';
+@import '../../../stylesheet//utils//breakpoints.scss';
+@import '../../../stylesheet//utils/common.scss';
+
+.sideBar {
+  display: none;
+}
+
+@media screen and (min-width: $tablet) {
+  .sideBar {
+    display: flex;
+    background-image: url('../../../images/login/girlTabl.svg');
+    background-repeat: no-repeat;
+    background-size: 274px 250px;
+
+    height: 260px;
+    width: 540px;
+
+    margin-top: 60px;
+  }
+
+  .financeApp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 50px;
+
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.5;
+  }
+
+  .formWraper {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .sideBar {
+    margin-top: 153px;
+    margin-left: 66px;
+
+    background-image: url('../../../images/login/girlDesk.svg');
+    background-size: 452px 413px;
+
+    height: 500px;
+  }
+
+  .formWraper {
+    margin-top: 0;
+    width: 720px;
+    padding: 52px 85px 52px 95px;
+
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(50px);
+  }
+
+  .financeApp {
+    margin-right: 0;
+
+    align-items: flex-end;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,117 @@
+@import '../../stylesheet/main.scss';
+
+.header {
+  background-color: #fff;
+}
+
+.headerTitle {
+  font-family: $poppins-font;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 1.6;
+}
+
+.headerTitle::before {
+  content: url(../../images/wallet.svg);
+  padding-right: 25px;
+}
+
+.buttonExit {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonExit::before {
+  content: url(../../images/exit.svg);
+  padding-right: 10px;
+}
+
+.userName {
+  font-family: $montserrat-font;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  color: $placeholder-color;
+  padding-right: 15px;
+}
+
+@media screen and (min-width: $mobile) and (max-width: $mobileMax) {
+  .headerContainer {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: $tablet) and (max-width: $tabletMax) {
+  .headerContainer {
+    height: 80px;
+    display: flex;
+    align-items: center;
+  }
+
+  .headerTitle {
+    font-size: 30px;
+    line-height: 1.5;
+  }
+
+  .userLogout {
+    margin-left: 320px;
+  }
+
+  .userName {
+    border-right: 1px solid;
+  }
+
+  .buttonExit {
+    margin-left: 15px;
+  }
+
+  .exit {
+    font-family: $montserrat-font;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: $placeholder-color;
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .headerContainer {
+    height: 80px;
+    display: flex;
+    align-items: center;
+  }
+
+  .headerTitle {
+    font-size: 30px;
+    line-height: 1.5;
+  }
+
+  .userName {
+    border-right: 1px solid;
+  }
+
+  .userLogout {
+    margin-left: 750px;
+  }
+
+  .buttonExit {
+    margin-left: 15px;
+  }
+
+  .exit {
+    font-family: $montserrat-font;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: $placeholder-color;
+  }
+}
