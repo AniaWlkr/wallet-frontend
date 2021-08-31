@@ -4,6 +4,7 @@ const getUserName = state => state.auth.authUser.name;
 const userToken = state => state.auth.token;
 const authError = state => state.auth.error;
 const tokenExpireTime = state => state.auth.tokenExpireTime;
+const isRegistered = state => state.auth.isRegistered;
 
 export default {
   isAuthed,
@@ -12,4 +13,5 @@ export default {
   userToken,
   authError,
   tokenExpireTime,
+  isRegistered,
 };
