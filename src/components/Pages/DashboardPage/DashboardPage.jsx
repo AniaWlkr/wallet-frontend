@@ -50,7 +50,7 @@ export default function DashboardPage() {
     await getCategories();
     await getUser();
     setLoading(false);
-  }, []);
+  }, [dispatch]);
 
   const isTransactionModalOpenSelector = useSelector(
     transSelectors.isTransactionModalOpen,
