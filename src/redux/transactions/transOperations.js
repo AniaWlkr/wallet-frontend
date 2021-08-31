@@ -57,6 +57,7 @@ export const addTransactionOperation =
     dispatch(addTransactionRequest());
     return addTransaction(newTransaction, token)
       .then(response => {
+        // console.dir(`response: ${response}`);
         if (response.status === 201) {
           const transaction = response.data.transaction;
           dispatch(addTransactionSuccess(transaction));

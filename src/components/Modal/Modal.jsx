@@ -33,13 +33,23 @@ export default function Modal({ component: Component }) {
   return (
     <div>
       {isTransactionModalOpen || isExitModalOpen ? (
-        // <div className={styles.modal}>
-        <div
-          onKeyDown={closeByEsc}
-          onClick={closeModal}
-          className={styles.overlay}
-        >
+        <div className={styles.modal}>
+          <div
+            onKeyDown={closeByEsc}
+            onClick={closeModal}
+            className={styles.overlay}
+          ></div>
           <div className={styles.content}>
+            {' '}
+            <button
+              onClick={closeModal}
+              type="button"
+              className={styles.button}
+            >
+              <span className={styles.cross}>
+                <CloseSharpIcon />
+              </span>
+            </button>
             <Component />
           </div>
           <button onClick={closeModal} type="button" className={styles.button}>

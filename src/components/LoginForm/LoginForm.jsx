@@ -28,7 +28,7 @@ export default function LoginForm() {
   };
 
   const messages = {
-    required: 'Make sure to enter the field value)',
+    required: 'Make sure to enter the field value',
     email: 'Enter valid email address, please',
     min: 'Too small',
     max: 'Too big',

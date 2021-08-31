@@ -70,6 +70,7 @@ input:-webkit-autofill:active {
   padding-bottom: 10px;
   padding-top: 10px;
   margin-bottom: 40px;
+  font-size: 18px;
 }
 
 .inputRepeat {
@@ -135,8 +136,44 @@ input:-webkit-autofill:active {
 }
 
 .labelsDiv {
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+// .labelsDiv:after {
+//   content: '';
+//   width: 280px;
+//   height: 5px;
+//   border-radius: 8px;
+//   background-color: $accent-light-color;
+// }
+
+.formFilled {
+  position: absolute;
+  bottom: 17px;
+  left: 0;
+  padding: 3px;
+  // width: 280px;
+  height: 5px;
+  border-radius: 8px;
+  background-color: $accent-light-color;
+}
+
+.OnlyOne {
+  width: 70px;
+}
+
+.OnlyTwo {
+  width: 140px;
+}
+
+.OnlyThree {
+  width: 210px;
+}
+
+.OnlyFour {
+  width: 279px;
 }
 
 @media screen and (min-width: 768px) {
@@ -174,6 +211,22 @@ input:-webkit-autofill:active {
 
   .button {
     width: 300px;
+  }
+
+  .OnlyOne {
+    width: 100px;
+  }
+
+  .OnlyTwo {
+    width: 200px;
+  }
+
+  .OnlyThree {
+    width: 300px;
+  }
+
+  .OnlyFour {
+    width: 409px;
   }
 }
 

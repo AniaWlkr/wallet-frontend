@@ -1,21 +1,21 @@
 @import '../../stylesheet//utils//vars.scss';
 
-// .modal {
-// display: flex;
-// align-items: center;
-// justify-content: center;
-// position: fixed;
-// top: 0;
-// left: 0;
-// width: 100%;
-// height: 100%;
-// opacity: 0;
-// pointer-events: none;
-// transition-property: opacity;
-// transition-duration: 500ms;
-// transform: scale(1);
-// z-index: 99;
-// }
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // opacity: 0;
+  // pointer-events: none;
+  transition-property: opacity;
+  transition-duration: 500ms;
+  // transform: scale(1);
+  z-index: 99;
+}
 
 // .isOpen {
 //   opacity: 1;
@@ -34,17 +34,13 @@
 }
 
 .content {
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: flex-start;
-  // margin-right: auto;
-  // margin-left: auto;
+  // width: 300px;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: baseline;
+  margin-right: auto;
+  margin-left: auto;
 
   z-index: 99;
   transition-property: transform;
@@ -59,10 +55,9 @@
 
 .button {
   position: absolute;
-  // top: 0px;
-  // right: 0px;
-  top: 20px;
-  right: 20px;
+
+  top: 5px;
+  right: 5px;
 
   cursor: pointer;
   outline: none;
@@ -78,4 +73,15 @@
 
 .cross:hover {
   color: $accent-light-color;
+}
+
+@media screen and (min-width: 768px) {
+  // .content {
+  //   max-width: 540px;
+  // }
+
+  .button {
+    top: 10px;
+    right: 10px;
+  }
 }
