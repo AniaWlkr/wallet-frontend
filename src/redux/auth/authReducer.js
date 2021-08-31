@@ -30,6 +30,13 @@ const token = createReducer(null, {
   [actions.loginError]: () => null,
 });
 
+const tokenExpireTime = createReducer(null, {
+  [actions.loginSuccess]: (_, { payload }) => payload.accessTokenExpireAt,
+  [actions.getCurrentUserError]: () => null,
+  [actions.logoutSuccess]: () => null,
+  [actions.loginError]: () => null,
+});
+
 const error = createReducer(null, {
   [actions.registerError]: (_, { payload }) => payload,
   [actions.loginError]: (_, { payload }) => payload,
@@ -44,4 +51,5 @@ export default combineReducers({
   isAuth,
   token,
   error,
+  tokenExpireTime,
 });

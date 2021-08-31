@@ -25,7 +25,7 @@ const registerUser = user => dispatch => {
   axios
     .post('/api/users/signup', user)
     .then(answer => {
-      console.dir(answer);
+      // console.dir(answer);
       if (answer.data.code === 201) {
         dispatch(actions.registerSuccess(answer.data.data.user));
         alert({
@@ -65,6 +65,7 @@ const loginUser = user => dispatch => {
   axios
     .post('/api/users/login', user)
     .then(answer => {
+      // console.log(answer);
       if (answer.data.code === 200) {
         token.set(answer.data.accessToken);
         localStorage.setItem('refreshToken', answer.data.data.refreshToken);
@@ -76,7 +77,7 @@ const loginUser = user => dispatch => {
       }
     })
     .catch(error => {
-      console.dir(error);
+      // console.dir(error);
       if (!error.response) {
         dispatch(actions.loginError(error.message));
         alert({
@@ -112,7 +113,11 @@ const loginUser = user => dispatch => {
     });
 };
 
-const logoutUser = () => dispatch => {
+const logoutUser = () => (dispatch, getState) => {
+  const {
+    auth: { token: persistedToken },
+  } = getState();
+  token.set(persistedToken);
   // const token = localStorage.getItem('wallet-token');
   // if (!token) {
   //   return console.log('no token');
@@ -127,21 +132,25 @@ const logoutUser = () => dispatch => {
   return axios
     .post('/api/users/logout')
     .then(() => {
-      token.unset();
-      console.log('clear refreshToken');
-      localStorage.setItem('refreshToken', '');
+      // console.log('clear refreshToken');
+
       dispatch(actions.logoutSuccess());
       alert({
         text: `Logout success!`,
       });
     })
     .catch(error => {
+      console.log(error);
       if (error) {
         dispatch(actions.logoutError(error));
       }
       alert({
         text: `${error.response.data.message}`,
       });
+    })
+    .finally(() => {
+      token.unset();
+      localStorage.setItem('refreshToken', '');
     });
 };
 
@@ -154,7 +163,7 @@ const getCurrentUser = () => (dispatch, getState) => {
 
   // check if both tokens are null
   if (!persistedToken) {
-    console.log('no token');
+    // console.log('no token');
     return dispatch(actions.getCurrentUserError('There is no valid token'));
   }
 
