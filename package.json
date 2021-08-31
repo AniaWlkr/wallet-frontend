@@ -45,7 +45,9 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint": "eslint --ext .jsx --ext .js",
-    "lint:fix": "eslint --ext .jsx --ext .js --fix --fix-type suggestion"
+    "lint:fix": "eslint --ext .jsx --ext .js --fix --fix-type suggestion",
+    "predeploy": "npm run build",
+    "deploy": "netlify deploy -p"
   },
   "eslintConfig": {
     "extends": [
@@ -79,6 +81,7 @@
     "eslint-plugin-react": "^7.24.0",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
+    "netlify-cli": "^6.8.0",
     "prettier": "^2.3.2",
     "prop-types": "^15.7.2"
   },

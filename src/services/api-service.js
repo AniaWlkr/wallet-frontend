@@ -1,10 +1,20 @@
 import axios from 'axios';
-// axios.defaults.baseURL =
-//   'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
+import rates from './rates.json';
 
 const getCurrencyRates = () =>
   axios
-    .get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
-    .then(response => response.data);
+    .get('https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11')
+    .then(response => {
+      console.log('response', response);
+      return response.data;
+    })
+    .catch(err => {
+      let errData = err;
+      if (err instanceof Error) {
+        errData = err.res;
+      }
+      console.log(errData);
+      return rates;
+    });
 
 export default { getCurrencyRates };
