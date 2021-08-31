@@ -104,9 +104,8 @@
   padding-top: 25px;
   padding-bottom: 40px;
   background-color: $text-color-on-accent;
-  margin-right: auto;
-  margin-left: auto;
-  margin: auto;
+  min-width: 320px;
+  // height: 100vh;
 }
 
 input:-webkit-autofill,
@@ -236,26 +235,6 @@ input::-webkit-inner-spin-button {
   padding-left: 30px;
   padding-right: 10px;
 }
-
-// .select {
-//   width: 280px;
-//   padding-left: 30px;
-//   padding-bottom: 10px;
-//   padding-top: 10px;
-//   padding-right: 10px;
-//   margin-bottom: 40px;
-//   border: none;
-//   border-bottom: 1px solid $placeholder-color;
-//   outline: none;
-//   color: $headers-color;
-//   font-size: 18px;
-//   font-family: $montserrat-font;
-//   appearance: none;
-//   // z-index: 5;
-//   background-image: url('../../images/selectorAppearence.svg');
-//   background-repeat: no-repeat;
-//   background-position: 84% 48%;
-// }
 
 .select {
   margin-bottom: 40px;
