@@ -39,10 +39,10 @@ const registerUser = user => dispatch => {
       //   dispatch(actions.registerError(error.response.data.message));
       // }
       if (errorCodesArray.includes(error.response.data.code)) {
-        dispatch(actions.registerError(error.response.data.message));
         alert({
           text: `${error.response.data.message}`,
         });
+        return dispatch(actions.registerError(error.response.data.message));
       }
       // if (error.response.data.code === 429) {
       //   dispatch(actions.registerError(error.response.data.message));
@@ -79,11 +79,10 @@ const loginUser = user => dispatch => {
     .catch(error => {
       // console.dir(error);
       if (!error.response) {
-        dispatch(actions.loginError(error.message));
         alert({
           text: `${error.message}`,
         });
-        return;
+        return dispatch(actions.loginError(error.message));
       }
       // if (error.response.data.code === 400) {
       //   dispatch(actions.loginError(error.response.data.message));
@@ -92,10 +91,10 @@ const loginUser = user => dispatch => {
       //   });
       // }
       if (errorCodesArray.includes(error.response.data.code)) {
-        dispatch(actions.loginError(error.response.data.message));
         alert({
           text: `${error.response.data.message}`,
         });
+        return dispatch(actions.loginError(error.response.data.message));
       }
       // if (error.response.data.code === 429) {
       //   dispatch(actions.loginError(error.response.data.message));

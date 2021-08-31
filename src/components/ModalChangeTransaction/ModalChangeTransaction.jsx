@@ -16,6 +16,7 @@ const customStyles = {
     ...provided,
     outline: 'none',
     borderColor: 'none',
+    marginTop: 40,
   }),
   control: (provided, state) => ({
     ...provided,
