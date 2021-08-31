@@ -21,12 +21,16 @@ const Currency = () => {
     apiService
       .getCurrencyRates()
       .then(data => {
+        console.log('getRates - Data in currency -> data', data);
+
         setCurrencyRates(data);
         setIsLoading(false);
         setCurrentDate(moment().format('MMM Do YY'));
         setLocalStorage(currencyRates, currentDate);
       })
       .catch(err => {
+        console.log('getRates Error -> err', err);
+
         const currencyFromLocalStorage = JSON.parse(
           localStorage.getItem('currency'),
         );
