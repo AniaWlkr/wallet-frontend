@@ -1,14 +1,13 @@
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Loader from 'react-loader-spinner';
 import Chart from './Chart';
 import Table from './Table';
 import transSelectors from '../../redux/transactions/transSelectors';
-import { getTransactionsOperation } from '../../redux/transactions/transOperations';
 import financeSelectors from '../../redux/finance/financeSelectors';
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { getTransactionsOperation } from '../../redux/transactions/transOperations';
 import { normalizedSum } from '../../utils/normalizedSum';
 import style from './DiagramTab.module.scss';
-// import { totalFinanceData } from './data/financeData';
-// import { monthOptions, yearOptions } from './data/selectorsData';
 import { monthOptions, yearOptions } from '../../utils/helpers';
 
 export default function DiagramTab() {
@@ -19,6 +18,7 @@ export default function DiagramTab() {
   const [selectMonth, setSelectMonth] = useState(currentMonth);
   const currentYear = new Date().getFullYear();
   const [selectYear, setSelectYear] = useState(currentYear);
+  const loading = useSelector(transSelectors.getLoading);
 
   useEffect(() => {
     dispatch(getTransactionsOperation(selectMonth, selectYear));
@@ -112,11 +112,21 @@ export default function DiagramTab() {
     <div className={style.wrapper}>
       <h2 className={style.tabTitle}>Статистика</h2>
       <div className={style.diagramWrapper}>
-        {financeData.length > 0 ? (
-          <Chart data={data} totalBalance={currentBalanse} />
-        ) : (
-          <h3 className={style.noTrans}>У Вас нет транзакций в этом месяце</h3>
-        )}
+        <div className={style.chartWrapper}>
+          {loading ? (
+            <Loader type="Rings" color="#6E78E8" height={280} width={280} />
+          ) : (
+            <>
+              {financeData.length > 0 ? (
+                <Chart data={data} totalBalance={currentBalanse} />
+              ) : (
+                <h3 className={style.noTrans}>
+                  У Вас нет транзакций в этом месяце
+                </h3>
+              )}
+            </>
+          )}
+        </div>
         <Table
           financeData={financeData}
           totalFinanceData={totalFinanceData}

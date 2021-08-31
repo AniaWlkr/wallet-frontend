@@ -15,24 +15,18 @@ export default function Table({
   onSelectMonth,
   onSelectYear,
 }) {
-  /* methods to selectors */
-  // const changeMonth = month => console.log(month);
-  // const changeYear = year => console.log(year);
-
   return (
     <div className="tableWrapper">
       <div className="tableSelectors">
         <div className="firstSelectorWrapper">
           <Selector
             options={monthOptions}
-            // initialState={'Месяц'}
             initialState={MONTH_INITIAL_STATE}
             changeSelector={onSelectMonth}
           />
         </div>
         <Selector
           options={yearOptions}
-          // initialState={'Год'}
           initialState={YEAR_INITIAL_STATE}
           className="firstSelector"
           changeSelector={onSelectYear}
