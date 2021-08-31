@@ -52,8 +52,14 @@ export default function Modal({ component: Component }) {
             </button>
             <Component />
           </div>
+          <button onClick={closeModal} type="button" className={styles.button}>
+            <span className={styles.cross}>
+              <CloseSharpIcon />
+            </span>
+          </button>
         </div>
-      ) : null}
+      ) : // </div>
+      null}
     </div>
   );
 }
