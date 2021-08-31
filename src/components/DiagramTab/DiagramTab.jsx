@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Loader from 'react-loader-spinner';
+import Loader from '../Loader';
 import Chart from './Chart';
 import Table from './Table';
 import transSelectors from '../../redux/transactions/transSelectors';
