@@ -2,6 +2,7 @@ import {
   getTransactions,
   addTransaction,
   deleteTransaction,
+  editTransaction,
 } from '../../utils/requests';
 import {
   fetchTransactionsRequest,
@@ -10,6 +11,9 @@ import {
   addTransactionRequest,
   addTransactionSuccess,
   addTransactionError,
+  editTransactionRequest,
+  editTransactionSuccess,
+  editTransactionError,
   // deleteTransactionRequest,
   deleteTransactionSuccess,
   deleteTransactionError,
@@ -18,6 +22,7 @@ import {
   openExitModal,
   closeExitModal,
 } from './transActions';
+const errorCodesArray = [400, 401, 409, 429, 500];
 
 export const getTransactionsOperation = () => (dispatch, getStore) => {
   const {
@@ -52,6 +57,7 @@ export const addTransactionOperation =
     dispatch(addTransactionRequest());
     return addTransaction(newTransaction, token)
       .then(response => {
+        // console.dir(`response: ${response}`);
         if (response.status === 201) {
           const transaction = response.data.transaction;
           dispatch(addTransactionSuccess(transaction));
@@ -59,29 +65,47 @@ export const addTransactionOperation =
         }
         throw response;
       })
-      .catch(err => {
-        console.dir(err);
-        let errData = err;
-        if (err instanceof Error) {
-          errData = err.response;
+      .catch(error => {
+        if (errorCodesArray.includes(error.response.data.code)) {
+          alert({
+            text: `${error.response.data.message}`,
+          });
+          return dispatch(addTransactionError(error.response.data.message));
         }
-        dispatch(addTransactionError(errData));
+        return dispatch(addTransactionError(error));
       });
   };
 
-export const deleteTransactionOperation = id => (dispatch, getState) => {
+export const deleteTransactionOperation = id => (dispatch, getStore) => {
   const {
-    session: {
-      user: { token },
-    },
-  } = getState();
+    auth: { token },
+  } = getStore();
 
   if (!id) return;
 
   deleteTransaction(id, token)
-    .then(() => dispatch(deleteTransactionSuccess()))
+    .then(() => dispatch(deleteTransactionSuccess(id)))
     .catch(() => dispatch(deleteTransactionError()));
 };
+
+export const editTransactionOperation =
+  (id, updatedTransaction) => (dispatch, getStore) => {
+    const {
+      auth: { token },
+    } = getStore();
+
+    if (!id) return;
+
+    dispatch(editTransactionRequest());
+
+    return editTransaction(id, token, updatedTransaction)
+      .then(response => {
+        return dispatch(editTransactionSuccess(response.data.data.result));
+      })
+      .catch(error => {
+        return dispatch(editTransactionError(error));
+      });
+  };
 
 export const setTransactionModalOpen = () => dispatch => {
   dispatch(openTransactionModal());

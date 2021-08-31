@@ -10,4 +10,8 @@ export default {
   TRANSACTIONS_DELETE_REQUEST: 'transactions/deleteTransactionsRequest',
   TRANSACTIONS_DELETE_SUCCESS: 'transactions/deleteTransactionsSuccess',
   TRANSACTIONS_DELETE_ERROR: 'transactions/deleteTransactionsError',
+
+  TRANSACTIONS_EDIT_REQUEST: 'transactions/editTransactionsRequest',
+  TRANSACTIONS_EDIT_SUCCESS: 'transactions/editTransactionsSuccess',
+  TRANSACTIONS_EDIT_ERROR: 'transactions/editTransactionsError',
 };

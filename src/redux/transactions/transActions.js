@@ -29,6 +29,14 @@ export const deleteTransactionError = createAction(
   types.TRANSACTIONS_DELETE_ERROR,
 );
 
+export const editTransactionRequest = createAction(
+  types.TRANSACTIONS_EDIT_REQUEST,
+);
+export const editTransactionSuccess = createAction(
+  types.TRANSACTIONS_EDIT_SUCCESS,
+);
+export const editTransactionError = createAction(types.TRANSACTIONS_EDIT_ERROR);
+
 export const openTransactionModal = createAction('openTransactionModal');
 export const closeTransactionModal = createAction('closeTransactionModal');
 
