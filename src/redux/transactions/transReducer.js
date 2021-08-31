@@ -26,7 +26,7 @@ const items = createReducer([], {
   [deleteTransactionSuccess]: (state, { payload }) =>
     state.filter(transaction => transaction._id !== payload),
   [editTransactionSuccess]: (state, { payload }) =>
-    state.map(transaction => {
+    state.map(transaction =>
       transaction._id === payload._id ? payload : transaction,
     ),
   [actions.logoutSuccess]: () => [],
