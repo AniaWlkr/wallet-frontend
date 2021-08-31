@@ -4,7 +4,6 @@ import {
   setTransactionModalClose,
   addTransactionOperation,
 } from '../../redux/transactions/transOperations';
-// import { getCategoriesOperation } from '../../redux/categories/categoriesOperations';
 import selectors from '../../redux/categories/categoriesSelectors';
 import styles from './ModalAddTransaction.module.scss';
 import AddSharpIcon from '@material-ui/icons/AddSharp';
@@ -91,7 +90,7 @@ export default function ModallAddTransaction() {
   const [checkbox, setCheckbox] = useState(true);
   const [categoryId, setCategoryId] = useState('61222863fd194a14a7cfe3cf');
   const [category, setCategory] = useState('Выберите категорию');
-  const [sum, setSum] = useState(null);
+  const [sum, setSum] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [textarea, setTextarea] = useState('');
 
@@ -109,29 +108,15 @@ export default function ModallAddTransaction() {
   };
 
   const handleSum = e => {
-    // if(e.target.value === '0')
     setSum(e.target.value);
   };
 
   const handleDate = e => {
     setSelectedDate(String(e._d));
-
-    // const [day, mounth, dateNumber, year, time, zone] = date.split(' ');
-
-    // const dateObj = {
-    //   day,
-    //   mounth,
-    //   dateNumber,
-    //   year,
-    //   time,
-    //   zone,
-    // };
-    // console.log(dateObj);
   };
 
   const handleTextarea = e => {
     setTextarea(e.target.value);
-    // console.log(e.target.value);
   };
 
   const closeModal = () => {
@@ -151,56 +136,19 @@ export default function ModallAddTransaction() {
       required: 'Make sure to enter the field value',
     };
 
-    //   const transaction = () => {
-    //  !checkbox ?
-    //   }
-
-    // const transaction = {
-    //   transType: `${!checkbox ? 'spend' : 'income'}`,
-    //   sum,
-    //   date: selectedDate,
-    //   comment: textarea,
-    // };
-
-    // !checkbox ? (transaction.categoryId = categoryId) : null;
-
     const makeTransaction = () => {
-      if (!checkbox && !textarea) {
-        return {
-          transType: 'spend',
-          sum,
-          date: selectedDate,
-          //  comment: textarea,
-          categoryId: categoryId,
-        };
-      }
-      if (checkbox && !textarea) {
-        return {
-          transType: 'income',
-          sum,
-          date: selectedDate,
-          categoryId: '612b739e357da905903ec848',
-          //  comment: textarea,
-        };
-      }
-      if (!checkbox && textarea) {
-        return {
-          transType: 'spend',
-          sum,
-          date: selectedDate,
-          comment: textarea,
-          categoryId: categoryId,
-        };
-      }
-      if (checkbox && textarea) {
-        return {
-          transType: 'income',
-          sum,
-          date: selectedDate,
-          comment: textarea,
-          categoryId: '612b739e357da905903ec848',
-        };
-      }
+      const transType = checkbox ? 'income' : 'spend';
+      const selectedCategoryId =
+        transType === 'income' ? '612b739e357da905903ec848' : categoryId;
+      let newTransaction = {
+        sum,
+        date: selectedDate,
+        transType,
+        categoryId: selectedCategoryId,
+      };
+      if (textarea) newTransaction = { ...newTransaction, comment: textarea };
+      console.log('makeTransaction -> newTransaction', newTransaction);
+      return newTransaction;
     };
 
     validate({ sum, selectedDate, category }, rules, messages)
@@ -213,13 +161,9 @@ export default function ModallAddTransaction() {
       })
       .catch(error => {
         console.dir(error);
-        alert({
-          text: `${error[0].message}`,
-        });
       });
 
     const transaction = makeTransaction();
-    console.log(transaction);
   };
 
   const options = allCategories.map(category => ({
