@@ -20,18 +20,13 @@ import {
 
 const items = createReducer([], {
   [fetchTransactionsSuccess]: (_, { payload }) => payload,
-  [addTransactionSuccess]: (state, { payload }) => [...state.items, payload],
+  [addTransactionSuccess]: (state, { payload }) => [...state, payload],
   [deleteTransactionSuccess]: (state, { payload }) =>
     state.filter(transaction => transaction._id !== payload),
   [editTransactionSuccess]: (state, { payload }) =>
-    state.map(transaction => {
-      console.log(
-        'transaction._id === payload._id',
-        transaction._id,
-        payload._id,
-      );
-      return transaction._id === payload._id ? payload : transaction;
-    }),
+    state.map(transaction =>
+      transaction._id === payload._id ? payload : transaction,
+    ),
 });
 
 const loading = createReducer(false, {

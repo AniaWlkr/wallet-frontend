@@ -98,8 +98,9 @@ const TransactionEdit = ({ toggleModal, transactionId }) => {
   useEffect(() => {
     getCategories();
     setSum(initialTransaction?.sum);
-    setComment(initialTransaction?.comment);
+    setComment(initialTransaction?.comment ?? '');
     setCategory(initialTransaction?.categoryId.categoryName);
+    setCategoryId(initialTransaction?.categoryId);
   }, []);
 
   const handleChange = event => {
@@ -111,7 +112,6 @@ const TransactionEdit = ({ toggleModal, transactionId }) => {
       case 'comment':
         setComment(value);
         break;
-
       default:
         console.error('This field is not defined');
     }
@@ -120,12 +120,15 @@ const TransactionEdit = ({ toggleModal, transactionId }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
+    const selectedCategoryId =
+      transType === 'income' ? '612b739e357da905903ec848' : categoryId;
     let updatedTransaction = {
       sum,
-      categoryId,
+      categoryId: selectedCategoryId,
     };
     if (comment) updatedTransaction = { ...updatedTransaction, comment };
 
+    console.log('TransactionEdit -> updatedTransaction', updatedTransaction);
     dispatch(editTransactionOperation(transactionId, updatedTransaction));
     toggleModal();
 
