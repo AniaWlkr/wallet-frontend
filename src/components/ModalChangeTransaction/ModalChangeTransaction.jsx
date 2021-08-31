@@ -100,7 +100,7 @@ const TransactionEdit = ({ toggleModal, transactionId }) => {
     setSum(initialTransaction?.sum);
     setComment(initialTransaction?.comment ?? '');
     setCategory(initialTransaction?.categoryId.categoryName);
-    setCategoryId(initialTransaction?.categoryId);
+    setCategoryId(initialTransaction?.categoryId._id);
   }, []);
 
   const handleChange = event => {

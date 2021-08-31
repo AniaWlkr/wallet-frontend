@@ -68,6 +68,7 @@ export const deleteTransactionOperation = id => (dispatch, getStore) => {
 
 export const editTransactionOperation =
   (id, updatedTransaction) => (dispatch, getStore) => {
+    console.log('id, updatedTransaction', id, updatedTransaction);
     const {
       auth: { token },
     } = getStore();
