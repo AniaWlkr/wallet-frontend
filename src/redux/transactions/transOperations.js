@@ -40,11 +40,13 @@ export const getTransactionsOperation = () => (dispatch, getStore) => {
       }
     })
     .catch(err => {
-      let errData = err;
-      if (err instanceof Error) {
-        errData = err.response;
+      if (errorCodesArray.includes(err.response.data.code)) {
+        alert({
+          text: `${err.response.data.message}`,
+        });
+        return dispatch(fetchTransactionsError(err.response.data.message));
       }
-      dispatch(fetchTransactionsError(errData));
+      dispatch(fetchTransactionsError(err));
     });
 };
 
@@ -103,6 +105,12 @@ export const editTransactionOperation =
         return dispatch(editTransactionSuccess(response.data.data.result));
       })
       .catch(error => {
+        if (errorCodesArray.includes(error.response.data.code)) {
+          alert({
+            text: `${error.response.data.message}`,
+          });
+          return dispatch(editTransactionError(error.response.data.message));
+        }
         return dispatch(editTransactionError(error));
       });
   };

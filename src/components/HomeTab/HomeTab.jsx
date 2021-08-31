@@ -25,9 +25,11 @@ export default function HomeTab({ style = 'otherScreenSize' }) {
 
   const toggleEditModal = useCallback(() => {
     setShowEditModal(prevShowModal => !prevShowModal);
+    document.body.classList.toggle('no-scroll');
   }, []);
   const toggleDeleteModal = useCallback(() => {
     setShowDeleteModal(prevShowModal => !prevShowModal);
+    document.body.classList.toggle('no-scroll');
   }, []);
 
   const btnHandleClick = (operation, idTransaction) => {
