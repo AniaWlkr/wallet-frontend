@@ -32,22 +32,10 @@ export const getTransactionsOperation = () => (dispatch, getStore) => {
   dispatch(fetchTransactionsRequest());
   return getTransactions(token)
     .then(response => {
-      if (response.data.status === 'success') {
-        const transactions = [...response.data.result.docs];
-        dispatch(fetchTransactionsSuccess(transactions));
-      } else {
-        throw new Error(response);
-      }
+      const transactions = [...response.data.result.docs];
+      dispatch(fetchTransactionsSuccess(transactions));
     })
-    .catch(err => {
-      if (errorCodesArray.includes(err.response.data.code)) {
-        alert({
-          text: `${err.response.data.message}`,
-        });
-        return dispatch(fetchTransactionsError(err.response.data.message));
-      }
-      dispatch(fetchTransactionsError(err));
-    });
+    .catch(() => dispatch(fetchTransactionsError()));
 };
 
 export const addTransactionOperation =
@@ -59,23 +47,11 @@ export const addTransactionOperation =
     dispatch(addTransactionRequest());
     return addTransaction(newTransaction, token)
       .then(response => {
-        // console.dir(`response: ${response}`);
-        if (response.status === 201) {
-          const transaction = response.data.transaction;
-          dispatch(addTransactionSuccess(transaction));
-          return transaction;
-        }
-        throw response;
+        const transaction = response.data.data;
+        dispatch(addTransactionSuccess(transaction));
+        return transaction;
       })
-      .catch(error => {
-        if (errorCodesArray.includes(error.response.data.code)) {
-          alert({
-            text: `${error.response.data.message}`,
-          });
-          return dispatch(addTransactionError(error.response.data.message));
-        }
-        return dispatch(addTransactionError(error));
-      });
+      .catch(() => dispatch(addTransactionError()));
   };
 
 export const deleteTransactionOperation = id => (dispatch, getStore) => {
@@ -102,13 +78,12 @@ export const editTransactionOperation =
 
     return editTransaction(id, token, updatedTransaction)
       .then(response => {
+        console.log('response.data.data.result', response.data.data.result);
         return dispatch(editTransactionSuccess(response.data.data.result));
       })
       .catch(error => {
+        console.dir('error', error);
         if (errorCodesArray.includes(error.response.data.code)) {
-          alert({
-            text: `${error.response.data.message}`,
-          });
           return dispatch(editTransactionError(error.response.data.message));
         }
         return dispatch(editTransactionError(error));

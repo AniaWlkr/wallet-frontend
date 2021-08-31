@@ -27,13 +27,8 @@ const items = createReducer([], {
     state.filter(transaction => transaction._id !== payload),
   [editTransactionSuccess]: (state, { payload }) =>
     state.map(transaction => {
-      console.log(
-        'transaction._id === payload._id',
-        transaction._id,
-        payload._id,
-      );
-      return transaction._id === payload._id ? payload : transaction;
-    }),
+      transaction._id === payload._id ? payload : transaction,
+    ),
   [actions.logoutSuccess]: () => [],
 });
 
