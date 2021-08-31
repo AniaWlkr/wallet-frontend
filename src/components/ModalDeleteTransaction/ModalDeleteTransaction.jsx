@@ -26,7 +26,7 @@ const TransactionDelete = ({ toggleModal, transactionId }) => {
 
   return (
     <div className={styles.mainDiv}>
-      <p className={styles.text}>Изменить транзакцию</p>
+      <p className={styles.text}>Удалить транзакцию</p>
       <div className={styles.transType}>
         <p className={transType === 'income' ? styles.income : styles.spend}>
           {transType === 'income' ? 'Доход' : 'Расход'}
