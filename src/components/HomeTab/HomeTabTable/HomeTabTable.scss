@@ -59,6 +59,8 @@
 
 .table-body {
   display: block;
+  max-height: 60vh;
+  overflow: scroll;
   &_row {
     display: flex;
     align-items: center;
@@ -145,5 +147,9 @@
       background-size: 20px;
       top: 2px;
     }
+  }
+  @media screen and (min-width: $desktop) {
+    max-height: 80vh;
+    overflow: scroll;
   }
 }
