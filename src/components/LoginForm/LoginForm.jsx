@@ -10,7 +10,6 @@ import styles from './LoginForm.module.scss';
 import { alert, defaults } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
-// import ContainerForLoginAndRegistration from '../ContainerForLoginAndRegistration';
 
 defaults.delay = '3000';
 defaults.width = '280px';
@@ -62,7 +61,6 @@ export default function LoginForm() {
         setPassword('');
       })
       .catch(error => {
-        // console.log(error);
         if (error[0].field === 'email') {
           setValidEmail(false);
           setEmail('');
@@ -81,7 +79,6 @@ export default function LoginForm() {
   };
 
   return (
-    // <ContainerForLoginAndRegistration>
     <div className={styles.mainDiv}>
       <form className={styles.form} onSubmit={userToLogin}>
         <div>
@@ -136,6 +133,5 @@ export default function LoginForm() {
         </NavLink>
       </form>
     </div>
-    // </ContainerForLoginAndRegistration>
   );
 }

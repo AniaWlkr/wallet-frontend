@@ -2,10 +2,6 @@
 @import '../../stylesheet//utils/common.scss';
 @import '../../stylesheet/utils/breakpoints.scss';
 
-// * {
-//   border: 1px solid salmon;
-// }
-
 .form {
   display: flex;
   flex-direction: column;
@@ -15,7 +11,6 @@
 .switch {
   display: flex;
   align-items: center;
-  // margin-bottom: 40px;
 }
 
 .switchControl {
@@ -47,7 +42,6 @@
   top: -3px;
   width: 80px;
   height: 40px;
-  // color: transparent;
   border: 1px solid $placeholder-color;
   user-select: none;
   background-color: $text-color-on-accent;
@@ -105,7 +99,6 @@
   padding-bottom: 40px;
   background-color: $text-color-on-accent;
   min-width: 320px;
-  // height: 100vh;
 }
 
 input:-webkit-autofill,
@@ -125,7 +118,6 @@ input::-webkit-inner-spin-button {
   position: relative;
   cursor: pointer;
   color: $placeholder-color;
-  // width: 280px;
 }
 
 ::placeholder {
@@ -177,12 +169,10 @@ input::-webkit-inner-spin-button {
 }
 
 .addAccent {
-  // position: absolute;
   color: $accent-light-color;
 }
 
 .expenseAccent {
-  // position: absolute;
   color: $accent-color-expense;
 }
 
@@ -203,8 +193,7 @@ input::-webkit-inner-spin-button {
 }
 
 .buttonAdd:hover,
-  // .enter:focus,
-  .buttonAdd:active {
+.buttonAdd:active {
   background-color: $accent-deep-color;
   border: 1px solid $accent-deep-color;
 }
@@ -217,8 +206,7 @@ input::-webkit-inner-spin-button {
 }
 
 .buttonCancel:hover,
-  // .register:focus ,
-  .buttonCancel:active {
+.buttonCancel:active {
   color: $accent-light-color;
   border: 1px solid $accent-light-color;
 }

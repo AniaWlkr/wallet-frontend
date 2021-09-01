@@ -14,7 +14,6 @@ import {
   editTransactionRequest,
   editTransactionSuccess,
   editTransactionError,
-  // deleteTransactionRequest,
   deleteTransactionSuccess,
   deleteTransactionError,
   openTransactionModal,

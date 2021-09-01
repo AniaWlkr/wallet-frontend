@@ -2,10 +2,6 @@
 @import '../../stylesheet/utils/common.scss';
 @import '../../stylesheet/utils/breakpoints.scss';
 
-// * {
-//   border: 1px solid salmon;
-// }
-
 .form {
   display: flex;
   flex-direction: column;
@@ -111,8 +107,7 @@ input::-webkit-inner-spin-button {
 }
 
 .buttonAdd:hover,
-  // .enter:focus,
-  .buttonAdd:active {
+.buttonAdd:active {
   background-color: $accent-deep-color;
   border: 1px solid $accent-deep-color;
 }
@@ -127,8 +122,7 @@ input::-webkit-inner-spin-button {
 }
 
 .buttonCancel:hover,
-  // .register:focus ,
-  .buttonCancel:active {
+.buttonCancel:active {
   color: $accent-light-color;
   border: 1px solid $accent-light-color;
 }
@@ -142,7 +136,6 @@ input::-webkit-inner-spin-button {
 }
 
 .datetimeInput {
-  // padding-left: 0px;
   padding-right: 10px;
 }
 
@@ -172,7 +165,6 @@ input::-webkit-inner-spin-button {
 
 @media screen and (min-width: 768px) {
   .mainDiv {
-    // width: 540px;
     padding-top: 40px;
     padding-bottom: 60px;
     border-radius: 20px;
