@@ -117,14 +117,12 @@
     }
     &:last-child {
       position: relative;
-      // padding: 10px 0 0 10px;
-      // display: flex;
     }
   }
   &_btn {
     position: absolute;
     min-width: 20px;
-    // display: block;
+
     min-height: 20px;
     border-radius: 50%;
     border: none;
@@ -141,8 +139,6 @@
       top: -22px;
     }
     &--delete {
-      // margin-left: 10px;
-      // margin-left: 90px;
       background: url('../../../images/transaction/delete.svg') no-repeat center;
       background-size: 20px;
       top: 2px;

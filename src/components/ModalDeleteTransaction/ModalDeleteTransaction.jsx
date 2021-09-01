@@ -3,10 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { selectors } from '../../redux/transactions';
-import {
-  deleteTransactionOperation,
-  // getTransactionsOperation,
-} from '../../redux/transactions/transOperations';
+import { deleteTransactionOperation } from '../../redux/transactions/transOperations';
 
 import styles from './ModalDeleteTransaction.module.scss';
 
@@ -20,7 +17,7 @@ const TransactionDelete = ({ toggleModal, transactionId }) => {
     event.preventDefault();
 
     dispatch(deleteTransactionOperation(transactionId));
-    // dispatch(getTransactionsOperation());
+
     toggleModal();
   };
 

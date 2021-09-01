@@ -18,7 +18,6 @@ export default function HomeTab({ style = 'otherScreenSize' }) {
 
   const transactions = normalizedTransactions(data);
 
-  // для открытия модалки на редактирование и модалки на удаления транзакции
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [transactionId, setTransactionId] = useState(0);

@@ -3,12 +3,6 @@ import {
   fetchCategoriesRequest,
   fetchCategoriesSuccess,
   fetchCategoriesError,
-  // addCategoryRequest,
-  // addCategorySuccess,
-  // addCategoryError,
-  // deleteCategoryRequest,
-  // deleteCategorySuccess,
-  // deleteCategoryError,
 } from './categoriesActions';
 
 export const getCategoriesOperation = () => dispatch => {
