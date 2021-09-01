@@ -30,7 +30,7 @@ export default function Navigation() {
 
       <NavLink
         to={routes.statistics}
-        className="Navlink"
+        className="NavLink"
         activeClassName="NavLink active"
       >
         <button className="buttonNav">

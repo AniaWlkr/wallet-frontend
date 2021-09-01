@@ -73,9 +73,9 @@ input:-webkit-autofill:active {
   font-size: 18px;
 }
 
-.inputRepeat {
-  margin-bottom: 30px;
-}
+// .inputRepeat {
+//   margin-bottom: 30px;
+// }
 
 .inputError {
   border-bottom: 1px solid $error-color;
@@ -141,39 +141,26 @@ input:-webkit-autofill:active {
   flex-direction: column;
 }
 
-// .labelsDiv:after {
-//   content: '';
-//   width: 280px;
-//   height: 5px;
-//   border-radius: 8px;
-//   background-color: $accent-light-color;
-// }
+.progressDiv {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 8px;
+  background-color: #e5f1ef;
+}
 
 .formFilled {
   position: absolute;
-  bottom: 17px;
+  bottom: -1px;
   left: 0;
   padding: 3px;
-  // width: 280px;
-  height: 5px;
+  max-width: 279px;
+  height: 4px;
   border-radius: 8px;
   background-color: $accent-light-color;
-}
-
-.OnlyOne {
-  width: 70px;
-}
-
-.OnlyTwo {
-  width: 140px;
-}
-
-.OnlyThree {
-  width: 210px;
-}
-
-.OnlyFour {
-  width: 279px;
+  box-shadow: 0 0 5px rgba(36, 204, 167, 0.5);
 }
 
 @media screen and (min-width: 768px) {
@@ -213,35 +200,7 @@ input:-webkit-autofill:active {
     width: 300px;
   }
 
-  .OnlyOne {
-    width: 100px;
-  }
-
-  .OnlyTwo {
-    width: 200px;
-  }
-
-  .OnlyThree {
-    width: 300px;
-  }
-
-  .OnlyFour {
-    width: 409px;
+  .formFilled {
+    max-width: 409px;
   }
 }
-
-// @media screen and (min-width: 1200px) {
-//   .mainDiv {
-//     position: absolute;
-//     top: -220px;
-//     right: 60px;
-//   }
-// }
-
-// @media screen and (min-width: 1400px) {
-//   .mainDiv {
-//     position: absolute;
-//     top: -270px;
-//     right: 220px;
-//   }
-// }

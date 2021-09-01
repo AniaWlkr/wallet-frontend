@@ -4,22 +4,26 @@ import actions from '../auth/authActions';
 const user = '';
 
 const authUser = createReducer(user, {
-  [actions.registerSuccess]: (_, action) => action.payload,
+  [actions.registerSuccess]: () => user,
   [actions.loginSuccess]: (_, action) => action.payload.user,
   [actions.logoutSuccess]: () => user,
   [actions.getCurrentUserSuccess]: (_, { payload }) => payload,
+
   // [actions.registerError]: () => user,
   // [actions.loginError]: () => user,
 });
 
 const isAuth = createReducer(false, {
-  [actions.registerSuccess]: () => true,
-  [actions.registerError]: () => false,
+  // [actions.registerSuccess]: () => true,
   [actions.getCurrentUserSuccess]: () => true,
   [actions.getCurrentUserError]: () => false,
   [actions.loginError]: () => false,
   [actions.loginSuccess]: () => true,
   [actions.logoutSuccess]: () => false,
+});
+const isRegistered = createReducer(false, {
+  [actions.registerSuccess]: () => true,
+  [actions.registerError]: () => false,
 });
 
 const token = createReducer(null, {
@@ -52,4 +56,5 @@ export default combineReducers({
   token,
   error,
   tokenExpireTime,
+  isRegistered,
 });

@@ -2,9 +2,9 @@ import { normalizedSum } from './normalizedSum';
 import { normalizedDate } from './normalizedDate';
 
 const normalizedTransactions = data => {
+  // console.log(data);
   if (data.length === 0) return [];
   const arr = [...data];
-  console.log(arr);
 
   const normalizedData = arr
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

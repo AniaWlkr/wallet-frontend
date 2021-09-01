@@ -52,16 +52,13 @@
   .headerContainer {
     height: 80px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
   }
 
   .headerTitle {
     font-size: 30px;
     line-height: 1.5;
-  }
-
-  .userLogout {
-    margin-left: 320px;
   }
 
   .userName {
@@ -86,6 +83,7 @@
   .headerContainer {
     height: 80px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
   }
 
@@ -96,10 +94,6 @@
 
   .userName {
     border-right: 1px solid;
-  }
-
-  .userLogout {
-    margin-left: 750px;
   }
 
   .buttonExit {

@@ -12,6 +12,10 @@ export default function Modal({ component: Component }) {
   const isTransactionModalOpen = useSelector(selectors.isTransactionModalOpen);
   const isExitModalOpen = useSelector(selectors.isExitModalOpen);
 
+  isTransactionModalOpen || isExitModalOpen
+    ? (document.body.style.overflow = 'hidden')
+    : (document.body.style.overflow = 'scroll');
+
   const closeByEsc = e => {
     if (e.code === 'Escape') {
       dispatch(setTransactionModalClose());
@@ -40,7 +44,6 @@ export default function Modal({ component: Component }) {
             className={styles.overlay}
           ></div>
           <div className={styles.content}>
-            {' '}
             <button
               onClick={closeModal}
               type="button"
@@ -52,14 +55,8 @@ export default function Modal({ component: Component }) {
             </button>
             <Component />
           </div>
-          <button onClick={closeModal} type="button" className={styles.button}>
-            <span className={styles.cross}>
-              <CloseSharpIcon />
-            </span>
-          </button>
         </div>
-      ) : // </div>
-      null}
+      ) : null}
     </div>
   );
 }
