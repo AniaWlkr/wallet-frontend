@@ -42,7 +42,7 @@ export default function HomeTab({ style = 'otherScreenSize' }) {
         break;
 
       default:
-        console.log('Operation is not determined');
+        console.warn('Operation is not determined');
     }
 
     setTransactionId(idTransaction);

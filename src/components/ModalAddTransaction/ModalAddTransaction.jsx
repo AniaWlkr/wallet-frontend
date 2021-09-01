@@ -147,7 +147,6 @@ export default function ModallAddTransaction() {
         categoryId: selectedCategoryId,
       };
       if (textarea) newTransaction = { ...newTransaction, comment: textarea };
-      console.log('makeTransaction -> newTransaction', newTransaction);
       return newTransaction;
     };
 

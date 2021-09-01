@@ -59,7 +59,6 @@ export default function DiagramTab() {
           default:
             console.warn('This type of transaction is not found');
         }
-        // return console.log('success');
       });
       setCurrentIncome(currentIncome);
       setCurrentSpend(currentSpend);

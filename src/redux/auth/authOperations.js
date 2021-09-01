@@ -1,6 +1,5 @@
 import actions from './authActions';
 import axios from 'axios';
-// import selectors from './authSelectors';
 import { alert, defaults } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
@@ -9,7 +8,7 @@ defaults.width = '200px';
 // const errorCodesArray = [400, 401, 409, 429, 500];
 
 axios.defaults.baseURL = 'https://db-wallet.herokuapp.com';
-// axios.defaults.baseURL = 'http://localhost:4444';
+
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;

@@ -3,9 +3,7 @@ import rates from './rates.json';
 
 const getCurrencyRates = () =>
   axios
-    .get(
-      'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=1https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5',
-    )
+    .get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
     .then(response => {
       return response.data;
     })

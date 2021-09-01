@@ -62,7 +62,6 @@ export default function LoginForm() {
         setPassword('');
       })
       .catch(error => {
-        // console.log(error);
         if (error[0].field === 'email') {
           setValidEmail(false);
           setEmail('');

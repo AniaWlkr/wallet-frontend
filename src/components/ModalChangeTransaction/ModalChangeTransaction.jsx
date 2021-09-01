@@ -113,7 +113,7 @@ const TransactionEdit = ({ toggleModal, transactionId }) => {
         setComment(value);
         break;
       default:
-        console.error('This field is not defined');
+        console.warn('This field is not defined');
     }
   };
 
@@ -128,7 +128,6 @@ const TransactionEdit = ({ toggleModal, transactionId }) => {
     };
     if (comment) updatedTransaction = { ...updatedTransaction, comment };
 
-    console.log('TransactionEdit -> updatedTransaction', updatedTransaction);
     dispatch(editTransactionOperation(transactionId, updatedTransaction));
     toggleModal();
 

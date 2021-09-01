@@ -32,8 +32,6 @@ export default function RegistrationForm() {
 
   const [progressBarWidth, setProgressBarWidth] = useState(0);
 
-  // console.log(progressBarWidth);
-
   const dispatch = useDispatch();
 
   const handleName = e => {

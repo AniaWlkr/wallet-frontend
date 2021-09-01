@@ -68,7 +68,6 @@ export const deleteTransactionOperation = id => (dispatch, getStore) => {
 
 export const editTransactionOperation =
   (id, updatedTransaction) => (dispatch, getStore) => {
-    console.log('id, updatedTransaction', id, updatedTransaction);
     const {
       auth: { token },
     } = getStore();
@@ -79,7 +78,6 @@ export const editTransactionOperation =
 
     return editTransaction(id, token, updatedTransaction)
       .then(response => {
-        console.log('response.data.data.result', response.data.data.result);
         return dispatch(editTransactionSuccess(response.data.data.result));
       })
       .catch(error => {
