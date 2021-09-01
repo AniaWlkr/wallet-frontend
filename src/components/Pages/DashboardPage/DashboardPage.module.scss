@@ -3,7 +3,6 @@
 .section {
   z-index: 0;
   background: $main-background-blur;
-  // backdrop-filter: blur(50px);
 
   min-height: 100vh;
   &_wrapper {
@@ -25,7 +24,6 @@
   @media screen and (min-width: $tablet) {
     display: flex;
     padding-top: 20px;
-    // margin-bottom: 40px;
     justify-content: space-between;
     align-items: flex-end;
   }

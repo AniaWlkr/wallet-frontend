@@ -10,8 +10,6 @@
   padding-bottom: 110px;
   height: 568px;
   background-color: $text-color-on-accent;
-  // margin-right: auto;
-  // margin-left: auto;
 }
 
 .wallet {
@@ -110,15 +108,13 @@ input:-webkit-autofill:active {
 }
 
 .enter:hover,
-  // .enter:focus,
-  .enter:active {
+.enter:active {
   background-color: $accent-deep-color;
   border: 1px solid $accent-deep-color;
 }
 
 .register:hover,
-  // .register:focus ,
-  .register:active {
+.register:active {
   color: $accent-light-color;
   border: 1px solid $accent-light-color;
 }
@@ -136,7 +132,6 @@ input:-webkit-autofill:active {
     border-radius: 20px;
     padding-top: 40px;
     padding-bottom: 60px;
-    // margin-top: 360px;
   }
 
   .wallet {
@@ -165,16 +160,3 @@ input:-webkit-autofill:active {
     width: 300px;
   }
 }
-
-// @media screen and (min-width: $tablet) {
-//   .mainDiv {
-//     // position: relative;
-//     // right: 85px;
-//   }
-// }
-
-// @media screen and (min-width: $desktop) {
-//   .mainDiv {
-//     margin: auto;
-//   }
-// }

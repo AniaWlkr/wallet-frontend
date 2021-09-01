@@ -2,7 +2,6 @@ import { normalizedSum } from './normalizedSum';
 import { normalizedDate } from './normalizedDate';
 
 const normalizedTransactions = data => {
-  // console.log(data);
   if (data.length === 0) return [];
   const arr = [...data];
 
