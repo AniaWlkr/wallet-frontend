@@ -22,6 +22,7 @@ import {
   openExitModal,
   closeExitModal,
 } from './transActions';
+import { getCurrentUser } from '../auth/authOperations';
 const errorCodesArray = [400, 401, 409, 429, 500];
 
 export const getTransactionsOperation = () => (dispatch, getStore) => {
@@ -51,19 +52,23 @@ export const addTransactionOperation =
         dispatch(addTransactionSuccess(transaction));
         return transaction;
       })
-      .catch(() => dispatch(addTransactionError()));
+      .catch(() => dispatch(addTransactionError()))
+      .finally(() => getCurrentUser());
   };
 
-export const deleteTransactionOperation = id => (dispatch, getStore) => {
+export const deleteTransactionOperation = id => async (dispatch, getStore) => {
   const {
     auth: { token },
   } = getStore();
 
   if (!id) return;
-
-  deleteTransaction(id, token)
-    .then(() => dispatch(deleteTransactionSuccess(id)))
-    .catch(() => dispatch(deleteTransactionError()));
+  try {
+    await deleteTransaction(id, token);
+    await dispatch(deleteTransactionSuccess(id));
+    await getCurrentUser();
+  } catch (err) {
+    dispatch(deleteTransactionError(err));
+  }
 };
 
 export const editTransactionOperation =
@@ -88,6 +93,10 @@ export const editTransactionOperation =
           return dispatch(editTransactionError(error.response.data.message));
         }
         return dispatch(editTransactionError(error));
+      })
+      .finally(async () => {
+        await getTransactionsOperation();
+        getCurrentUser();
       });
   };
 

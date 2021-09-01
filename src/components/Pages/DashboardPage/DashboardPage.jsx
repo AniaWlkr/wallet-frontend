@@ -11,6 +11,10 @@ import Navigation from '../../Navigation';
 import Currency from '../../Currency';
 import Balance from '../../Balance';
 import Loader from '../../Loader';
+import Modal from '../../Modal';
+import ButtonAddTransactions from '../../ButtonAddTransactions';
+import ModallAddTransaction from '../../ModalAddTransaction';
+import ModalLogout from '../../ModalLogout';
 
 import { getTransactionsOperation } from '../../../redux/transactions/transOperations';
 import { getCategoriesOperation } from '../../../redux/categories/categoriesOperations';
@@ -19,10 +23,6 @@ import { getCurrentUser } from '../../../redux/auth/authOperations';
 
 import routes from '../../../routes/routes';
 import styles from './DashboardPage.module.scss';
-import Modal from '../../Modal';
-import ButtonAddTransactions from '../../ButtonAddTransactions';
-import ModallAddTransaction from '../../ModalAddTransaction';
-import ModalLogout from '../../ModalLogout';
 import transSelectors from '../../../redux/transactions/transSelectors';
 
 const breakpoints = {
@@ -50,7 +50,11 @@ export default function DashboardPage() {
     await getCategories();
     await getUser();
     setLoading(false);
-  }, [dispatch]);
+  }, []);
+
+  useEffect(async () => {
+    await getUser();
+  }, [useSelector(transSelectors.getAllTransactions)]);
 
   const isTransactionModalOpenSelector = useSelector(
     transSelectors.isTransactionModalOpen,

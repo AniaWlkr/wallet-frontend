@@ -1,4 +1,5 @@
 import actions from './authActions';
+import { fetchBalanceSuccess } from '../finance/financeActions';
 import axios from 'axios';
 // import selectors from './authSelectors';
 import { alert, defaults } from '@pnotify/core';
@@ -306,6 +307,7 @@ export const getCurrentUser = () => async (dispatch, getState) => {
     const { data } = await axios.get('api/users/current');
 
     dispatch(actions.getCurrentUserSuccess(data.data));
+    dispatch(fetchBalanceSuccess(data.data.balance));
   } catch (error) {
     dispatch(actions.getCurrentUserError(error.response.message));
   }

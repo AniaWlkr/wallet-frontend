@@ -5,6 +5,7 @@ import style from './Balance.module.scss';
 
 export default function Balance() {
   const total = useSelector(financeSelectors.getCurrentUserBalance);
+
   const currentBalance = normalizedSum(total);
 
   return (
