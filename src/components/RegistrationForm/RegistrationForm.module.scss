@@ -2,13 +2,6 @@
 @import '../../stylesheet/utils/breakpoints.scss';
 @import '../../stylesheet//utils//common.scss';
 
-// .mainDiv {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   padding-top: 36px;
-// }
-
 .mainDiv {
   display: flex;
   flex-direction: column;
@@ -18,8 +11,6 @@
   height: 568px;
   width: 320px;
   background-color: $text-color-on-accent;
-  // margin-right: auto;
-  // margin-left: auto;
 }
 
 .wallet {
@@ -72,10 +63,6 @@ input:-webkit-autofill:active {
   margin-bottom: 40px;
   font-size: 18px;
 }
-
-// .inputRepeat {
-//   margin-bottom: 30px;
-// }
 
 .inputError {
   border-bottom: 1px solid $error-color;

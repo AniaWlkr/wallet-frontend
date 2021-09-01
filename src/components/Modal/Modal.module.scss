@@ -23,6 +23,7 @@
 // }
 
 .overlay {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -36,13 +37,13 @@
 
 .content {
   // width: 300px;
-  position: relative;
+  // position: relative;
+  position: absolute;
+  top: 80px;
   flex-direction: column;
   align-items: center;
-  // justify-content: baseline;
   margin-right: auto;
   margin-left: auto;
-  // background-attachment: fixed;
   z-index: 99;
   transition-property: transform;
   transition-duration: 500ms;
@@ -72,11 +73,14 @@
 }
 
 @media screen and (min-width: 768px) {
+  .overlay {
+    display: block;
+  }
 
-  // .content {
-  //   max-width: 540px;
-  // }
-
+  .content {
+    position: relative;
+    top: 0;
+  }
 
   .button {
     top: 10px;
