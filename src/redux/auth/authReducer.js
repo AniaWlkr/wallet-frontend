@@ -8,6 +8,7 @@ const authUser = createReducer(user, {
   [actions.loginSuccess]: (_, action) => action.payload.user,
   [actions.logoutSuccess]: () => user,
   [actions.getCurrentUserSuccess]: (_, { payload }) => payload,
+
   // [actions.registerError]: () => user,
   // [actions.loginError]: () => user,
 });
