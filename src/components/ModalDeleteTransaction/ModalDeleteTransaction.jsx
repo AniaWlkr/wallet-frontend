@@ -26,65 +26,67 @@ const TransactionDelete = ({ toggleModal, transactionId }) => {
   const category = categoryId.categoryName;
 
   return (
-    <div className={styles.mainDiv}>
-      <p className={styles.text}>Удалить транзакцию</p>
-      <div className={styles.transType}>
-        <p className={transType === 'income' ? styles.income : styles.spend}>
-          {transType === 'income' ? 'Доход' : 'Расход'}
-        </p>
-      </div>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        {transType === 'income' ? null : (
-          <input
-            type="text"
-            name="category"
-            value={category}
-            disabled
-            className={`${styles.input} ${styles.select}`}
-            placeholder={category}
-          ></input>
-        )}
-        <div className={styles.sumAndDate}>
-          <label className={styles.label}>
-            <input
-              value={parseFloat(sum).toFixed(2)}
-              disabled
-              type="float"
-              name="sum"
-              className={`${styles.input} ${styles.sumInput}`}
-            ></input>
-          </label>
-          <label className={styles.label}>
+    <div className={styles.wrapper}>
+      <div className={styles.mainDiv}>
+        <p className={styles.text}>Удалить транзакцию</p>
+        <div className={styles.transType}>
+          <p className={transType === 'income' ? styles.income : styles.spend}>
+            {transType === 'income' ? 'Доход' : 'Расход'}
+          </p>
+        </div>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          {transType === 'income' ? null : (
             <input
               type="text"
-              name="date"
-              value={transDate}
+              name="category"
+              value={category}
               disabled
-              className={`${styles.input} ${styles.datetimeInput}`}
+              className={`${styles.input} ${styles.select}`}
+              placeholder={category}
             ></input>
-          </label>
-        </div>
-        <textarea
-          value={comment}
-          name="comment"
-          maxLength="300"
-          className={`${styles.input} ${styles.textarea}`}
-          placeholder="Комментарий"
-          disabled
-        ></textarea>
-        <button
-          type="submit"
-          className={`${styles.button} ${styles.buttonAdd}`}
-        >
-          Удалить
-        </button>
-        <button
-          onClick={() => toggleModal()}
-          className={`${styles.button} ${styles.buttonCancel}`}
-        >
-          Отмена
-        </button>
-      </form>
+          )}
+          <div className={styles.sumAndDate}>
+            <label className={styles.label}>
+              <input
+                value={parseFloat(sum).toFixed(2)}
+                disabled
+                type="float"
+                name="sum"
+                className={`${styles.input} ${styles.sumInput}`}
+              ></input>
+            </label>
+            <label className={styles.label}>
+              <input
+                type="text"
+                name="date"
+                value={transDate}
+                disabled
+                className={`${styles.input} ${styles.datetimeInput}`}
+              ></input>
+            </label>
+          </div>
+          <textarea
+            value={comment}
+            name="comment"
+            maxLength="300"
+            className={`${styles.input} ${styles.textarea}`}
+            placeholder="Комментарий"
+            disabled
+          ></textarea>
+          <button
+            type="submit"
+            className={`${styles.button} ${styles.buttonAdd}`}
+          >
+            Удалить
+          </button>
+          <button
+            onClick={() => toggleModal()}
+            className={`${styles.button} ${styles.buttonCancel}`}
+          >
+            Отмена
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

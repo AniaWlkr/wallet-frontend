@@ -2,7 +2,23 @@
 @import '../../stylesheet/utils/common.scss';
 @import '../../stylesheet/utils/breakpoints.scss';
 
+.wrapper {
+  height: 100vh;
+  overflow: scroll;
+  background-color: #fff;
+
+  text-align: center;
+
+  @media screen and (min-width: $tablet) {
+    height: 540px;
+    overflow: visible;
+    background-color: transparent;
+  }
+}
+
 .form {
+  min-width: 320px;
+
   display: flex;
   flex-direction: column;
   align-items: center;

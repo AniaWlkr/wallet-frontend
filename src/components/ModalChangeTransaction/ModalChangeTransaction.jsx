@@ -146,6 +146,7 @@ const TransactionEdit = ({ toggleModal, transactionId }) => {
   const transDate = moment(date).format('DD.MM.YYYY');
 
   return (
+    <div className={styles.wrapper}>
     <div className={styles.mainDiv}>
       <p className={styles.text}>Изменить транзакцию</p>
       <div className={styles.transType}>
@@ -207,7 +208,8 @@ const TransactionEdit = ({ toggleModal, transactionId }) => {
         </button>
       </form>
     </div>
-  );
+    </div>
+    );
 };
 
 TransactionEdit.propTypes = {
