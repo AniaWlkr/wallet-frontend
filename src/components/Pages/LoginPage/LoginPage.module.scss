@@ -6,6 +6,11 @@
   display: none;
 }
 
+.formWraper {
+  height: 100vh;
+  background-color: #fff;
+}
+
 @media screen and (min-width: $tablet) {
   .sideBar {
     display: flex;
@@ -35,6 +40,10 @@
   .formWraper {
     padding-top: 50px;
     padding-bottom: 196px;
+
+    margin: 0 auto;
+
+    background-color: transparent;
   }
 }
 
@@ -52,6 +61,7 @@
   .formWraper {
     margin-top: 0;
     width: 720px;
+
     padding: 135px 85px 115px 95px;
 
     background: rgba(255, 255, 255, 0.4);
