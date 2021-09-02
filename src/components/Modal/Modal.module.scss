@@ -2,6 +2,7 @@
 @import '../../stylesheet/utils/breakpoints.scss';
 
 .modal {
+  overflow-y: auto;
   display: flex;
   align-items: center;
   justify-content: center;
