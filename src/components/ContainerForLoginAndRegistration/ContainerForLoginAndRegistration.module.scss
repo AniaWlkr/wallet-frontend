@@ -8,11 +8,11 @@
   text-align: center;
 
   @media screen and (min-width: $mobile) {
-    width: $mobile;
+    min-width: $mobile;
   }
 
   @media screen and (min-width: $tablet) {
-    width: $tablet;
+    min-width: $tablet;
     padding-left: 114px;
   }
 

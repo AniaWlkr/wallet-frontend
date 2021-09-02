@@ -7,9 +7,9 @@
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  padding-bottom: 30px;
+  padding-bottom: 50px;
   height: 568px;
-  width: 320px;
+
   background-color: $text-color-on-accent;
 }
 
@@ -109,15 +109,13 @@ input:-webkit-autofill:active {
 }
 
 .enter:hover,
- /* .enter:focus, */
-  .enter:active {
+.enter:active {
   background-color: $accent-deep-color;
   border: 1px solid $accent-deep-color;
 }
 
 .register:hover,
-  /* .register:focus , */
-  .register:active {
+.register:active {
   color: $accent-light-color;
   border: 1px solid $accent-light-color;
 }
