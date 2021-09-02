@@ -19,6 +19,8 @@
 .content {
   position: absolute;
   width: $mobile;
+  height: 100vh;
+  overflow: scroll;
 
   @media screen and (min-width: $tablet) {
     width: 540px;

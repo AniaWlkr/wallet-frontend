@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
-import apiService from '../../services/api-service';
+import apiService from '../../utils/pb-services/api-service';
 import Loader from '../Loader';
 import styles from './Currency.module.scss';
 import cx from 'classnames';
