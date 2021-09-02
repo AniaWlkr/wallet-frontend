@@ -10,8 +10,13 @@
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 5px;
+  height: 5px;
+
+  @media screen and (min-width: $tablet) {
+    width: 8px;
+    height: 8px;
+  }
   background-color: $main-background-blur;
 }
 

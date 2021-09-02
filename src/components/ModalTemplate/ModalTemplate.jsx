@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '../IconButtonTemplate';
+import IconButton from '../../images/IconButtonTemplate';
 import { ReactComponent as CloseIcon } from '../../images/icons/crossIcon.svg';
 import styles from './ModalTemplate.module.scss';
 
